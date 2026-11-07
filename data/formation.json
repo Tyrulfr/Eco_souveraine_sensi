@@ -44,7 +44,7 @@
               "min": 0,
               "max": 10000,
               "pas": 50,
-              "explication": "Cela représente {{chiffre:dette-pib-t2-2026}} de ce que le pays produit en un an. Si vous étiez loin, vous n'êtes pas seul : au-delà de quelques millions, les montants dépassent notre intuition. C'est le point de départ de ce module."
+              "explication": "Rapportée à ce que le pays produit en un an, elle atteint {{chiffre:dette-pib-t2-2026}}. Si vous étiez loin, vous n'êtes pas seul : au-delà de quelques millions, les montants dépassent notre intuition. C'est le point de départ de ce module."
             },
             {
               "type": "accroche",
