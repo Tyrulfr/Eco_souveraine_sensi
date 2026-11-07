@@ -8,6 +8,7 @@ import {
   formaterValeur,
   lireProgression,
   progressionParDefaut,
+  questionsVisibles,
   CLE_STOCKAGE,
 } from "../src/lib.js";
 
@@ -82,4 +83,12 @@ test("progression : un stockage qui lève une exception ne casse rien", () => {
   };
   assert.deepEqual(lireProgression(hostile), progressionParDefaut());
   assert.equal(ecrireProgression(hostile, progressionParDefaut()), false);
+});
+
+test("questionsVisibles : filtre selon la profondeur", () => {
+  const q = (/** @type {string} */ id, /** @type {1|2|3} */ profondeur) => ({ id, question: id, choix: [], reponse: "a", explication: "", profondeur });
+  const quiz = [q("a", 1), q("b", 2), q("c", 3)];
+  assert.deepEqual(questionsVisibles(quiz, 1).map((x) => x.id), ["a"]);
+  assert.deepEqual(questionsVisibles(quiz, 2).map((x) => x.id), ["a", "b"]);
+  assert.deepEqual(questionsVisibles(quiz, 3).map((x) => x.id), ["a", "b", "c"]);
 });

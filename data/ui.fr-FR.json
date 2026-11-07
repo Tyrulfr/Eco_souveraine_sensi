@@ -80,5 +80,8 @@
   "formateur.bientot": "Le guide formateur arrive au lot 5.",
   "pied.donnees": "Aucune donnée personnelle collectée. Votre progression reste sur cet appareil.",
   "pied.verification": "Chiffres relevés le {date}. Certains restent à vérifier : voir la page Sources.",
-  "chiffre.a-completer": "donnée à compléter"
+  "chiffre.a-completer": "donnée à compléter",
+  "module.etape.schema": "Schéma",
+  "schema.description": "Lire la description détaillée du schéma",
+  "module.quiz.filtre": "{n} question(s) sur {total} à cette profondeur. Passez à une profondeur plus grande pour débloquer les autres."
 }

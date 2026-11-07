@@ -197,18 +197,33 @@ export function validerFormation(formation, figures) {
       s.etapes.forEach((e, ei) => {
         const chE = `${chM}.sequences[${si}].etapes[${ei}]`;
         if (e.texte !== undefined) verifierTexte(chE, e.texte, null);
+        if (e.type === "schema") {
+          if (!nonVide(e.titre) || !nonVide(e.image) || !nonVide(e.alt)) {
+            constats.push({ gravite: "erreur", chemin: chE, message: "schéma : titre, image et texte alternatif obligatoires" });
+          }
+          if (!Array.isArray(e.description) || e.description.length === 0) {
+            constats.push({ gravite: "erreur", chemin: chE, message: "schéma : description détaillée obligatoire (accessibilité)" });
+          }
+          (e.description ?? []).forEach((d, di) => verifierTexte(`${chE}.description[${di}]`, d, null));
+        }
         for (const id of e.concepts ?? []) {
           if (!m.concepts.some((c) => c.id === id)) constats.push({ gravite: "erreur", chemin: chE, message: `concept inconnu : ${id}` });
         }
       });
     });
 
+    if (m.quiz.length > 0 && !m.quiz.some((q) => q.profondeur === 1)) {
+      constats.push({ gravite: "erreur", chemin: `${chM}.quiz`, message: "au moins une question doit être accessible en profondeur 1" });
+    }
     m.quiz.forEach((q, qi) => {
       const chQ = `${chM}.quiz[${qi}]`;
       verifierTexte(`${chQ}.question`, q.question, null);
       verifierTexte(`${chQ}.explication`, q.explication, null);
       q.choix.forEach((c) => verifierTexte(`${chQ}.choix.${c.id}`, c.texte, null));
       if (!q.choix.some((c) => c.id === q.reponse)) constats.push({ gravite: "erreur", chemin: chQ, message: "réponse absente des choix" });
+      if (![1, 2, 3].includes(q.profondeur)) {
+        constats.push({ gravite: "erreur", chemin: chQ, message: "profondeur (1, 2 ou 3) obligatoire : niveau à partir duquel la réponse est enseignée" });
+      }
     });
 
     if (m.activite) {

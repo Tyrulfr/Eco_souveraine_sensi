@@ -1,5 +1,17 @@
 [
   {
+    "id": "pib-2025",
+    "libelle": "Produit intérieur brut (PIB) de la France en 2025",
+    "valeur": 2991.1,
+    "unite": "Md€",
+    "date": "2025",
+    "source": "Insee Première n° 2105, « Les comptes de la Nation en 2025 », 29 mai 2026, figure 1",
+    "url": "https://www.insee.fr/fr/statistiques/8996855",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "PIB en valeur, aux prix courants."
+  },
+  {
     "id": "depenses-pib",
     "libelle": "Dépenses publiques",
     "valeur": 57.3,

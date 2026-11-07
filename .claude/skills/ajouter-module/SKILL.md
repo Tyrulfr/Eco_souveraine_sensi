@@ -64,7 +64,14 @@ Pour chaque chiffre, ajoute une entrée dans `data/figures.json` :
 - `activite` (classement) : 5 à 8 items, chacun avec un `commentaire` qui
   explique la réponse.
 - `quiz` : 3 à 5 questions ; varie la position de la bonne réponse ; chaque
-  `explication` dit pourquoi.
+  `explication` dit pourquoi. Chaque question porte `"profondeur": 1 | 2 | 3`,
+  la profondeur à partir de laquelle sa réponse a été **enseignée** dans le
+  module (elle n'est affichée qu'à partir de là). Ne jamais interroger sur une
+  notion qui n'a pas été expliquée : au moins une question en profondeur 1.
+- Un schéma est le bienvenu quand il y a un circuit ou un mécanisme : étape
+  `{ "type": "schema", "titre", "image": "assets/img/….svg", "alt",
+  "description": ["étape 1", "étape 2", …] }`. SVG en bleu nuit `#0b1d3a` et
+  orange `#ffa41b` (texte orange : `#9a4a00`), lisible à 360 px de large.
 - `lectureOpposee` : `{ "titre": "La lecture opposée", "texte": "…", "source": "id" }`.
   La source est ajoutée dans `sources[]` avec `apport` et `vigilance`.
 - `glossaire` : chaque terme technique employé en couche 2 ou 3.

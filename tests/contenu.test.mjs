@@ -72,8 +72,23 @@ test("toutes les clés d'interface utilisées dans app.js existent", () => {
     ...[...html.matchAll(/data-ui="([a-z0-9.-]+)"/g)].map((m) => m[1]),
     "statut.verifie", "statut.a-verifier", "statut.a-completer",
     "profondeur.1", "profondeur.2", "profondeur.3",
-    "module.etape.situation", "module.etape.question", "module.etape.grille", "module.etape.debat",
+    "module.etape.situation", "module.etape.question", "module.etape.grille", "module.etape.debat", "module.etape.schema",
   ]);
   const manquantes = [...cles].filter((k) => k && !(k in ui));
   assert.deepEqual(manquantes, []);
+});
+
+test("les images des schémas existent", () => {
+  for (const m of formation.modules) {
+    for (const e of m.sequences.flatMap((s) => s.etapes).filter((x) => x.type === "schema")) {
+      assert.doesNotThrow(() => readFileSync(new URL(`../${e.image}`, import.meta.url)), e.image);
+    }
+  }
+});
+
+test("module 1 : le PIB est enseigné avant d'être interrogé, et chaque question a sa profondeur", () => {
+  const m1 = formation.modules[0];
+  assert.ok(m1);
+  assert.ok(m1.concepts.some((c) => c.id === "pib"), "concept PIB absent");
+  for (const q of m1.quiz) assert.ok([1, 2, 3].includes(q.profondeur), q.id);
 });

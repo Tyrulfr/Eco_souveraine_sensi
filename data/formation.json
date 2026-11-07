@@ -26,7 +26,7 @@
       "resume": "D'où vient l'argent public, où il va, et ce qui se passe quand il en manque.",
       "objectifs": [
         "Distinguer dépense, recette, déficit et dette.",
-        "Lire un chiffre exprimé « en pourcentage du PIB ».",
+        "Lire un chiffre exprimé « en pourcentage du PIB » et savoir à quoi il est comparé.",
         "Comprendre pourquoi les intérêts de la dette pèsent sur le budget.",
         "Formuler une question de légitimité sans y répondre à la place des autres."
       ],
@@ -46,6 +46,12 @@
             {
               "type": "concepts",
               "concepts": [
+                "pib"
+              ]
+            },
+            {
+              "type": "concepts",
+              "concepts": [
                 "depense-publique",
                 "recettes-publiques"
               ]
@@ -59,6 +65,20 @@
             {
               "type": "situation",
               "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. L'État emprunte la différence."
+            },
+            {
+              "type": "schema",
+              "titre": "Le circuit de l'argent public",
+              "image": "assets/img/schema-budget.svg",
+              "alt": "Schéma du circuit de l'argent public : recettes et emprunt alimentent la caisse publique, qui paie les dépenses ; l'emprunt s'ajoute à la dette, qui coûte des intérêts.",
+              "description": [
+                "Les recettes (impôts, cotisations, autres revenus) entrent dans la caisse publique : État, Sécurité sociale, collectivités locales.",
+                "Quand les recettes ne suffisent pas, l'État emprunte. L'argent emprunté entre aussi dans la caisse, mais il devra être rendu avec des intérêts.",
+                "Chaque emprunt s'ajoute à la dette : tout ce qui reste à rembourser.",
+                "La caisse paie les dépenses : retraites, familles, chômage, santé, école, sécurité, défense…",
+                "La dette coûte des intérêts, qui deviennent à leur tour une dépense.",
+                "Le déficit, c'est la différence entre dépenses et recettes : la part payée en empruntant."
+              ]
             },
             {
               "type": "concepts",
@@ -91,6 +111,31 @@
         }
       ],
       "concepts": [
+        {
+          "id": "pib",
+          "titre": "Le PIB, la règle pour mesurer",
+          "couche1": {
+            "texte": "On compare tout à ce que le pays produit en une année.",
+            "image": "assets/img/regle.svg",
+            "alt": "Une règle graduée posée à côté d'une pile de pièces et d'un gâteau."
+          },
+          "couche2": {
+            "mecanisme": "Le produit intérieur brut (PIB) additionne la valeur de tout ce qui est produit dans le pays en une année : biens, services, travail des administrations. Exprimer un montant « en pourcentage du PIB », c'est le comparer à cette production annuelle.",
+            "ordreDeGrandeur": "Le PIB de la France était de {{chiffre:pib-2025}} en 2025.",
+            "comparaison": "Des milliards parlent mal : un pourcentage du PIB permet de comparer des années ou des pays de tailles différentes. Quand on lit que les dépenses publiques représentent {{chiffre:depenses-pib}}, on les compare à toute la production du pays sur la même année."
+          },
+          "couche3": {
+            "enjeu": "Le PIB compte ce qui se produit et s'échange, mais pas le travail bénévole, les tâches domestiques ou l'état de la nature. Certains veulent d'autres indicateurs à côté du PIB, d'autres le jugent indispensable pour comparer.",
+            "questionOuverte": "Mesurer la richesse d'un pays par sa production : qu'est-ce que cela montre, et qu'est-ce que cela laisse dans l'ombre ?"
+          },
+          "sources": [
+            "insee-ip2105"
+          ],
+          "chiffres": [
+            "pib-2025",
+            "depenses-pib"
+          ]
+        },
         {
           "id": "depense-publique",
           "titre": "Où va l'argent public ?",
@@ -308,27 +353,33 @@
             }
           ],
           "reponse": "d",
-          "explication": "Le déficit se mesure sur une année. La dette est l'addition des déficits passés qui n'ont pas été remboursés."
+          "explication": "Le déficit se mesure sur une année. La dette est l'addition des déficits passés qui n'ont pas été remboursés.",
+          "profondeur": 1
         },
         {
           "id": "m1q2",
-          "question": "On lit souvent que les dépenses publiques sont exprimées « en pourcentage du PIB ». Cela signifie :",
+          "question": "Quand on dit que les dépenses publiques sont exprimées « en pourcentage du PIB », on les compare à :",
           "choix": [
             {
               "id": "a",
-              "texte": "on compare la dépense publique à toute la richesse produite en un an, et une partie de cette dépense est reversée aux ménages"
+              "texte": "l'argent que l'État a sur son compte"
             },
             {
               "id": "b",
-              "texte": "l'État garde pour lui ce pourcentage des revenus"
+              "texte": "le total des impôts payés dans l'année"
             },
             {
               "id": "c",
-              "texte": "ce pourcentage des habitants travaille pour l'État"
+              "texte": "tout ce que le pays produit en une année"
+            },
+            {
+              "id": "d",
+              "texte": "la dette publique"
             }
           ],
-          "reponse": "a",
-          "explication": "C'est une comparaison de taille, pas une part retirée aux habitants : pensions et allocations repartent vers les ménages."
+          "reponse": "c",
+          "explication": "Le PIB mesure tout ce que le pays produit en une année. L'exprimer en pourcentage permet de comparer des années ou des pays de tailles différentes.",
+          "profondeur": 1
         },
         {
           "id": "m1q3",
@@ -348,7 +399,8 @@
             }
           ],
           "reponse": "c",
-          "explication": "La plupart des titres déjà émis gardent leur taux. Ce sont surtout les nouveaux emprunts, y compris ceux qui remplacent les titres arrivés à échéance, qui coûtent plus cher."
+          "explication": "La plupart des titres déjà émis gardent leur taux. Ce sont surtout les nouveaux emprunts, y compris ceux qui remplacent les titres arrivés à échéance, qui coûtent plus cher.",
+          "profondeur": 2
         },
         {
           "id": "m1q4",
@@ -368,7 +420,8 @@
             }
           ],
           "reponse": "b",
-          "explication": "L'argent devra être rendu, avec intérêts : il augmente la dette."
+          "explication": "L'argent devra être rendu, avec intérêts : il augmente la dette.",
+          "profondeur": 1
         }
       ],
       "lectureOpposee": {
@@ -502,6 +555,16 @@
       "url": "https://www.aeaweb.org/articles?id=10.1257/aer.109.4.1197",
       "apport": "Montre que le coût d'une dette dépend de l'écart entre taux d'intérêt et croissance, pas seulement de son montant.",
       "vigilance": "Écrit en période de taux très bas ; l'auteur souligne lui-même que la conclusion change si les taux remontent."
+    },
+    {
+      "id": "insee-ip2105",
+      "auteurs": "Insee",
+      "annee": "2026",
+      "titre": "Les comptes de la Nation en 2025",
+      "support": "Insee Première n° 2105, 29 mai 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8996855",
+      "apport": "Montant du PIB et croissance de l'économie française en 2025.",
+      "vigilance": "Le PIB mesure la production marchande et non marchande ; il ne mesure ni le bien-être, ni le travail domestique, ni l'état de l'environnement."
     },
     {
       "id": "insee-ip2106",

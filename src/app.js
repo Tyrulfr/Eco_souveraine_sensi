@@ -5,6 +5,7 @@
 import {
   decouperTexte,
   ecrireProgression,
+  questionsVisibles,
   formaterValeur,
   lireProgression,
 } from "./lib.js";
@@ -20,8 +21,9 @@ import {
  * @typedef {Enfant | unknown[]} Enfants  tableaux imbriqués autorisés, aplatis par h()
  */
 
-/** @type {{ formation: Formation, figures: Map<string, Figure>, ui: Record<string, string>, progression: Progression, stockage: Storage | null }} */
+/** @type {{ formation: Formation, figures: Map<string, Figure>, ui: Record<string, string>, progression: Progression, stockage: Storage | null, moduleCourant: Module | null }} */
 const etat = {
+  moduleCourant: null,
   formation: { meta: {}, gardeFous: [], modules: [], sources: [] },
   figures: new Map(),
   ui: {},
@@ -193,6 +195,8 @@ function changerProfondeur(n) {
     const corps = carte.querySelector(".concept-corps");
     if (c && corps) corps.replaceWith(corpsConcept(c, n));
   });
+  const quiz = document.querySelector("section.quiz");
+  if (quiz && etat.moduleCourant) quiz.replaceWith(Quiz(etat.moduleCourant));
 }
 
 // ---------- ConceptCard ----------
@@ -295,6 +299,7 @@ function pageModule(slug) {
   const index = modules.findIndex((m) => m.slug === slug);
   const m = modules[index];
   if (!m) return pageIntrouvable();
+  etat.moduleCourant = m;
   document.title = `${m.titre} — ${t("site.titre")}`;
   const precedent = modules[index - 1];
   const suivant = modules[index + 1];
@@ -327,6 +332,7 @@ function pageModule(slug) {
               return c ? ConceptCard(c) : null;
             });
           }
+          if (e.type === "schema") return Schema(e);
           return h("div", { class: `etape etape-${e.type}` }, h("p", { class: "etape-type" }, t(`module.etape.${e.type}`)), texteRiche(e.texte ?? ""));
         }),
       ),
@@ -382,10 +388,28 @@ function Activite(m) {
   );
 }
 
+/**
+ * Schéma illustré, avec sa description détaillée pour les lecteurs d'écran
+ * et pour qui préfère lire le circuit pas à pas.
+ * @param {import("./lib.js").Etape} e
+ */
+function Schema(e) {
+  const idTitre = nouvelId("schema");
+  return h(
+    "figure",
+    { class: "etape etape-schema", "aria-labelledby": idTitre },
+    h("p", { class: "etape-type" }, t("module.etape.schema")),
+    h("h3", { id: idTitre }, e.titre ?? ""),
+    h("img", { src: e.image ?? "", alt: e.alt ?? "", width: 360, height: 470, loading: "lazy" }),
+    h("details", {}, h("summary", {}, t("schema.description")), h("ol", {}, (e.description ?? []).map((d) => h("li", {}, texteRiche(d))))),
+  );
+}
+
 /** @param {Module} m */
 function Quiz(m) {
   const zone = h("div", { class: "resultat", role: "status" });
-  const questions = m.quiz.map((q) => {
+  const visibles = questionsVisibles(m.quiz, etat.progression.profondeur);
+  const questions = visibles.map((q) => {
     const nom = nouvelId(q.id);
     return h(
       "fieldset",
@@ -400,7 +424,7 @@ function Quiz(m) {
   });
   const verifier = () => {
     let score = 0;
-    m.quiz.forEach((q, i) => {
+    visibles.forEach((q, i) => {
       const fs = questions[i];
       const coche = fs?.querySelector("input:checked");
       const valeur = coche instanceof HTMLInputElement ? coche.value : null;
@@ -414,16 +438,17 @@ function Quiz(m) {
         retour.textContent = `${verdict} ${q.explication}`;
       }
     });
-    zone.textContent = t("module.quiz.score", { score, total: m.quiz.length });
+    zone.textContent = t("module.quiz.score", { score, total: visibles.length });
     const p = progressionModule(m.id);
     p.quiz = score;
-    p.quizTotal = m.quiz.length;
+    p.quizTotal = visibles.length;
     sauver();
   };
   return h(
     "section",
     { class: "quiz", "aria-labelledby": "quiz" },
     h("h2", { id: "quiz" }, t("module.quiz")),
+    visibles.length < m.quiz.length ? h("p", { class: "aide" }, t("module.quiz.filtre", { n: visibles.length, total: m.quiz.length })) : null,
     questions,
     h("button", { type: "button", class: "bouton", onclick: verifier }, t("module.quiz.verifier")),
     zone,

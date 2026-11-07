@@ -38,13 +38,17 @@
  * @property {string[]} chiffres  identifiants de figures.json
  *
  * @typedef {Object} Etape
- * @property {"situation" | "question" | "concepts" | "grille" | "debat"} type
+ * @property {"situation" | "question" | "concepts" | "grille" | "debat" | "schema"} type
  * @property {string} [texte]
  * @property {string[]} [concepts]
+ * @property {string} [titre]          schéma : titre affiché
+ * @property {string} [image]          schéma : chemin du SVG
+ * @property {string} [alt]            schéma : texte alternatif court
+ * @property {string[]} [description]  schéma : description détaillée, pas à pas
  *
  * @typedef {{ id: string, titre: string, etapes: Etape[] }} Sequence
  * @typedef {{ id: string, texte: string }} Choix
- * @typedef {{ id: string, question: string, choix: Choix[], reponse: string, explication: string }} Question
+ * @typedef {{ id: string, question: string, choix: Choix[], reponse: string, explication: string, profondeur: Profondeur }} Question  profondeur : à partir de laquelle la réponse a été enseignée
  * @typedef {{ id: string, texte: string, reponse: string, commentaire: string }} ItemClassement
  * @typedef {{ type: "classement", titre: string, consigne: string, categories: { id: string, label: string }[], items: ItemClassement[] }} Activite
  * @typedef {{ titre: string, texte: string, source: string }} LectureOpposee
@@ -141,6 +145,16 @@ export function compterMots(texte) {
     .replace(JETON, " X ")
     .split(/[\s'’]+/)
     .filter((m) => /[\p{L}\p{N}]/u.test(m)).length;
+}
+
+/**
+ * Questions du quiz visibles à une profondeur donnée.
+ * @param {Question[]} quiz
+ * @param {Profondeur} p
+ * @returns {Question[]}
+ */
+export function questionsVisibles(quiz, p) {
+  return quiz.filter((q) => q.profondeur <= p);
 }
 
 /**
