@@ -42,8 +42,9 @@ soit sa qualité technique.
 - Aucun chiffre n'est écrit en dur dans un texte : on utilise
   `{{chiffre:id}}`. Exceptions tolérées : la métaphore « 100 € » et les années.
 - Une donnée absente s'affiche « donnée à compléter », et elle est signalée.
-- Le statut `verifie` n'est attribué qu'après contrôle humain sur la source
-  primaire.
+- Le statut `verifie` n'est attribué que si la valeur a été relevée dans la
+  source primaire officielle elle-même (document, date et lien cités).
+  Une valeur lue dans la presse ou chez un agrégateur reste `a-verifier`.
 - Les paramètres du simulateur sont des **hypothèses pédagogiques**, affichées
   comme telles, jamais comme des mesures.
 

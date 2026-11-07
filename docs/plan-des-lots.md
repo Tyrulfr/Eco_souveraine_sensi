@@ -22,8 +22,9 @@ Dispositif retenu : site statique léger sur le modèle de Proj_GE (`index.html`
 ## Points ouverts
 
 - Cahier des charges de cette formation : non fourni.
-- Déficit annoncé 5,4 % du PIB, alors que dépenses − recettes = 5,1 points.
-- Charge d'intérêts 2026 : 79,2 Md€ dans le jeu fourni, environ 77 Md€ selon la
-  Cour des comptes (juin 2026, d'après la presse). Périmètre à préciser.
-- Aucune source primaire pour les chiffres du jeu initial.
-- Ventilation de la dépense par fonction (santé, enseignement, défense) à compléter.
+- Chiffres corrigés le 7 novembre 2026 d'après l'Insee (comptes 2025 publiés le
+  29 mai 2026) : dépenses 57,3 %, recettes 52,2 %, déficit 5,1 %, dette 115,7 %
+  du PIB. Le jeu initial mêlait des années (5,4 % était le déficit 2023).
+- Restent « à vérifier » faute d'accès au document officiel : charge d'intérêts
+  2026 et 2027 (rapport annexé au PLF 2027), taux à 10 ans, écart avec
+  l'Allemagne, part des non-résidents (Agence France Trésor).

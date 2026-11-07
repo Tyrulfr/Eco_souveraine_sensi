@@ -5,7 +5,7 @@
     "public": "De 10 à 90 ans, sans prérequis. En classe, en médiathèque ou en autonomie.",
     "duree": "Six modules de deux heures",
     "version": "Lot 1 — socle et module de référence",
-    "dateVerification": "2026-11-06",
+    "dateVerification": "2026-11-07",
     "intention": "Donner à chacun les outils pour lire un programme économique et se faire son propre avis. La formation ne dit jamais pour qui voter."
   },
   "gardeFous": [
@@ -109,6 +109,7 @@
             "questionOuverte": "Qu'est-ce qui devrait être payé par tous, et qu'est-ce qui devrait rester à la charge de chacun ?"
           },
           "sources": [
+            "insee-t3301",
             "insee-ip2093"
           ],
           "chiffres": [
@@ -136,7 +137,9 @@
             "enjeu": "Un impôt tient quand il est jugé juste. Mais « juste » peut vouloir dire : tout le monde paie le même pourcentage de ce qu'il gagne ; plus on gagne, plus le pourcentage monte ; ou chacun paie selon les services qu'il reçoit.",
             "questionOuverte": "Quelle idée de la justice fiscale vous paraît la plus défendable, et pourquoi d'autres pourraient-ils penser autrement ?"
           },
-          "sources": [],
+          "sources": [
+            "insee-ip2106"
+          ],
           "chiffres": [
             "recettes-pib",
             "prelevements-obligatoires-pib",
@@ -161,6 +164,7 @@
             "questionOuverte": "En quoi le budget d'un État ressemble-t-il à celui d'une famille, et en quoi est-il différent ?"
           },
           "sources": [
+            "insee-ip2106",
             "tfue-protocole-12"
           ],
           "chiffres": [
@@ -178,7 +182,7 @@
           },
           "couche2": {
             "mecanisme": "La dette publique est la somme de tous les emprunts pas encore remboursés. L'État emprunte en vendant des titres, les obligations assimilables du Trésor (OAT), à des prêteurs : banques, assureurs, fonds, épargnants, en France et à l'étranger.",
-            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}}. La part détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
+            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}} fin 2025. La part de la dette de l'État vendue sur les marchés et détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
             "comparaison": "Un pays ne rembourse presque jamais sa dette d'un coup : quand un titre arrive à échéance, il emprunte à nouveau pour le rembourser, comme une entreprise qui prend un nouveau prêt quand l'ancien arrive à son terme."
           },
           "couche3": {
@@ -186,6 +190,7 @@
             "questionOuverte": "Dans quels cas est-il légitime d'emprunter aujourd'hui ce que d'autres rembourseront demain ?"
           },
           "sources": [
+            "insee-ip2106",
             "blanchard-2019"
           ],
           "chiffres": [
@@ -203,20 +208,23 @@
           },
           "couche2": {
             "mecanisme": "Chaque année, l'État verse des intérêts à ses prêteurs. Leur montant dépend de la dette et du taux auquel il emprunte. Quand les taux montent, ce sont pour l'essentiel les nouveaux emprunts qui coûtent plus cher : la plupart des anciens titres gardent leur taux, si bien que la hausse se diffuse année après année.",
-            "ordreDeGrandeur": "La charge d'intérêts est de {{chiffre:charge-interets-2026}} en 2026 et passerait à {{chiffre:charge-interets-2027}} en 2027. L'État emprunte à dix ans à un taux de {{chiffre:oat-10-ans}}, soit un écart de {{chiffre:ecart-oat-bund}} avec l'Allemagne.",
-            "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer, on peut le comparer aux crédits de l'Éducation nationale : {{chiffre:budget-education-nationale}}."
+            "ordreDeGrandeur": "La charge d'intérêts de l'ensemble des administrations publiques était de {{chiffre:charge-interets-2025}} en 2025. Selon les prévisions du gouvernement, elle atteindrait {{chiffre:charge-interets-2026}} en 2026, puis {{chiffre:charge-interets-2027}} en 2027. L'État emprunte à dix ans à un taux de {{chiffre:oat-10-ans}}, soit un écart de {{chiffre:ecart-oat-bund}} avec l'Allemagne.",
+            "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer : les intérêts payés en 2025 ({{chiffre:charge-interets-2025}}) dépassaient déjà toute la dépense publique de défense de l'année précédente ({{chiffre:depense-defense-2024}})."
           },
           "couche3": {
             "enjeu": "Les prêteurs, en France comme à l'étranger, observent les choix budgétaires du pays. Certains y voient une discipline utile, d'autres une pression sur la démocratie.",
             "questionOuverte": "Les prêteurs devraient-ils pouvoir peser sur les choix d'un pays qui leur doit de l'argent, et si oui, jusqu'où ?"
           },
-          "sources": [],
+          "sources": [
+            "insee-ip2106"
+          ],
           "chiffres": [
+            "charge-interets-2025",
             "charge-interets-2026",
             "charge-interets-2027",
             "oat-10-ans",
             "ecart-oat-bund",
-            "budget-education-nationale"
+            "depense-defense-2024"
           ]
         }
       ],
@@ -496,14 +504,34 @@
       "vigilance": "Écrit en période de taux très bas ; l'auteur souligne lui-même que la conclusion change si les taux remontent."
     },
     {
-      "id": "insee-ip2093",
+      "id": "insee-ip2106",
       "auteurs": "Insee",
       "annee": "2026",
-      "titre": "Insee Première n° 2093 — la dépense publique par fonction en 2024",
-      "support": "Insee Première",
+      "titre": "Le compte des administrations publiques en 2025",
+      "support": "Insee Première n° 2106, 29 mai 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8997691",
+      "apport": "Chiffres officiels 2025 : dépenses, recettes, déficit, dette, prélèvements obligatoires et charge d'intérêts des administrations publiques.",
+      "vigilance": "Comptabilité nationale : le périmètre (État, collectivités, Sécurité sociale) diffère de celui du budget de l'État voté au Parlement."
+    },
+    {
+      "id": "insee-t3301",
+      "auteurs": "Insee",
+      "annee": "2026",
+      "titre": "Dépenses des administrations publiques ventilées par fonction en 2024 (tableau 3.301)",
+      "support": "Comptes nationaux annuels, base 2020, Insee Résultats, 27 mars 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8574707",
+      "apport": "Montants de la dépense publique par grande fonction, de 1995 à 2024.",
+      "vigilance": "Les intérêts de la dette sont classés dans les « services généraux » ; données 2024 provisoires."
+    },
+    {
+      "id": "insee-ip2093",
+      "auteurs": "Diaz, Maxime (Insee)",
+      "annee": "2026",
+      "titre": "Usage de l'argent public : les dépenses publiques par fonction en 2024",
+      "support": "Insee Première n° 2093, 5 février 2026",
       "url": "https://www.insee.fr/fr/statistiques/8735252",
       "apport": "Répartit la dépense publique par grande fonction (protection sociale, santé, enseignement, défense…).",
-      "vigilance": "Titre exact à vérifier sur le site de l'Insee. La ventilation par fonction suit une nomenclature internationale qui ne recoupe pas les ministères."
+      "vigilance": "Données 2024 provisoires, révisables à l'automne 2026. La ventilation par fonction suit une nomenclature internationale (COFOG) qui ne recoupe pas les ministères."
     },
     {
       "id": "tfue-protocole-12",
