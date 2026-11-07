@@ -23,21 +23,30 @@
   font-display: swap;
 }
 
+/* Charte : bleu nuit (structure, texte, boutons) et orange soleil (touches,
+   accents, focus). L'orange vif ne sert jamais seul pour du texte sur fond
+   clair : on utilise --soleil-texte, assez foncé pour le contraste AA. */
 :root {
-  --fond: #fffaf3;
+  --nuit: #0b1d3a;
+  --nuit-2: #16305c;
+  --nuit-3: #2a4a80;
+  --soleil: #ffa41b;
+  --soleil-clair: #fff3dc;
+  --soleil-texte: #9a4a00;
+  --fond: #f6f7fb;
   --surface: #ffffff;
-  --texte: #1f1a17;
-  --texte-doux: #4f4640;
-  --accent: #8a3b12;
-  --accent-fonce: #6a2c0c;
-  --bordure: #8c7b6f;
-  --focus: #0b4f9c;
+  --texte: #0b1d3a;
+  --texte-doux: #3c4a63;
+  --accent: #16305c;
+  --accent-fonce: #0b1d3a;
+  --bordure: #7d879b;
+  --focus: #0b1d3a;
   --juste-fond: #e3f3e8;
   --juste-texte: #14532d;
   --faux-fond: #fde4e2;
   --faux-texte: #8a1c1c;
-  --attention-fond: #fff1c2;
-  --attention-texte: #5c4300;
+  --attention-fond: #fff3dc;
+  --attention-texte: #6b3a00;
   /* Réglages d'affichage (lot 4 : trois crans et mode dys) */
   --taille-base: 1.125rem;
   --interligne: 1.6;
@@ -94,7 +103,16 @@ h3 {
 }
 h4 {
   font-size: 1.05rem;
-  color: var(--accent-fonce);
+  color: var(--soleil-texte);
+}
+h1::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 0.3rem;
+  margin-top: 0.5rem;
+  background: var(--soleil);
+  border-radius: 1rem;
 }
 
 a {
@@ -109,6 +127,7 @@ a:hover {
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--soleil);
   border-radius: 2px;
 }
 main:focus,
@@ -141,8 +160,13 @@ img {
 /* ---------- en-tête et pied ---------- */
 
 .entete {
-  background: var(--surface);
-  border-bottom: 1px solid var(--bordure);
+  background: var(--nuit);
+  color: #fff;
+  border-bottom: 4px solid var(--soleil);
+}
+.entete :focus-visible {
+  outline-color: var(--soleil);
+  box-shadow: 0 0 0 6px var(--nuit-3);
 }
 .entete-interne {
   display: flex;
@@ -159,7 +183,7 @@ img {
   gap: 0.5rem;
   font-weight: 700;
   text-decoration: none;
-  color: var(--texte);
+  color: #fff;
   min-height: 44px;
 }
 #nav ul {
@@ -174,17 +198,23 @@ img {
   display: inline-block;
   padding: 0.5rem 0.25rem;
   min-height: 44px;
+  color: #fff;
+}
+#nav a:hover {
+  color: var(--soleil);
 }
 #nav a[aria-current="page"] {
   font-weight: 700;
+  text-decoration-color: var(--soleil);
   text-decoration-thickness: 0.2em;
 }
 
 .pied {
   margin-top: 3rem;
   padding: 1.5rem 0;
-  border-top: 1px solid var(--bordure);
-  color: var(--texte-doux);
+  background: var(--nuit);
+  border-top: 4px solid var(--soleil);
+  color: #e6e9f2;
   font-size: 0.95em;
 }
 
@@ -206,7 +236,7 @@ img {
 .encadre {
   background: var(--surface);
   border: 1px solid var(--bordure);
-  border-left: 0.4rem solid var(--accent);
+  border-left: 0.4rem solid var(--soleil);
   border-radius: var(--rayon);
   padding: 1rem;
 }
@@ -256,7 +286,10 @@ img {
   color: var(--accent-fonce);
 }
 .bouton-secondaire:hover {
-  background: var(--fond);
+  background: var(--soleil-clair);
+}
+.bouton:hover {
+  border-color: var(--soleil);
 }
 
 /* ---------- accueil ---------- */
@@ -270,6 +303,7 @@ img {
 .carte-module {
   background: var(--surface);
   border: 1px solid var(--bordure);
+  border-left: 0.4rem solid var(--soleil);
   border-radius: var(--rayon);
   padding: 1rem;
 }
@@ -285,6 +319,7 @@ img {
 }
 .statut-apercu {
   border-style: dashed;
+  border-left: 0.4rem solid var(--bordure);
 }
 
 /* ---------- module ---------- */
@@ -342,13 +377,19 @@ img {
   font-weight: 700;
 }
 .profondeur-option input:checked + label {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--nuit);
+  border-color: var(--nuit);
   color: #fff;
   font-weight: 700;
 }
+.profondeur-option input:checked + label .profondeur-num {
+  background: var(--soleil);
+  border-color: var(--soleil);
+  color: var(--nuit);
+}
 .profondeur-option input:checked + label::after {
   content: "✓";
+  color: var(--soleil);
 }
 .profondeur-option input:focus-visible + label {
   outline: 3px solid var(--focus);
@@ -379,7 +420,7 @@ img {
   margin: 0;
 }
 .question-ouverte {
-  border-left: 0.4rem solid var(--focus);
+  border-left: 0.4rem solid var(--soleil);
   padding-left: 1rem;
 }
 .question {
@@ -396,7 +437,7 @@ img {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 0.85em;
-  color: var(--accent-fonce);
+  color: var(--soleil-texte);
 }
 .etape-grille,
 .etape-debat {
@@ -414,10 +455,11 @@ img {
 .chiffre-valeur {
   font: inherit;
   font-weight: 700;
-  color: var(--accent-fonce);
-  background: none;
+  color: var(--nuit);
+  background: var(--soleil-clair);
   border: 0;
-  border-bottom: 2px dotted var(--accent);
+  border-radius: 0.2rem;
+  border-bottom: 2px dotted var(--soleil-texte);
   padding: 0;
   cursor: pointer;
 }
@@ -517,7 +559,8 @@ select {
   margin: 2rem 0;
   padding: 0.25rem 1rem 1rem;
   background: var(--surface);
-  border: 2px solid var(--focus);
+  border: 2px solid var(--nuit);
+  border-top: 0.4rem solid var(--soleil);
   border-radius: var(--rayon);
 }
 .lecture-opposee h2::before {
