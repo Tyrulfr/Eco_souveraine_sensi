@@ -17,9 +17,13 @@ test("formation.json : aucune erreur de contenu", () => {
   assert.deepEqual(erreurs, []);
 });
 
-test("six modules, slugs uniques, le module 1 est complet", () => {
-  assert.equal(formation.modules.length, 6);
-  assert.equal(new Set(formation.modules.map((m) => m.slug)).size, 6);
+test("programme : six modules, une séance, quatre ateliers ; parcours de 4 h et 20 h", () => {
+  const compte = (/** @type {string} */ type) => formation.modules.filter((m) => m.type === type).length;
+  assert.equal(compte("module"), 6);
+  assert.equal(compte("seance"), 1);
+  assert.equal(compte("atelier"), 4);
+  assert.equal(new Set(formation.modules.map((m) => m.slug)).size, formation.modules.length);
+  assert.deepEqual(formation.parcours.map((p) => p.duree), ["4 h", "20 h"]);
   assert.equal(formation.modules[0]?.statut, "complet");
 });
 
@@ -73,6 +77,9 @@ test("toutes les clés d'interface utilisées dans app.js existent", () => {
     "statut.verifie", "statut.a-verifier", "statut.a-completer",
     "profondeur.1", "profondeur.2", "profondeur.3",
     "module.etape.situation", "module.etape.question", "module.etape.grille", "module.etape.debat", "module.etape.schema",
+    "module.etape.accroche", "module.etape.echelle", "module.etape.tendances", "module.etape.regard",
+    "regard.histoire", "regard.philosophie", "regard.ethique", "regard.psychologie", "regard.societe",
+    "accueil.type.module", "accueil.type.seance", "accueil.type.atelier",
   ]);
   const manquantes = [...cles].filter((k) => k && !(k in ui));
   assert.deepEqual(manquantes, []);

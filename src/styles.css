@@ -679,3 +679,46 @@ thead th {
 .etape-schema li p {
   margin: 0.25rem 0;
 }
+
+/* ---------- parcours et nouvelles étapes ---------- */
+
+.titre-parcours {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--nuit);
+  color: #fff;
+  border-radius: var(--rayon);
+  border-left: 0.4rem solid var(--soleil);
+}
+.type-atelier .numero::before {
+  content: "◆ ";
+  color: var(--soleil-texte);
+}
+.etape-accroche {
+  background: var(--nuit);
+  color: #fff;
+  border-radius: var(--rayon);
+  padding: 0.75rem 1rem;
+  border-left: 0.4rem solid var(--soleil);
+}
+.etape-accroche .etape-type,
+.etape-accroche .aide,
+.etape-accroche a {
+  color: var(--soleil);
+}
+.etape-accroche p:not(.etape-type):not(.aide) {
+  font-size: 1.15em;
+  font-weight: 700;
+}
+.etape-echelle,
+.etape-tendances,
+.etape-regard {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-left: 0.4rem solid var(--nuit-3);
+  border-radius: var(--rayon);
+  padding: 0.75rem 1rem;
+}
+.etape-regard {
+  border-left-color: var(--soleil);
+}

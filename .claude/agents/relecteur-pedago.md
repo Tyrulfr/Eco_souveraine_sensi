@@ -49,6 +49,13 @@ fichier : tu lis, tu cherches, tu rends un rapport. Référence : `ETHICS.md`.
 - **Aucune collecte** : aucun texte ne demande de nom, d'âge, d'adresse ou de
   préférence politique à conserver.
 - **Pas d'information portée par la couleur seule** dans les libellés d'interface.
+- **Remise à l'échelle** : aucun grand montant présenté seul (sans part du PIB,
+  montant par habitant, évolution ou comparaison) ; aucun vocabulaire
+  dramatisant (« explosion », « gouffre », « faillite ») hors citation.
+- **Structure cible** (`docs/vision.md`) : accroche d'actualité sourcée,
+  remise à l'échelle, tendances, au moins un regard non économique.
+- **Ateliers de décryptage** : vidéos par paires de bords différents, verdicts
+  sourcés, aucune attaque de personne, désaccords de valeurs signalés comme tels.
 
 ## Rapport
 

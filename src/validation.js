@@ -133,6 +133,26 @@ export function validerFormation(formation, figures) {
     if (!nonVide(s.url)) constats.push({ gravite: "avertissement", chemin: ch, message: "url à compléter" });
   });
 
+  /** @param {string} duree */
+  const heures = (duree) => Number(/^(\d+) h$/.exec(duree)?.[1] ?? NaN);
+  formation.parcours.forEach((pc, pi) => {
+    const chP = `parcours[${pi}] (${pc.id})`;
+    let total = 0;
+    for (const slug of pc.modules) {
+      const m = formation.modules.find((x) => x.slug === slug);
+      if (!m) constats.push({ gravite: "erreur", chemin: chP, message: `module inconnu : ${slug}` });
+      else total += heures(m.duree);
+    }
+    if (total !== heures(pc.duree)) {
+      constats.push({ gravite: "erreur", chemin: chP, message: `durée annoncée ${pc.duree}, somme des modules ${total} h` });
+    }
+  });
+  for (const m of formation.modules) {
+    if (!formation.parcours.some((pc) => pc.modules.includes(m.slug))) {
+      constats.push({ gravite: "avertissement", chemin: `modules (${m.slug})`, message: "module rattaché à aucun parcours" });
+    }
+  }
+
   formation.modules.forEach((m, mi) => {
     const chM = `modules[${mi}] (${m.slug})`;
     if (slugs.has(m.slug)) constats.push({ gravite: "erreur", chemin: chM, message: "slug en double" });
@@ -144,7 +164,15 @@ export function validerFormation(formation, figures) {
       return;
     }
 
-    if (m.concepts.length === 0) constats.push({ gravite: "erreur", chemin: chM, message: "module complet sans concept" });
+    if (m.concepts.length === 0 && m.type !== "atelier") constats.push({ gravite: "erreur", chemin: chM, message: "module complet sans concept" });
+    if (m.type === "module") {
+      const types = new Set(m.sequences.flatMap((s) => s.etapes.map((e) => e.type)));
+      for (const [type, libelle] of [["accroche", "accroche d'actualité"], ["echelle", "remise à l'échelle"], ["regard", "regard (histoire, philosophie, psychologie…)"]]) {
+        if (!types.has(/** @type {any} */ (type))) {
+          constats.push({ gravite: "avertissement", chemin: chM, message: `structure cible : ${libelle} manquante (docs/vision.md)` });
+        }
+      }
+    }
     if (!m.lectureOpposee) {
       constats.push({ gravite: "erreur", chemin: chM, message: "encadré « La lecture opposée » obligatoire" });
     } else {
@@ -197,6 +225,15 @@ export function validerFormation(formation, figures) {
       s.etapes.forEach((e, ei) => {
         const chE = `${chM}.sequences[${si}].etapes[${ei}]`;
         if (e.texte !== undefined) verifierTexte(chE, e.texte, null);
+        if (e.source !== undefined && !idsSources.has(e.source)) {
+          constats.push({ gravite: "erreur", chemin: chE, message: `source inconnue : ${e.source}` });
+        }
+        if (e.type === "accroche" && !e.source) {
+          constats.push({ gravite: "erreur", chemin: chE, message: "accroche : source obligatoire (actualité datée et sourcée)" });
+        }
+        if (e.type === "regard" && !["histoire", "philosophie", "ethique", "psychologie", "societe"].includes(e.discipline ?? "")) {
+          constats.push({ gravite: "erreur", chemin: chE, message: "regard : discipline obligatoire" });
+        }
         if (e.type === "schema") {
           if (!nonVide(e.titre) || !nonVide(e.image) || !nonVide(e.alt)) {
             constats.push({ gravite: "erreur", chemin: chE, message: "schéma : titre, image et texte alternatif obligatoires" });

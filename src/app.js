@@ -24,7 +24,7 @@ import {
 /** @type {{ formation: Formation, figures: Map<string, Figure>, ui: Record<string, string>, progression: Progression, stockage: Storage | null, moduleCourant: Module | null }} */
 const etat = {
   moduleCourant: null,
-  formation: { meta: {}, gardeFous: [], modules: [], sources: [] },
+  formation: { meta: {}, gardeFous: [], modules: [], parcours: [], sources: [] },
   figures: new Map(),
   ui: {},
   progression: lireProgression(null),
@@ -259,24 +259,30 @@ function SourceBadge(s) {
 
 // ---------- pages ----------
 
+/** @param {Module} m */
+const libelleModule = (m) => t(`accueil.type.${m.type}`, { n: m.numero });
+
 function pageAccueil() {
-  const { meta, modules, gardeFous } = etat.formation;
+  const { meta, modules, gardeFous, parcours } = etat.formation;
   return [
     h("h1", { tabindex: -1 }, meta.titre ?? ""),
     h("p", { class: "chapeau" }, meta.sousTitre ?? ""),
     h("p", {}, meta.intention ?? ""),
     h("p", { class: "aide" }, `${meta.public ?? ""} ${meta.duree ?? ""}.`),
-    h("h2", {}, t("accueil.modules")),
-    h(
-      "ol",
-      { class: "liste-modules" },
-      modules.map((m) => {
+    h("h2", {}, t("accueil.parcours")),
+    parcours.map((pc) => [
+      h("h3", { class: "titre-parcours" }, `${pc.titre} · ${pc.duree}`),
+      h("p", {}, pc.resume),
+      h(
+        "ol",
+        { class: "liste-modules" },
+        pc.modules.map((slug) => modules.find((x) => x.slug === slug)).filter((m) => m !== undefined).map((m) => {
         const p = etat.progression.modules[m.id];
         return h(
           "li",
-          { class: `carte-module statut-${m.statut}` },
-          h("span", { class: "numero" }, t("accueil.module.numero", { n: m.numero })),
-          h("h3", {}, h("a", { href: `#/module/${m.slug}` }, m.titre)),
+          { class: `carte-module statut-${m.statut} type-${m.type}` },
+          h("span", { class: "numero" }, `${libelleModule(m)} · ${m.duree}`),
+          h("h4", {}, h("a", { href: `#/module/${m.slug}` }, m.titre)),
           h("p", {}, m.resume),
           h(
             "p",
@@ -287,7 +293,8 @@ function pageAccueil() {
           ),
         );
       }),
-    ),
+      ),
+    ]),
     h("h2", {}, t("accueil.garde-fous")),
     h("ul", { class: "garde-fous" }, gardeFous.map((g) => h("li", {}, g))),
   ];
@@ -310,7 +317,7 @@ function pageModule(slug) {
     suivant ? h("a", { href: `#/module/${suivant.slug}`, rel: "next" }, `${t("module.suivant")} : ${suivant.titre} →`) : h("span"),
   );
   const entete = [
-    h("p", { class: "numero" }, `${t("accueil.module.numero", { n: m.numero })} · ${m.duree}`),
+    h("p", { class: "numero" }, `${libelleModule(m)} · ${m.duree}`),
     h("h1", { tabindex: -1 }, m.titre),
     h("p", { class: "chapeau" }, m.resume),
   ];
@@ -333,7 +340,15 @@ function pageModule(slug) {
             });
           }
           if (e.type === "schema") return Schema(e);
-          return h("div", { class: `etape etape-${e.type}` }, h("p", { class: "etape-type" }, t(`module.etape.${e.type}`)), texteRiche(e.texte ?? ""));
+          const libelle = e.type === "regard" && e.discipline ? t(`regard.${e.discipline}`) : t(`module.etape.${e.type}`);
+          const source = e.source ? etat.formation.sources.find((s) => s.id === e.source) : undefined;
+          return h(
+            "div",
+            { class: `etape etape-${e.type}` },
+            h("p", { class: "etape-type" }, libelle),
+            texteRiche(e.texte ?? ""),
+            source ? h("p", { class: "aide" }, `${t("chiffre.source")} : `, SourceBadge(source)) : null,
+          );
         }),
       ),
     ),

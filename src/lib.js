@@ -38,7 +38,9 @@
  * @property {string[]} chiffres  identifiants de figures.json
  *
  * @typedef {Object} Etape
- * @property {"situation" | "question" | "concepts" | "grille" | "debat" | "schema"} type
+ * @property {"situation" | "question" | "concepts" | "grille" | "debat" | "schema" | "accroche" | "echelle" | "tendances" | "regard"} type
+ * @property {"histoire" | "philosophie" | "ethique" | "psychologie" | "societe"} [discipline]  regard : discipline
+ * @property {string} [source]         accroche, regard : identifiant de Formation.sources
  * @property {string} [texte]
  * @property {string[]} [concepts]
  * @property {string} [titre]          schéma : titre affiché
@@ -57,6 +59,7 @@
  * @property {string} id
  * @property {string} slug
  * @property {number} numero
+ * @property {"module" | "seance" | "atelier"} type
  * @property {string} titre
  * @property {string} duree
  * @property {"complet" | "apercu"} statut
@@ -73,7 +76,10 @@
  * @property {Record<string, string>} meta
  * @property {string[]} gardeFous
  * @property {Module[]} modules
+ * @property {Parcours[]} parcours
  * @property {Source[]} sources
+ *
+ * @typedef {{ id: string, titre: string, duree: string, resume: string, modules: string[] }} Parcours
  *
  * @typedef {{ type: "texte", valeur: string } | { type: "chiffre", id: string }} Segment
  * @typedef {1 | 2 | 3} Profondeur

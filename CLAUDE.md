@@ -1,8 +1,10 @@
 # Le Gâteau de 100 €
 
-Formation en ligne (fr-FR) à la lecture budgétaire et au choix économique
-éclairé, pour les lycéens et les adultes, sans prérequis. Six modules de 2 h. Les règles de `ETHICS.md` priment
-sur tout le reste.
+Formation en ligne (fr-FR) : comprendre l'économie des nations par la dette,
+pour voter en connaissance de cause. Lycéens et adultes, sans prérequis.
+Amilitante, ancrée dans l'actualité. Deux parcours emboîtés : L'essentiel (4 h)
+et Le citoyen éclairé (20 h : six modules de 2 h et quatre ateliers de
+décryptage). Vision : `docs/vision.md`. `ETHICS.md` prime sur tout le reste.
 
 ## Architecture (version légère, sans framework)
 
@@ -37,6 +39,9 @@ sur tout le reste.
   Couche 2 : mécanisme, ordre de grandeur, comparaison, au moins un chiffre.
   Couche 3 : enjeu et question ouverte, sans réponse.
 - Un module `apercu` n'a pas de contenu ; un module `complet` a une lecture opposée.
+- Structure cible d'un module : accroche (actualité datée), échelle, notions,
+  tendances, regards (histoire, philosophie, psychologie, société), lecture
+  opposée, quiz. Chaque question du quiz déclare sa `profondeur`.
 - Montants du simulateur en euros entiers (pas de flottants en comptabilité).
 - Persistance : `localStorage`, clé `gateau100.progression.v1`. Rien d'autre.
 - Messages de commit en français, au présent de l'infinitif (« Ajouter… »).

@@ -1,12 +1,12 @@
 {
   "meta": {
     "titre": "Le Gâteau de 100 €",
-    "sousTitre": "Lire un budget public pour choisir en connaissance de cause",
+    "sousTitre": "Comprendre l'économie par la dette, pour voter en connaissance de cause",
     "public": "Lycéens et adultes, sans aucun prérequis. En classe, en médiathèque ou en autonomie.",
-    "duree": "Six modules de deux heures",
-    "version": "Lot 1 — socle et module de référence",
+    "duree": "Deux parcours : L'essentiel (4 h) et Le citoyen éclairé (20 h)",
+    "version": "Socle, module de référence et programme des deux parcours",
     "dateVerification": "2026-11-07",
-    "intention": "Donner à chacun les outils pour lire un programme économique et se faire son propre avis. La formation ne dit jamais pour qui voter."
+    "intention": "Partir de la dette, sujet qui fait peur, pour comprendre avec raison les mécanismes de l'économie d'une nation, tester les choix des grandes tendances et faire la part des choses dans les discours. La formation est amilitante : elle ne dit jamais pour qui voter."
   },
   "gardeFous": [
     "Aucun écran ne dit pour qui ni comment voter.",
@@ -462,16 +462,35 @@
           "terme": "Point de base",
           "definition": "Un centième de point de pourcentage : cent points de base font un point de pourcentage."
         }
-      ]
+      ],
+      "type": "module"
+    },
+    {
+      "id": "s2",
+      "slug": "qui-paie-qui-recoit-qui-prete",
+      "numero": 2,
+      "type": "seance",
+      "titre": "Qui paie, qui reçoit, qui prête ?",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "La séance de synthèse du parcours L'essentiel : les trois questions clés du budget, un premier décryptage de vidéo et la grille pour lire un programme.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
     },
     {
       "id": "m2",
       "slug": "qui-paie",
       "numero": 2,
+      "type": "module",
       "titre": "Qui paie ?",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "TVA, impôt sur le revenu, cotisations : qui paie quoi, selon ses revenus et sa situation.",
+      "resume": "Impôts, cotisations, TVA : qui supporte vraiment le coût de l'action publique, et qu'est-ce qu'un impôt juste ?",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -484,10 +503,11 @@
       "id": "m3",
       "slug": "qui-recoit",
       "numero": 3,
+      "type": "module",
       "titre": "Qui reçoit ?",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Retraites, santé, école, investissement : à quoi sert chaque part du gâteau.",
+      "resume": "Retraites, santé, école, investissement : à quoi sert chaque part du gâteau, et ce que 1945 a changé.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -498,12 +518,13 @@
     },
     {
       "id": "m4",
-      "slug": "dette-et-preteurs",
+      "slug": "qui-prete",
       "numero": 4,
-      "titre": "La dette et ceux qui prêtent",
+      "type": "module",
+      "titre": "Qui prête, et à quel prix ?",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Taux, créanciers, marchés : comment se fixe le prix de l'emprunt public.",
+      "resume": "Taux, marchés, Banque centrale européenne, agences de notation : comment se fixe le prix de l'emprunt public, et ce que cela dit de la souveraineté.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -514,12 +535,13 @@
     },
     {
       "id": "m5",
-      "slug": "un-seul-budget",
+      "slug": "laboratoire",
       "numero": 5,
-      "titre": "Un seul budget",
+      "type": "module",
+      "titre": "Le laboratoire",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Simulation en trois manches : un ménage, une entreprise, un prêteur et un ministre face au même budget.",
+      "resume": "Appliquer au même budget les leviers proposés par chaque grande tendance, et voir les effets selon des hypothèses économiques concurrentes.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -532,10 +554,79 @@
       "id": "m6",
       "slug": "choisir-en-connaissance-de-cause",
       "numero": 6,
+      "type": "module",
       "titre": "Choisir en connaissance de cause",
       "duree": "2 h",
       "statut": "apercu",
       "resume": "Vos priorités économiques, une grille pour lire un programme, et une comparaison facultative avec cinq grandes tendances. Vos réponses ne sont jamais enregistrées.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "a1",
+      "slug": "decrypter-la-dette",
+      "numero": 1,
+      "type": "atelier",
+      "titre": "Décrypter un discours sur la dette",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Deux extraits d'émissions de bords différents, la même grille : vrai, faux, trompeur, invérifiable, et les procédés qui font peur.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "a2",
+      "slug": "decrypter-les-impots",
+      "numero": 2,
+      "type": "atelier",
+      "titre": "Décrypter un discours sur les impôts",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Deux discours opposés sur la fiscalité, passés au crible des chiffres officiels.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "a3",
+      "slug": "decrypter-les-retraites",
+      "numero": 3,
+      "type": "atelier",
+      "titre": "Décrypter un discours sur les retraites",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Ce que disent les chiffres, et ce qui relève d'un choix de valeurs.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "a4",
+      "slug": "decrypter-un-debat",
+      "numero": 4,
+      "type": "atelier",
+      "titre": "Décrypter un débat de campagne",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Un débat télévisé de la campagne de 2027, affirmation par affirmation.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -605,6 +696,36 @@
       "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:12016E/PRO/12",
       "apport": "Fixe les valeurs de référence du déficit et de la dette publics.",
       "vigilance": "Les règles budgétaires européennes ont été réformées en 2024 : la valeur de référence demeure, mais son application a changé."
+    }
+  ],
+  "parcours": [
+    {
+      "id": "essentiel",
+      "titre": "L'essentiel",
+      "duree": "4 h",
+      "resume": "Pour tout le monde : comprendre la dette sans en avoir peur, savoir qui paie, qui reçoit et qui prête, et lire un programme.",
+      "modules": [
+        "gateau-100-euros",
+        "qui-paie-qui-recoit-qui-prete"
+      ]
+    },
+    {
+      "id": "citoyen",
+      "titre": "Le citoyen éclairé",
+      "duree": "20 h",
+      "resume": "Pour voter en connaissance de cause : six modules, le laboratoire des choix économiques et quatre ateliers de décryptage de discours.",
+      "modules": [
+        "gateau-100-euros",
+        "qui-paie",
+        "qui-recoit",
+        "qui-prete",
+        "laboratoire",
+        "choisir-en-connaissance-de-cause",
+        "decrypter-la-dette",
+        "decrypter-les-impots",
+        "decrypter-les-retraites",
+        "decrypter-un-debat"
+      ]
     }
   ]
 }

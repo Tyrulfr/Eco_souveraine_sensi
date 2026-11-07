@@ -5,7 +5,10 @@ description: Procédure complète pour passer un module de la formation « Le G�
 
 # Ajouter ou compléter un module
 
-Avant tout, relis `ETHICS.md`. Ses règles l'emportent sur cette procédure.
+Avant tout, relis `ETHICS.md` et `docs/vision.md`. Leurs règles l'emportent sur
+cette procédure. Un module part du réel (l'actualité) pour remonter au
+mécanisme, remet chaque grand chiffre à l'échelle, et ouvre toujours sur
+d'autres regards que l'économie.
 
 ## 1. Cadrer
 
@@ -59,8 +62,20 @@ Pour chaque chiffre, ajoute une entrée dans `data/figures.json` :
 
 ## 4. Compléter le module
 
-- `sequences` : étapes typées `situation`, `question`, `concepts`
-  (`"concepts": ["id"]`), `grille`, `debat`. Chaque concept apparaît une fois.
+- `type` : `module` (2 h), `seance` (parcours L'essentiel) ou `atelier`
+  (décryptage). Rattache-le à un parcours dans `parcours[]` : la validation
+  vérifie que les durées s'additionnent (4 h et 20 h).
+- `sequences`, dans l'ordre de la structure cible (`docs/vision.md`) :
+  1. `accroche` : un titre ou une déclaration d'actualité réels, datés, avec
+     `"source": "id"` obligatoire ;
+  2. `echelle` : le grand chiffre remis à l'échelle (part du PIB, par
+     habitant, dans le temps, autres pays), chiffres en `{{chiffre:id}}` ;
+  3. `concepts` (`"concepts": ["id"]`), `situation`, `question`, `schema` ;
+  4. `tendances` : ce que proposent les cinq tendances, chaque position citée ;
+  5. `regard` avec `"discipline"` parmi `histoire`, `philosophie`, `ethique`,
+     `psychologie`, `societe` (au moins un par module) ;
+  6. `grille`, `debat`.
+  Chaque concept apparaît une fois.
 - `activite` (classement) : 5 à 8 items, chacun avec un `commentaire` qui
   explique la réponse.
 - `quiz` : 3 à 5 questions ; varie la position de la bonne réponse ; chaque
@@ -76,6 +91,16 @@ Pour chaque chiffre, ajoute une entrée dans `data/figures.json` :
   La source est ajoutée dans `sources[]` avec `apport` et `vigilance`.
 - `glossaire` : chaque terme technique employé en couche 2 ou 3.
 - Passe `statut` à `"complet"`.
+
+## 4 bis. Atelier de décryptage
+
+- Une paire de vidéos de bords différents, validée par le commanditaire.
+- Pour chaque vidéo : chaîne, émission, date, lien horodaté, transcription des
+  passages analysés (citations courtes).
+- Pour chaque affirmation : verdict `exact`, `exact mais trompeur`, `faux` ou
+  `invérifiable`, avec sa source ; le procédé rhétorique éventuel ; ce qui
+  relève d'un désaccord de valeurs.
+- On juge des affirmations, jamais des personnes.
 
 ## 5. Interface et navigation
 

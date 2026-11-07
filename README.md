@@ -1,12 +1,14 @@
 # Le Gâteau de 100 €
 
-Formation en ligne gratuite à la lecture du budget public et au choix
-économique éclairé, pour les lycéens et les adultes, sans aucun prérequis. Six modules de deux heures,
-utilisables en classe, en médiathèque ou en autonomie, sur mobile d'abord.
+Formation en ligne gratuite pour **comprendre l'économie des nations par la
+dette** et voter en connaissance de cause en 2027. Pour les lycéens et les
+adultes, sans aucun prérequis ; ancrée dans l'actualité, amilitante.
 
-Chaque notion existe à trois profondeurs (l'essentiel, les chiffres, le débat),
-chaque chiffre affiche sa source au clic, et la formation ne dit jamais pour
-qui voter : voir [ETHICS.md](ETHICS.md).
+Deux parcours emboîtés : **L'essentiel** (4 h) et **Le citoyen éclairé** (20 h :
+six modules, un laboratoire des choix économiques, quatre ateliers de
+décryptage de discours). Chaque notion existe à trois profondeurs, chaque
+chiffre affiche sa source au clic, et la formation ne dit jamais pour qui
+voter. Voir [docs/vision.md](docs/vision.md) et [ETHICS.md](ETHICS.md).
 
 Site en ligne : https://tyrulfr.github.io/Eco_souveraine_sensi/
 (GitHub Pages publie automatiquement la branche `main`, dossier racine).
