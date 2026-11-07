@@ -81,7 +81,7 @@
     "url": "https://www.insee.fr/fr/statistiques/8997691",
     "dateVerification": "2026-11-07",
     "statut": "verifie",
-    "note": "Comptabilité nationale, ensemble des administrations publiques."
+    "note": "Intérêts versés par l'ensemble des administrations publiques, mesurés par l'Insee. La Cour des comptes (juin 2026) retient 65,7 Md€ pour 2025 avec une autre convention ; les prévisions 2026 et 2027 du projet de loi de finances ne suivent pas forcément la même mesure."
   },
   {
     "id": "charge-interets-2026",
@@ -313,7 +313,7 @@
   },
   {
     "id": "part-autres-depense",
-    "libelle": "Part des autres fonctions (sécurité, logement, environnement, culture) dans la dépense publique",
+    "libelle": "Part des autres fonctions (sécurité, équipements collectifs, environnement, culture) dans la dépense publique",
     "valeur": 10.0,
     "unite": "%",
     "date": "2024",
@@ -322,5 +322,28 @@
     "dateVerification": "2026-11-07",
     "statut": "verifie",
     "note": "Part calculée à partir des montants du tableau 3.301 (52,1 + 42,1 + 30,3 + 43,1 = 167,6 Md€), sur un total de 1 671,8 Md€, arrondie au dixième. Données 2024 provisoires."
+  },
+  {
+    "id": "dette-md-2023",
+    "libelle": "Dette publique au sens de Maastricht, fin 2023",
+    "valeur": 3103.2,
+    "unite": "Md€",
+    "date": "31 décembre 2023",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.101 « Dette des administrations publiques au sens de Maastricht », 28 août 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8988843",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie"
+  },
+  {
+    "id": "interets-cofog-2024",
+    "libelle": "Dépenses publiques liées à la dette (opérations sur la dette publique) en 2024",
+    "valeur": 58.9,
+    "unite": "Md€",
+    "date": "2024",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.301 « Dépenses des administrations publiques ventilées par fonction », 27 mars 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8574707",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Ligne 01.7 « Opérations concernant la dette publique » du tableau 3.301 (58,87 Md€). Même nomenclature que la dépense de défense, même année."
   }
 ]

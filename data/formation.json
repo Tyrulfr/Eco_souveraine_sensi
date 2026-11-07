@@ -44,19 +44,19 @@
               "min": 0,
               "max": 10000,
               "pas": 50,
-              "explication": "Si vous étiez loin, vous êtes en bonne compagnie : au-delà de quelques milliers d'euros, nous n'avons plus d'intuition. C'est le point de départ de ce module."
+              "explication": "Cela représente {{chiffre:dette-pib-t2-2026}} de ce que le pays produit en un an. Si vous étiez loin, vous n'êtes pas seul : au-delà de quelques millions, les montants dépassent notre intuition. C'est le point de départ de ce module."
             },
             {
               "type": "accroche",
               "citation": "La France cumule plus de 3.000 milliards d'euros de dettes, voici pourquoi c'est grave",
               "source": "slate-2024",
-              "texte": "Un titre de presse, publié au printemps 2024. Le chiffre est exact ; c'est le « voici pourquoi c'est grave » qui donne le ton."
+              "texte": "Un titre de presse du printemps 2024. Le chiffre est exact ({{chiffre:dette-md-2023}} fin 2023) ; c'est le « voici pourquoi c'est grave » qui donne le ton."
             },
             {
               "type": "accroche",
               "citation": "Pourquoi le cas de la dette publique française n'est pas si alarmant que cela",
               "source": "slate-2025",
-              "texte": "Le même média, dans un autre article, avec un récit opposé. Même sujet, mêmes chiffres officiels, deux émotions différentes."
+              "texte": "Le même média, un an et demi plus tard, avec un récit opposé. Ici, c'est le « pas si alarmant » qui donne le ton. Même sujet, deux émotions différentes."
             },
             {
               "type": "question",
@@ -74,13 +74,13 @@
                 1000000000,
                 1000000
               ],
-              "explication": "Un million n'est qu'un millième d'un milliard : il se trouve presque au tout début de la ligne. Pour s'en rendre compte : un million de secondes, c'est environ onze jours et demi ; un milliard de secondes, environ trente et un ans."
+              "explication": "Un million n'est qu'un millième d'un milliard : il se trouve presque au tout début de la ligne. Pour s'en rendre compte : un million de secondes, c'est environ onze jours et demi ; un milliard de secondes, près de trente-deux ans."
             },
             {
               "type": "regard",
               "discipline": "psychologie",
               "source": "landy-2013",
-              "texte": "Notre cerveau n'a pas d'intuition pour les très grands nombres. Dans des expériences de psychologie, beaucoup de participants placent « un million » bien trop près du milieu d'une ligne allant de mille à un milliard. Au-delà d'un certain seuil, « des milliers de milliards » sonne simplement comme « énorme ». Un montant brut déclenche donc surtout une émotion : pour raisonner, il faut une échelle."
+              "texte": "Notre cerveau n'a pas d'intuition pour les très grands nombres. Dans des expériences de psychologie, beaucoup de participants placent « un million » bien trop près du milieu d'une ligne allant de mille à un milliard. Au-delà d'un certain seuil, « des milliers de milliards » sonne simplement comme « énorme ». Un montant brut risque donc d'impressionner plus qu'il n'informe : pour raisonner, une échelle aide."
             },
             {
               "type": "verif",
@@ -175,7 +175,7 @@
                     "arrondi": 10,
                     "unite": " € par an"
                   },
-                  "texte": "Ce qu'ont coûté les intérêts de la dette en 2025, ramenés à chaque habitant. C'est ce coût annuel, plus que le montant total, qui pèse chaque année sur le budget."
+                  "texte": "Ce qu'ont coûté les intérêts de la dette en 2025, ramenés à chaque habitant. Ce coût entre chaque année dans les dépenses publiques."
                 }
               ]
             },
@@ -217,7 +217,7 @@
               "parts": [
                 {
                   "id": "protection-sociale",
-                  "label": "Retraites, famille, chômage (protection sociale)",
+                  "label": "Retraites, famille, chômage, aides au logement (protection sociale)",
                   "chiffre": "part-protection-sociale-depense"
                 },
                 {
@@ -247,11 +247,11 @@
                 },
                 {
                   "id": "autres",
-                  "label": "Sécurité, logement, environnement, culture",
+                  "label": "Sécurité, équipements collectifs, environnement, culture",
                   "chiffre": "part-autres-depense"
                 }
               ],
-              "explication": "La protection sociale représente à elle seule une part bien plus grande que tout le reste. Les intérêts de la dette sont rangés dans le fonctionnement de l'État."
+              "explication": "La protection sociale est, de loin, la plus grosse part : plus que la santé et l'enseignement réunis. Les intérêts de la dette sont rangés dans le fonctionnement de l'État."
             },
             {
               "type": "concepts",
@@ -289,7 +289,7 @@
           "etapes": [
             {
               "type": "situation",
-              "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. L'État emprunte la différence."
+              "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. Les administrations publiques, l'État surtout, empruntent la différence."
             },
             {
               "type": "schema",
@@ -379,11 +379,11 @@
                 },
                 {
                   "id": "b",
-                  "texte": "non : tant qu'il reste un déficit, la dette continue d'augmenter"
+                  "texte": "non : tant qu'il reste un déficit, la dette en euros continue d'augmenter"
                 }
               ],
               "reponse": "b",
-              "explication": "Le déficit, c'est ce qui s'ajoute à la dette chaque année. Un déficit plus petit ralentit la hausse de la dette, il ne la fait pas baisser."
+              "explication": "Le déficit, c'est ce qui s'ajoute à la dette chaque année. Un déficit plus petit ralentit la hausse de la dette en euros. Rapportée au PIB, la dette peut toutefois baisser si la production augmente plus vite qu'elle, comme entre 2020 et 2023."
             }
           ]
         },
@@ -428,7 +428,7 @@
             {
               "type": "classement",
               "titre": "Sur quoi agit chaque levier ?",
-              "consigne": "Chaque mesure ci-dessous peut réduire le déficit ou le poids de la dette. Indiquez sur quoi elle agit d'abord.",
+              "consigne": "Chaque mesure ci-dessous vise à réduire le déficit ou le poids de la dette, à plus ou moins long terme. Indiquez par où elle passe principalement.",
               "categories": [
                 {
                   "id": "depenses",
@@ -452,7 +452,7 @@
                   "id": "l1",
                   "texte": "Geler certaines dépenses publiques d'une année sur l'autre.",
                   "reponse": "depenses",
-                  "commentaire": "Moins de dépenses, moins de déficit. Reste à savoir lesquelles, et qui en supporte les effets."
+                  "commentaire": "Moins de dépenses, moins de déficit. Reste à savoir lesquelles, qui en supporte les effets, et si l'activité en souffre."
                 },
                 {
                   "id": "l2",
@@ -464,7 +464,7 @@
                   "id": "l3",
                   "texte": "Supprimer une réduction d'impôt (une « niche fiscale »).",
                   "reponse": "recettes",
-                  "commentaire": "Cela augmente les recettes sans changer le taux de l'impôt ; ceux qui en profitaient paient davantage."
+                  "commentaire": "Cela augmente les recettes sans changer le taux de l'impôt. Ceux qui en bénéficiaient paient davantage, et le comportement que la réduction encourageait (emploi à domicile, travaux, dons…) peut reculer."
                 },
                 {
                   "id": "l4",
@@ -473,10 +473,16 @@
                   "commentaire": "Si la production augmente, la dette pèse moins lourd par rapport au PIB. Mais l'investissement coûte d'abord, et son rendement est incertain."
                 },
                 {
-                  "id": "l5",
-                  "texte": "Laisser les prix augmenter plus vite (l'inflation).",
+                  "id": "l7",
+                  "texte": "Augmenter le nombre de personnes en emploi (par exemple par l'âge de départ à la retraite ou les règles du marché du travail).",
                   "reponse": "pib",
-                  "commentaire": "L'inflation gonfle le PIB en euros et allège le poids des dettes passées, mais elle réduit le pouvoir d'achat des revenus et de l'épargne."
+                  "commentaire": "Plus d'emplois, c'est plus de production et plus de recettes. Reste à savoir qui fait l'effort, et si l'effet attendu se produit."
+                },
+                {
+                  "id": "l5",
+                  "texte": "Une inflation plus forte (que la France ne décide pas seule : la Banque centrale européenne fixe la politique monétaire de la zone euro).",
+                  "reponse": "pib",
+                  "commentaire": "L'inflation gonfle le PIB en euros et allège le poids des dettes passées, mais elle réduit le pouvoir d'achat des revenus et de l'épargne, et fait monter les taux des nouveaux emprunts."
                 },
                 {
                   "id": "l6",
@@ -515,13 +521,13 @@
                   "libelle": "pandémie de Covid"
                 }
               ],
-              "texte": "En près de cinquante ans, la dette rapportée au PIB a été multipliée par plus de cinq. Elle a surtout bondi lors des crises, puis n'est jamais vraiment redescendue."
+              "texte": "En près de cinquante ans, la dette rapportée au PIB a été multipliée par plus de cinq. Elle a surtout augmenté lors des crises (1993, 2009, 2020), a peu ou pas reculé ensuite, et a aussi progressé entre les crises."
             },
             {
               "type": "regard",
               "discipline": "histoire",
               "source": "reinhart-rogoff-2009",
-              "texte": "Cette série de l'Insee commence en 1978. Sur une période beaucoup plus longue, les économistes Carmen Reinhart et Kenneth Rogoff ont recensé des siècles de crises de dette dans le monde. Les pays sortis d'une dette très élevée l'ont fait par des chemins différents : croissance, inflation, efforts budgétaires, et parfois défaut de paiement. L'histoire ne dit pas lequel choisir ; elle montre que chacun a eu ses gagnants et ses perdants."
+              "texte": "Cette série de l'Insee commence en 1978. Sur une période beaucoup plus longue, les économistes Carmen Reinhart et Kenneth Rogoff ont recensé des siècles de crises de dette dans le monde. Les pays sortis d'une dette très élevée l'ont fait par des chemins différents : croissance, inflation, efforts budgétaires, taux d'intérêt maintenus bas par l'État (la « répression financière »), et parfois défaut de paiement. L'histoire ne dit pas lequel choisir ; elle montre que chacun a eu ses gagnants et ses perdants."
             },
             {
               "type": "vrai-faux",
@@ -538,13 +544,13 @@
                   "id": "vf2",
                   "affirmation": "La dette publique a baissé en 2025.",
                   "verdict": "faux",
-                  "explication": "Elle est passée de {{chiffre:dette-pib-2024}} fin 2024 à {{chiffre:dette-pib}} fin 2025. Un déficit plus petit reste un déficit : il s'ajoute encore à la dette."
+                  "explication": "Elle est passée de {{chiffre:dette-pib-2024}} fin 2024 à {{chiffre:dette-pib}} fin 2025. Un déficit plus petit reste un déficit : la dette a continué d'augmenter, en euros comme en part du PIB."
                 },
                 {
                   "id": "vf3",
                   "affirmation": "Chaque Français naît avec une dette qu'il devra rembourser de sa poche.",
                   "verdict": "trompeur",
-                  "explication": "Le calcul par habitant est juste, mais la dette n'est pas une facture individuelle : l'État la rembourse et la renouvelle avec l'ensemble des recettes publiques, et une partie des titres est détenue par l'épargne des habitants eux-mêmes."
+                  "explication": "Le calcul par habitant est juste, et la dette pèse bien sur les contribuables, présents et futurs, à travers les impôts qui paient les intérêts. Mais ce n'est pas une facture individuelle : l'État la rembourse et la renouvelle avec l'ensemble des recettes publiques. Une partie des titres est détenue par l'épargne des habitants, une autre par des prêteurs étrangers."
                 },
                 {
                   "id": "vf4",
@@ -556,7 +562,7 @@
                   "id": "vf5",
                   "affirmation": "La dette publique n'a jamais été aussi élevée.",
                   "verdict": "trompeur",
-                  "explication": "En euros, c'est un record ; en part du PIB aussi, depuis le début de la série de l'Insee en 1978. Mais les montants en euros grimpent aussi parce que les prix et la production augmentent, et cette série ne dit rien des périodes plus anciennes."
+                  "explication": "En euros, c'est un record, mais en partie parce que les prix et la production augmentent. En part du PIB, c'est aussi le plus haut niveau depuis 1978, début de la série de l'Insee. Avant cette date, il faut d'autres sources pour comparer."
                 }
               ]
             },
@@ -717,14 +723,15 @@
           "couche2": {
             "mecanisme": "Chaque année, l'État verse des intérêts à ses prêteurs. Leur montant dépend de la dette et du taux auquel il emprunte. Quand les taux montent, ce sont pour l'essentiel les nouveaux emprunts qui coûtent plus cher : la plupart des anciens titres gardent leur taux, si bien que la hausse se diffuse année après année.",
             "ordreDeGrandeur": "La charge d'intérêts de l'ensemble des administrations publiques était de {{chiffre:charge-interets-2025}} en 2025. Selon les prévisions du gouvernement, elle atteindrait {{chiffre:charge-interets-2026}} en 2026, puis {{chiffre:charge-interets-2027}} en 2027. L'État emprunte à dix ans à un taux de {{chiffre:oat-10-ans}}, soit un écart de {{chiffre:ecart-oat-bund}} avec l'Allemagne.",
-            "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer : les intérêts payés en 2025 ({{chiffre:charge-interets-2025}}) dépassaient déjà toute la dépense publique de défense de l'année précédente ({{chiffre:depense-defense-2024}})."
+            "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer : en 2024, les dépenses publiques liées à la dette ({{chiffre:interets-cofog-2024}}) dépassaient celles de la défense ({{chiffre:depense-defense-2024}})."
           },
           "couche3": {
             "enjeu": "Les prêteurs, en France comme à l'étranger, observent les choix budgétaires du pays. Certains y voient une discipline utile, d'autres une pression sur la démocratie.",
             "questionOuverte": "Les prêteurs devraient-ils pouvoir peser sur les choix d'un pays qui leur doit de l'argent, et si oui, jusqu'où ?"
           },
           "sources": [
-            "insee-ip2106"
+            "insee-ip2106",
+            "insee-t3301"
           ],
           "chiffres": [
             "charge-interets-2025",
@@ -732,6 +739,7 @@
             "charge-interets-2027",
             "oat-10-ans",
             "ecart-oat-bund",
+            "interets-cofog-2024",
             "depense-defense-2024"
           ]
         }
@@ -833,8 +841,8 @@
       ],
       "lectureOpposee": {
         "titre": "La lecture opposée",
-        "texte": "Ce module présente la dette comme une charge. L'économiste Olivier Blanchard soutient qu'une dette élevée n'est pas forcément un fardeau : tant que le taux d'intérêt reste inférieur au taux de croissance, la dette rapportée au PIB peut se stabiliser sans hausse d'impôts. Il précise lui-même que cette conclusion dépend du niveau des taux ; dans ce cadre, la question devient moins « combien doit-on ? » que « à quel prix et pour quoi faire ? ».",
-        "source": "blanchard-2019"
+        "texte": "Ce module invite à remettre la dette à l'échelle avant de s'en inquiéter. La Cour des comptes, chargée de contrôler les comptes publics, en tire une conclusion plus alarmante : dans son rapport de juin 2026, elle juge la situation des finances publiques « alarmante » et appelle des « mesures fortes, crédibles et rapides ». Elle souligne que la France est la seule, parmi les pays endettés de la zone euro, à ne pas avoir fait refluer son ratio de dette depuis la fin de la crise sanitaire.",
+        "source": "cour-comptes-2026"
       },
       "glossaire": [
         {
@@ -1052,7 +1060,7 @@
       "titre": "Public Debt and Low Interest Rates",
       "support": "American Economic Review, vol. 109, n° 4",
       "url": "https://www.aeaweb.org/articles?id=10.1257/aer.109.4.1197",
-      "apport": "Montre que le coût d'une dette dépend de l'écart entre taux d'intérêt et croissance, pas seulement de son montant.",
+      "apport": "Montre que le coût d'une dette dépend de l'écart entre taux d'intérêt et croissance : si le taux reste inférieur à la croissance et que le déficit hors intérêts reste limité, la dette rapportée au PIB peut se stabiliser.",
       "vigilance": "Écrit en période de taux très bas ; l'auteur souligne lui-même que la conclusion change si les taux remontent."
     },
     {
@@ -1117,13 +1125,13 @@
     },
     {
       "id": "slate-2025",
-      "auteurs": "Slate.fr",
+      "auteurs": "Rondeau, Pierre",
       "annee": "2025",
       "titre": "Pourquoi le cas de la dette publique française n'est pas si alarmant que cela",
-      "support": "Slate.fr",
+      "support": "Slate.fr, 18 septembre 2025",
       "url": "https://www.slate.fr/economie/dette-publique-france-pas-peril-demeure-alarmant-crise-faillite-budget-finances-investissement-avenir-solvabilite",
       "apport": "Exemple de titre au récit opposé, dans le même média.",
-      "vigilance": "Date exacte et auteur à vérifier sur la page de l'article. Cité pour son titre, analysé comme discours."
+      "vigilance": "Auteur et date relevés sur la page d'auteur de Slate. Cité pour son titre, analysé comme discours."
     },
     {
       "id": "insee-ir239",
@@ -1164,6 +1172,16 @@
       "url": "https://press.princeton.edu/books/paperback/9780691152646/this-time-is-different",
       "apport": "Recense sur plusieurs siècles les crises de dette publique et leurs sorties.",
       "vigilance": "Un article ultérieur des mêmes auteurs (2010) sur le lien entre dette et croissance a été critiqué pour une erreur de calcul (Herndon, Ash et Pollin, 2013) : un rappel utile que les chiffres d'économistes se vérifient aussi."
+    },
+    {
+      "id": "cour-comptes-2026",
+      "auteurs": "Cour des comptes",
+      "annee": "2026",
+      "titre": "La situation et les perspectives des finances publiques",
+      "support": "Rapport public, 25 juin 2026",
+      "url": "https://www.ccomptes.fr/fr/publications/la-situation-et-les-perspectives-des-finances-publiques-17",
+      "apport": "Le diagnostic annuel de l'institution chargée de contrôler les comptes publics : trajectoire du déficit et de la dette, charge d'intérêts, risques.",
+      "vigilance": "Le gouvernement conteste dans sa réponse certaines méthodes de calcul de l'effort budgétaire ; la Cour recommande des mesures, ce qui relève aussi de choix politiques."
     }
   ],
   "parcours": [
