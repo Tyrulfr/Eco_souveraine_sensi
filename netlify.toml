@@ -1,0 +1,10 @@
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+    Permissions-Policy = "interest-cohort=(), camera=(), microphone=(), geolocation=()"
