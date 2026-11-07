@@ -218,5 +218,109 @@
     "dateVerification": "2026-11-07",
     "statut": "verifie",
     "note": "Texte consulté sur eur-lex (version consolidée de 2016)."
+  },
+  {
+    "id": "dette-md-2025",
+    "libelle": "Dette publique au sens de Maastricht, fin 2025",
+    "valeur": 3460.1,
+    "unite": "Md€",
+    "date": "31 décembre 2025",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.101 « Dette des administrations publiques au sens de Maastricht », 28 août 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8988843",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie"
+  },
+  {
+    "id": "dette-md-t2-2026",
+    "libelle": "Dette publique au sens de Maastricht, fin juin 2026",
+    "valeur": 3595.5,
+    "unite": "Md€",
+    "date": "30 juin 2026",
+    "source": "Insee, Informations rapides n° 239, « À la fin du deuxième trimestre 2026, le ratio de dette publique s'établit à 119,0 % du PIB », 29 septembre 2026",
+    "url": "https://www.insee.fr/fr/statistiques/9053525",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie"
+  },
+  {
+    "id": "dette-pib-t2-2026",
+    "libelle": "Dette publique au sens de Maastricht, fin juin 2026, en % du PIB",
+    "valeur": 119.0,
+    "unite": "% PIB",
+    "date": "30 juin 2026",
+    "source": "Insee, Informations rapides n° 239, 29 septembre 2026",
+    "url": "https://www.insee.fr/fr/statistiques/9053525",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Chiffre trimestriel : c'est la valeur la plus récente. Le jeu de données initial du commanditaire (119 %) correspondait à ce chiffre."
+  },
+  {
+    "id": "dette-pib-2024",
+    "libelle": "Dette publique, fin 2024, en % du PIB",
+    "valeur": 112.6,
+    "unite": "% PIB",
+    "date": "31 décembre 2024",
+    "source": "Insee Première n° 2106, « Le compte des administrations publiques en 2025 », 29 mai 2026, figure 1",
+    "url": "https://www.insee.fr/fr/statistiques/8997691",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie"
+  },
+  {
+    "id": "deficit-pib-2024",
+    "libelle": "Déficit public en 2024",
+    "valeur": 5.8,
+    "unite": "% PIB",
+    "date": "2024",
+    "source": "Insee Première n° 2106, « Le compte des administrations publiques en 2025 », 29 mai 2026, figure 1",
+    "url": "https://www.insee.fr/fr/statistiques/8997691",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie"
+  },
+  {
+    "id": "population-2026",
+    "libelle": "Population de la France au 1er janvier 2026",
+    "valeur": 69.1,
+    "unite": "M hab.",
+    "date": "1er janvier 2026",
+    "source": "Insee Première n° 2087, « Bilan démographique 2025 », 13 janvier 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8719824",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Estimation provisoire."
+  },
+  {
+    "id": "part-services-generaux-depense",
+    "libelle": "Part des services généraux (dont intérêts de la dette) dans la dépense publique",
+    "valeur": 10.8,
+    "unite": "%",
+    "date": "2024",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.301 « Dépenses des administrations publiques ventilées par fonction », 27 mars 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8574707",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Part calculée à partir des montants du tableau 3.301 (181,1 Md€, dont 58,9 Md€ d'opérations sur la dette publique), sur un total de 1 671,8 Md€, arrondie au dixième. Données 2024 provisoires."
+  },
+  {
+    "id": "part-affaires-economiques-depense",
+    "libelle": "Part des affaires économiques dans la dépense publique",
+    "valeur": 9.9,
+    "unite": "%",
+    "date": "2024",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.301 « Dépenses des administrations publiques ventilées par fonction », 27 mars 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8574707",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Part calculée à partir des montants du tableau 3.301 (166,1 Md€), sur un total de 1 671,8 Md€, arrondie au dixième. Données 2024 provisoires."
+  },
+  {
+    "id": "part-autres-depense",
+    "libelle": "Part des autres fonctions (sécurité, logement, environnement, culture) dans la dépense publique",
+    "valeur": 10.0,
+    "unite": "%",
+    "date": "2024",
+    "source": "Insee, comptes nationaux annuels base 2020, tableau 3.301 « Dépenses des administrations publiques ventilées par fonction », 27 mars 2026",
+    "url": "https://www.insee.fr/fr/statistiques/8574707",
+    "dateVerification": "2026-11-07",
+    "statut": "verifie",
+    "note": "Part calculée à partir des montants du tableau 3.301 (52,1 + 42,1 + 30,3 + 43,1 = 167,6 Md€), sur un total de 1 671,8 Md€, arrondie au dixième. Données 2024 provisoires."
   }
 ]

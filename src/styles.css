@@ -563,7 +563,8 @@ select {
   border-top: 0.4rem solid var(--soleil);
   border-radius: var(--rayon);
 }
-.lecture-opposee h2::before {
+.lecture-opposee h2::before,
+.lecture-opposee h3::before {
   content: "⇄ ";
 }
 
@@ -706,9 +707,9 @@ thead th {
 .etape-accroche a {
   color: var(--soleil);
 }
-.etape-accroche p:not(.etape-type):not(.aide) {
+.etape-accroche blockquote p {
   font-size: 1.15em;
-  font-weight: 700;
+  margin: 0;
 }
 .etape-echelle,
 .etape-tendances,
@@ -721,4 +722,559 @@ thead th {
 }
 .etape-regard {
   border-left-color: var(--soleil);
+}
+
+/* ---------- chapitres et progression ---------- */
+
+:root {
+  --serie-a: #3a6fd0;
+  --serie-b: #d97a00;
+  --grille: #d9dde7;
+}
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.h-petit {
+  font-size: 1.1rem;
+  margin-top: 0.75rem;
+}
+.plan-module {
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+}
+.plan-module summary {
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.plan-liste {
+  padding-left: 1.5rem;
+}
+.plan-liste li {
+  margin: 0.35rem 0;
+}
+.plan-liste li.vu > a::after {
+  content: " ✓";
+  color: var(--juste-texte);
+  text-decoration: none;
+}
+.plan-liste li.courant > a {
+  font-weight: 700;
+  color: var(--nuit);
+}
+.progression-chapitres {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.92em;
+}
+.progression-chapitres progress {
+  flex: 1;
+  height: 0.6rem;
+  accent-color: var(--soleil);
+}
+.chapitre > h2 {
+  margin-bottom: 0;
+}
+.duree-chapitre {
+  margin-top: 0.25rem;
+}
+.nav-chapitres {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+a.bouton {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+a.bouton:not(.bouton-secondaire) {
+  color: #fff;
+}
+a.bouton-secondaire {
+  color: var(--nuit);
+}
+
+/* ---------- jeux ---------- */
+
+.jeu {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem 1rem;
+  background: var(--surface);
+  border: 2px solid var(--nuit);
+  border-radius: var(--rayon);
+  box-shadow: 0.3rem 0.3rem 0 var(--soleil);
+}
+.jeu h3 {
+  margin-top: 0.25rem;
+}
+.jeu-verif {
+  box-shadow: none;
+  border-width: 1px;
+  border-left: 0.4rem solid var(--soleil);
+}
+.jeu-verif fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.jeu-verif legend {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.consigne {
+  color: var(--texte-doux);
+}
+.resultat-jeu:not(:empty) {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--bordure);
+}
+.revelation {
+  font-size: 1.15em;
+}
+.curseur-bloc {
+  margin: 1rem 0;
+}
+.curseur-bloc label {
+  display: block;
+  font-weight: 700;
+}
+input[type="range"] {
+  width: 100%;
+  min-height: 44px;
+  accent-color: var(--nuit-2);
+}
+.valeur-curseur {
+  display: block;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--nuit);
+}
+.bornes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: var(--texte-doux);
+}
+.ligne-revelee {
+  position: relative;
+  height: 4.5rem;
+  margin: 1rem 0.5rem;
+}
+.ligne-trait {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.2rem;
+  height: 3px;
+  background: var(--nuit);
+}
+.repere-ligne {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.85em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.repere-ligne::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  height: 1.1rem;
+  transform: translateX(-50%);
+}
+.repere-vous {
+  top: 0;
+  color: var(--nuit-2);
+}
+.repere-vous::after {
+  top: 1.3rem;
+  background: var(--serie-a);
+}
+.repere-vrai {
+  top: 3rem;
+  color: var(--soleil-texte);
+}
+.repere-vrai::after {
+  bottom: 1.3rem;
+  background: var(--serie-b);
+}
+.parts {
+  list-style: none;
+  padding: 0;
+}
+.part {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--grille);
+}
+.part label {
+  flex: 1 1 12rem;
+}
+.part-commandes {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.part input[type="number"] {
+  width: 4rem;
+  min-height: 44px;
+  font: inherit;
+  text-align: right;
+  border: 2px solid var(--bordure);
+  border-radius: var(--rayon);
+  padding: 0 0.4rem;
+}
+.bouton-rond {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--nuit);
+  background: var(--surface);
+  color: var(--nuit);
+  font: inherit;
+  font-size: 1.3em;
+  font-weight: 700;
+  cursor: pointer;
+}
+.bouton-rond:hover {
+  background: var(--soleil-clair);
+}
+.reste {
+  font-weight: 700;
+}
+.reste-ok {
+  color: var(--juste-texte);
+}
+.jeu .bouton {
+  margin-top: 0.5rem;
+}
+.bouton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- barres comparées ---------- */
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  padding: 0;
+  font-size: 0.92em;
+}
+.legende li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.pastille {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 3px;
+}
+.barre-a {
+  background: var(--serie-a);
+}
+.barre-b {
+  background: var(--serie-b);
+}
+.barres-groupe {
+  margin: 0.75rem 0;
+}
+.barres-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.92em;
+}
+.barre-ligne {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 2px 0;
+}
+.barre {
+  display: block;
+  height: 12px;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+}
+.barre-valeur {
+  font-size: 0.85em;
+  color: var(--texte-doux);
+  white-space: nowrap;
+}
+
+/* ---------- échelle interactive ---------- */
+
+.vues {
+  border: 0;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+.vues legend {
+  font-weight: 700;
+  padding: 0;
+}
+.vues-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+.vue-option input,
+.verdict-option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.vue-option label,
+.verdict-option label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.3rem 0.9rem;
+  border: 2px solid var(--bordure);
+  border-radius: 2rem;
+  background: var(--surface);
+  cursor: pointer;
+}
+.vue-option input:checked + label,
+.verdict-option input:checked + label {
+  background: var(--nuit);
+  border-color: var(--nuit);
+  color: #fff;
+  font-weight: 700;
+}
+.vue-option input:checked + label::before,
+.verdict-option input:checked + label::before {
+  content: "✓ ";
+  color: var(--soleil);
+}
+.vue-option input:focus-visible + label,
+.verdict-option input:focus-visible + label {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--soleil);
+}
+.verdict-option input:disabled + label {
+  cursor: default;
+}
+.echelle-panneau {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--soleil-clair);
+  border-radius: var(--rayon);
+}
+.nombre-heros {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--nuit);
+  line-height: 1.2;
+}
+.nombre-heros .chiffre-valeur {
+  background: none;
+}
+
+/* ---------- vrai / faux ---------- */
+
+.carte-affirmation {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+  background: var(--fond);
+}
+.carte-affirmation blockquote,
+blockquote.citation {
+  margin: 0 0 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 0.3rem solid var(--soleil);
+  font-size: 1.1em;
+  font-weight: 700;
+  font-style: italic;
+}
+.etape-accroche blockquote.citation {
+  color: #fff;
+  border-left-color: var(--soleil);
+}
+.verdicts {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.verdicts legend {
+  font-size: 0.9em;
+  color: var(--texte-doux);
+  padding: 0;
+}
+.verdicts-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------- courbe ---------- */
+
+.etape-courbe {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon);
+}
+.courbe-zone {
+  position: relative;
+  touch-action: pan-y;
+}
+.courbe-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  font-family: inherit;
+}
+.courbe-svg .grille {
+  stroke: var(--grille);
+  stroke-width: 1;
+}
+.courbe-svg .axe {
+  fill: var(--texte-doux);
+  font-size: 11px;
+}
+.courbe-svg .aire {
+  fill: var(--serie-a);
+  fill-opacity: 0.1;
+}
+.courbe-svg .trait {
+  fill: none;
+  stroke: var(--serie-a);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.courbe-svg .repere,
+.courbe-svg .point-final {
+  fill: var(--serie-a);
+  stroke: var(--surface);
+  stroke-width: 2;
+}
+.courbe-svg .repere-num {
+  fill: var(--texte);
+  font-size: 11px;
+  font-weight: 700;
+}
+.courbe-svg .etiquette-fin {
+  fill: var(--texte);
+  font-size: 12px;
+  font-weight: 700;
+}
+.courbe-svg .curseur {
+  stroke: var(--texte-doux);
+  stroke-width: 1;
+}
+.bulle {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.5rem;
+  background: var(--nuit);
+  color: #fff;
+  border-radius: 0.3rem;
+  font-size: 0.85em;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.reperes {
+  font-size: 0.92em;
+  padding-left: 1.5rem;
+}
+.tableau-donnees summary {
+  cursor: pointer;
+  color: var(--nuit-2);
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- badge ---------- */
+
+.badge-gagne {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: var(--nuit);
+  color: #fff;
+  border-radius: var(--rayon);
+  border-left: 0.4rem solid var(--soleil);
+  font-weight: 700;
+}
+.badge-gagne span {
+  color: var(--soleil);
+}
+
+/* ---------- barre compacte sur petit écran (ne pas masquer le contenu) ---------- */
+
+@media (max-width: 48rem) {
+  .barre-profondeur {
+    padding: 0.35rem 0;
+  }
+  .profondeur legend {
+    font-size: 0.85em;
+  }
+  .profondeur .aide {
+    display: none;
+  }
+  .profondeur-options {
+    flex-wrap: nowrap;
+    gap: 0.3rem;
+  }
+  .profondeur-option label {
+    min-height: 40px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.85em;
+    gap: 0.25rem;
+    white-space: nowrap;
+  }
+  .profondeur-num {
+    width: 1.35em;
+    height: 1.35em;
+  }
+  .profondeur-option input:checked + label::after {
+    content: none;
+  }
+  .progression-chapitres {
+    margin-top: 0.3rem;
+    font-size: 0.8em;
+  }
+}
+@media (max-width: 24rem) {
+  .profondeur-options {
+    flex-wrap: wrap;
+  }
 }

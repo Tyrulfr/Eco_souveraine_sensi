@@ -10,7 +10,7 @@ import { chiffresCites, compterMots, MOTS_MAX_COUCHE1 } from "./lib.js";
  * @typedef {{ gravite: "erreur" | "avertissement", chemin: string, message: string }} Constat
  */
 
-const UNITES = ["% PIB", "%", "Md€", "€", "pb"];
+const UNITES = ["% PIB", "%", "Md€", "€", "pb", "M hab."];
 const STATUTS = ["verifie", "a-verifier", "a-completer"];
 const DATE_ISO = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -91,9 +91,11 @@ export function validerFigures(figures) {
 /**
  * @param {Formation} formation
  * @param {Figure[]} figures
+ * @param {import("./lib.js").Serie[]} [series]
  * @returns {Constat[]}
  */
-export function validerFormation(formation, figures) {
+export function validerFormation(formation, figures, series = []) {
+  const idsSeries = new Set(series.map((x) => x.id));
   /** @type {Constat[]} */
   const constats = [];
   const idsFigures = new Set(figures.map((f) => f.id));
@@ -221,12 +223,95 @@ export function validerFormation(formation, figures) {
       }
     });
 
+    const minutes = m.sequences.reduce((a, s) => a + (s.duree ?? 0), 0);
+    if (m.sequences.some((s) => typeof s.duree !== "number" || s.duree <= 0)) {
+      constats.push({ gravite: "erreur", chemin: chM, message: "chaque séquence déclare sa durée en minutes (duree)" });
+    } else if (minutes > heures(m.duree) * 60) {
+      constats.push({ gravite: "erreur", chemin: chM, message: `séquences : ${minutes} min, plus que la durée du module (${m.duree})` });
+    }
+
     m.sequences.forEach((s, si) => {
       s.etapes.forEach((e, ei) => {
         const chE = `${chM}.sequences[${si}].etapes[${ei}]`;
         if (e.texte !== undefined) verifierTexte(chE, e.texte, null);
         if (e.source !== undefined && !idsSources.has(e.source)) {
           constats.push({ gravite: "erreur", chemin: chE, message: `source inconnue : ${e.source}` });
+        }
+        /** @param {string} champ @param {unknown} v */
+        const texteSiPresent = (champ, v) => {
+          if (v !== undefined) verifierTexte(`${chE}.${champ}`, String(v), null);
+        };
+        texteSiPresent("titre", e.titre);
+        texteSiPresent("question", e.question);
+        texteSiPresent("explication", e.explication);
+        texteSiPresent("consigne", e.consigne);
+        /** @param {string} id @param {string} ou */
+        const figureExiste = (id, ou) => {
+          if (!idsFigures.has(id)) constats.push({ gravite: "erreur", chemin: `${chE}.${ou}`, message: `chiffre inconnu : ${id}` });
+        };
+        if (e.citation !== undefined) {
+          if (!e.source) constats.push({ gravite: "erreur", chemin: chE, message: "citation sans source" });
+          for (const re of PRESCRIPTIONS) {
+            if (re.test(e.citation)) constats.push({ gravite: "avertissement", chemin: chE, message: "citation prescriptive : vérifier qu'elle est analysée, pas reprise à notre compte" });
+          }
+        }
+        if (e.type === "estimation") {
+          figureExiste(e.chiffre ?? "", "chiffre");
+          if (!nonVide(e.question) || typeof e.min !== "number" || typeof e.max !== "number" || e.min >= e.max) {
+            constats.push({ gravite: "erreur", chemin: chE, message: "estimation : question, min et max (min < max) obligatoires" });
+          }
+          const v = figures.find((f) => f.id === e.chiffre)?.valeur;
+          if (typeof v === "number" && typeof e.min === "number" && typeof e.max === "number" && (v < e.min || v > e.max)) {
+            constats.push({ gravite: "erreur", chemin: chE, message: "estimation : la vraie valeur doit être atteignable avec le curseur" });
+          }
+        }
+        if (e.type === "ligne" && (!Array.isArray(e.valeurs) || e.valeurs.length !== 3 || !nonVide(e.gauche) || !nonVide(e.droite) || !nonVide(e.cible))) {
+          constats.push({ gravite: "erreur", chemin: chE, message: "ligne : gauche, droite, cible et trois valeurs obligatoires" });
+        }
+        if (e.type === "partage") {
+          let total = 0;
+          for (const p of e.parts ?? []) {
+            figureExiste(p.chiffre, `parts.${p.id}`);
+            const v = figures.find((f) => f.id === p.chiffre)?.valeur;
+            total += typeof v === "number" ? v : 0;
+          }
+          if (Math.abs(total - 100) > 0.5) constats.push({ gravite: "erreur", chemin: chE, message: `partage : les parts réelles totalisent ${total}, et non 100` });
+        }
+        if (e.type === "echelle" && e.vues) {
+          for (const v of e.vues) {
+            verifierTexte(`${chE}.vues.${v.id}`, v.texte, null);
+            if (v.chiffre) figureExiste(v.chiffre, `vues.${v.id}`);
+            if (v.calcul) {
+              figureExiste(v.calcul.a, `vues.${v.id}.calcul.a`);
+              figureExiste(v.calcul.b, `vues.${v.id}.calcul.b`);
+            }
+            if (!v.chiffre && !v.calcul) constats.push({ gravite: "erreur", chemin: `${chE}.vues.${v.id}`, message: "vue : chiffre ou calcul obligatoire" });
+          }
+        }
+        if (e.type === "vrai-faux") {
+          for (const c of e.cartes ?? []) {
+            verifierTexte(`${chE}.cartes.${c.id}.affirmation`, c.affirmation, null);
+            verifierTexte(`${chE}.cartes.${c.id}.explication`, c.explication, null);
+            if (!["exact", "trompeur", "faux", "inverifiable"].includes(c.verdict)) {
+              constats.push({ gravite: "erreur", chemin: `${chE}.cartes.${c.id}`, message: `verdict inconnu : ${c.verdict}` });
+            }
+          }
+        }
+        if (e.type === "classement") {
+          const cats = new Set((e.categories ?? []).map((c) => c.id));
+          for (const it of e.items ?? []) {
+            verifierTexte(`${chE}.items.${it.id}`, it.texte, null);
+            verifierTexte(`${chE}.items.${it.id}.commentaire`, it.commentaire, null);
+            if (!cats.has(it.reponse)) constats.push({ gravite: "erreur", chemin: `${chE}.items.${it.id}`, message: `catégorie inconnue : ${it.reponse}` });
+          }
+        }
+        if (e.type === "verif") {
+          (e.choix ?? []).forEach((c) => verifierTexte(`${chE}.choix.${c.id}`, c.texte, null));
+          if (!(e.choix ?? []).some((c) => c.id === e.reponse)) constats.push({ gravite: "erreur", chemin: chE, message: "vérification : réponse absente des choix" });
+        }
+        if (e.type === "courbe") {
+          if (!idsSeries.has(e.serie ?? "")) constats.push({ gravite: "erreur", chemin: chE, message: `série inconnue : ${e.serie}` });
+          (e.evenements ?? []).forEach((ev, ei) => verifierTexte(`${chE}.evenements[${ei}]`, ev.libelle, null));
         }
         if (e.type === "accroche" && !e.source) {
           constats.push({ gravite: "erreur", chemin: chE, message: "accroche : source obligatoire (actualité datée et sourcée)" });
@@ -274,5 +359,28 @@ export function validerFormation(formation, figures) {
     }
   });
 
+  return constats;
+}
+
+/**
+ * @param {unknown} series
+ * @returns {Constat[]}
+ */
+export function validerSeries(series) {
+  /** @type {Constat[]} */
+  const constats = [];
+  if (!Array.isArray(series)) return [{ gravite: "erreur", chemin: "series", message: "doit être un tableau" }];
+  series.forEach((x, i) => {
+    const ch = `series[${i}] (${x?.id})`;
+    for (const champ of ["id", "libelle", "source", "dateVerification", "statut"]) {
+      if (!nonVide(x?.[champ])) constats.push({ gravite: "erreur", chemin: ch, message: `${champ} manquant` });
+    }
+    const pts = x?.points;
+    if (!Array.isArray(pts) || pts.length < 2) constats.push({ gravite: "erreur", chemin: ch, message: "au moins deux points" });
+    else if (!pts.every((p, j) => Array.isArray(p) && typeof p[0] === "number" && typeof p[1] === "number" && (j === 0 || p[0] > pts[j - 1][0]))) {
+      constats.push({ gravite: "erreur", chemin: ch, message: "points [année, valeur] en ordre croissant" });
+    }
+    if (x?.statut === "a-verifier") constats.push({ gravite: "avertissement", chemin: ch, message: "série à vérifier" });
+  });
   return constats;
 }

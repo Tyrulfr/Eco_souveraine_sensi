@@ -15,5 +15,6 @@ export function lireJson(chemin) {
 export function chargerDonnees() {
   const formation = /** @type {import("../src/lib.js").Formation} */ (lireJson("data/formation.json"));
   const figures = /** @type {import("../src/lib.js").Figure[]} */ (lireJson("data/figures.json"));
-  return { formation, figures, racine };
+  const series = /** @type {import("../src/lib.js").Serie[]} */ (lireJson("data/series.json"));
+  return { formation, figures, series, racine };
 }

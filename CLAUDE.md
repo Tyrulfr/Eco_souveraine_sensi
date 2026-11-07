@@ -10,12 +10,13 @@ décryptage). Vision : `docs/vision.md`. `ETHICS.md` prime sur tout le reste.
 
 - `index.html` : page unique ; routage par ancre `#/`, `#/module/<slug>`,
   `#/simulateur`, `#/sources`, `#/formateur`.
-- `src/app.js` : rendu DOM en JavaScript natif (modules ES), aucune dépendance.
+- `src/app.js` : pages et routage (`#/module/<slug>/<chapitre>`) ; `src/noyau.js` :
+  état, `t()`, `h()`, `<Chiffre>` ; `src/jeux.js` : activités ; `src/graphiques.js`.
 - `src/lib.js` : fonctions pures (formatage des chiffres, jetons, progression).
 - `src/validation.js` : règles de contenu, partagées par scripts, tests et hook.
 - `src/engine.js` (lot 3) : moteur du simulateur, pur, sans DOM.
 - `data/formation.json` : tout le contenu ; `data/figures.json` : tous les
-  chiffres ; `data/ui.fr-FR.json` : tous les textes d'interface.
+  chiffres ; `data/series.json` : séries historiques ; `data/ui.fr-FR.json` : textes.
 - `assets/` : police Atkinson Hyperlegible (OFL) et illustrations SVG.
 
 ## Commandes
@@ -42,6 +43,9 @@ décryptage). Vision : `docs/vision.md`. `ETHICS.md` prime sur tout le reste.
 - Structure cible d'un module : accroche (actualité datée), échelle, notions,
   tendances, regards (histoire, philosophie, psychologie, société), lecture
   opposée, quiz. Chaque question du quiz déclare sa `profondeur`.
+- Un module = chapitres courts (`duree` en minutes, total ≤ 2 h) + bilan.
+  Jeux disponibles : estimation, ligne, partage, echelle (vues), vrai-faux,
+  classement, verif, courbe. Couleurs de données : `--serie-a`, `--serie-b`.
 - Montants du simulateur en euros entiers (pas de flottants en comptabilité).
 - Persistance : `localStorage`, clé `gateau100.progression.v1`. Rien d'autre.
 - Messages de commit en français, au présent de l'infinitif (« Ajouter… »).

@@ -2,10 +2,10 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { chargerDonnees, lireJson } from "../scripts/donnees.mjs";
-import { validerFigures, validerFormation } from "../src/validation.js";
+import { validerFigures, validerFormation, validerSeries } from "../src/validation.js";
 import { compterMots, MOTS_MAX_COUCHE1 } from "../src/lib.js";
 
-const { formation, figures } = chargerDonnees();
+const { formation, figures, series } = chargerDonnees();
 
 test("figures.json : aucune erreur de schéma", () => {
   const erreurs = validerFigures(figures).filter((c) => c.gravite === "erreur");
@@ -13,7 +13,7 @@ test("figures.json : aucune erreur de schéma", () => {
 });
 
 test("formation.json : aucune erreur de contenu", () => {
-  const erreurs = validerFormation(formation, figures).filter((c) => c.gravite === "erreur");
+  const erreurs = validerFormation(formation, figures, series).filter((c) => c.gravite === "erreur");
   assert.deepEqual(erreurs, []);
 });
 
@@ -98,4 +98,34 @@ test("module 1 : le PIB est enseigné avant d'être interrogé, et chaque questi
   assert.ok(m1);
   assert.ok(m1.concepts.some((c) => c.id === "pib"), "concept PIB absent");
   for (const q of m1.quiz) assert.ok([1, 2, 3].includes(q.profondeur), q.id);
+});
+
+test("series.json : aucune erreur", () => {
+  assert.deepEqual(validerSeries(series).filter((c) => c.gravite === "erreur"), []);
+});
+
+test("la validation détecte un partage faux, une estimation impossible et un verdict inconnu", () => {
+  const copie = structuredClone(formation);
+  const m = copie.modules[0];
+  assert.ok(m);
+  const etapes = m.sequences.flatMap((s) => s.etapes);
+  const partage = etapes.find((e) => e.type === "partage");
+  const estimation = etapes.find((e) => e.type === "estimation");
+  const vf = etapes.find((e) => e.type === "vrai-faux");
+  assert.ok(partage?.parts && estimation && vf?.cartes?.[0]);
+  partage.parts.pop();
+  estimation.max = 1;
+  vf.cartes[0].verdict = /** @type {any} */ ("peut-etre");
+  const messages = validerFormation(copie, figures, series).filter((x) => x.gravite === "erreur").map((x) => x.message);
+  assert.ok(messages.some((x) => x.includes("partage")), "partage");
+  assert.ok(messages.some((x) => x.includes("atteignable")), "estimation");
+  assert.ok(messages.some((x) => x.includes("verdict")), "verdict");
+});
+
+test("module 1 : structure cible complète et durées tenues", () => {
+  const m1 = formation.modules[0];
+  assert.ok(m1);
+  const types = new Set(m1.sequences.flatMap((s) => s.etapes.map((e) => e.type)));
+  for (const t of ["accroche", "echelle", "regard", "tendances", "estimation", "partage", "vrai-faux", "verif", "courbe"]) assert.ok(types.has(/** @type {any} */ (t)), t);
+  assert.ok(m1.sequences.reduce((a, s) => a + s.duree, 0) <= 120);
 });

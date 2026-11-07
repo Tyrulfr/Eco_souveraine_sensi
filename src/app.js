@@ -2,159 +2,20 @@
 // Les textes viennent de data/ui.fr-FR.json, le contenu de data/formation.json,
 // les chiffres de data/figures.json. Aucun chiffre ni texte d'interface n'est écrit ici.
 
-import {
-  decouperTexte,
-  ecrireProgression,
-  questionsVisibles,
-  formaterValeur,
-  lireProgression,
-} from "./lib.js";
+
+import { formaterValeur, lireProgression, questionsVisibles } from "./lib.js";
+import { etat, t, h, nouvelId, sauver, progressionModule, dateFr, texteRiche, SourceBadge } from "./noyau.js";
+import { Classement, EchelleInteractive, Estimation, LigneNombres, Partage, Verif, VraiFaux } from "./jeux.js";
+import { Courbe } from "./graphiques.js";
 
 /**
- * @typedef {import("./lib.js").Formation} Formation
  * @typedef {import("./lib.js").Figure} Figure
  * @typedef {import("./lib.js").Module} Module
  * @typedef {import("./lib.js").Concept} Concept
  * @typedef {import("./lib.js").Profondeur} Profondeur
- * @typedef {import("./lib.js").Progression} Progression
- * @typedef {Node | string | null | undefined | false} Enfant
- * @typedef {Enfant | unknown[]} Enfants  tableaux imbriqués autorisés, aplatis par h()
+ * @typedef {import("./noyau.js").Enfant} Enfant
+ * @typedef {import("./noyau.js").Enfants} Enfants
  */
-
-/** @type {{ formation: Formation, figures: Map<string, Figure>, ui: Record<string, string>, progression: Progression, stockage: Storage | null, moduleCourant: Module | null }} */
-const etat = {
-  moduleCourant: null,
-  formation: { meta: {}, gardeFous: [], modules: [], parcours: [], sources: [] },
-  figures: new Map(),
-  ui: {},
-  progression: lireProgression(null),
-  stockage: null,
-};
-
-let compteurIds = 0;
-/** @param {string} prefixe */
-const nouvelId = (prefixe) => `${prefixe}-${++compteurIds}`;
-
-// ---------- utilitaires ----------
-
-/**
- * Texte d'interface, avec remplacement de {parametres}.
- * @param {string} cle
- * @param {Record<string, string | number>} [params]
- */
-function t(cle, params = {}) {
-  const brut = etat.ui[cle] ?? cle;
-  return brut.replace(/\{(\w+)\}/g, (_, k) => String(params[k] ?? `{${k}}`));
-}
-
-/**
- * Crée un élément DOM.
- * @template {keyof HTMLElementTagNameMap} K
- * @param {K} balise
- * @param {Record<string, string | boolean | number | ((e: Event) => void)>} [attributs]
- * @param {...Enfants} enfants
- * @returns {HTMLElementTagNameMap[K]}
- */
-function h(balise, attributs = {}, ...enfants) {
-  const el = document.createElement(balise);
-  for (const [nom, valeur] of Object.entries(attributs)) {
-    if (typeof valeur === "function") el.addEventListener(nom.replace(/^on/, ""), valeur);
-    else if (valeur === true) el.setAttribute(nom, "");
-    else if (valeur !== false) el.setAttribute(nom, String(valeur));
-  }
-  for (const enfant of /** @type {Enfant[]} */ (enfants.flat(Infinity))) {
-    if (enfant === null || enfant === undefined || enfant === false) continue;
-    el.append(enfant);
-  }
-  return el;
-}
-
-function sauver() {
-  ecrireProgression(etat.stockage, etat.progression);
-}
-
-/** @param {string} id */
-function progressionModule(id) {
-  etat.progression.modules[id] ??= {};
-  return etat.progression.modules[id];
-}
-
-// ---------- composant Chiffre ----------
-
-/**
- * Affiche une valeur et, au clic, sa source.
- * @param {string} id
- * @returns {HTMLElement}
- */
-function Chiffre(id) {
-  const f = etat.figures.get(id);
-  if (!f) return h("span", { class: "chiffre chiffre-inconnu" }, `[${t("chiffre.inconnu")} : ${id}]`);
-  const idPanneau = nouvelId("source");
-  const manquant = f.valeur === null;
-  const valeur = manquant ? t("chiffre.a-completer") : formaterValeur(f);
-  const panneau = h(
-    "span",
-    { class: "chiffre-panneau", id: idPanneau, hidden: true },
-    h("strong", {}, f.libelle),
-    ligne(t("chiffre.source"), f.source ?? t("chiffre.non-renseigne")),
-    ligne(t("chiffre.periode"), f.date ?? t("chiffre.non-renseigne")),
-    ligne(t("chiffre.verifie-le"), dateFr(f.dateVerification)),
-    ligne(t("chiffre.statut"), t(`statut.${f.statut}`)),
-    f.note ? ligne(t("chiffre.note"), f.note) : null,
-    f.url ? h("span", { class: "ligne" }, h("a", { href: f.url, target: "_blank", rel: "noopener noreferrer" }, t("chiffre.lien"))) : null,
-  );
-  const bouton = h(
-    "button",
-    {
-      type: "button",
-      class: `chiffre-valeur${manquant ? " chiffre-manquant" : ""}`,
-      "aria-expanded": "false",
-      "aria-controls": idPanneau,
-      title: t("chiffre.voir"),
-    },
-    valeur,
-    f.statut !== "verifie" && !manquant ? h("span", { class: `badge badge-${f.statut}` }, t(`statut.${f.statut}`)) : null,
-  );
-  bouton.addEventListener("click", () => {
-    const ouvert = bouton.getAttribute("aria-expanded") === "true";
-    bouton.setAttribute("aria-expanded", String(!ouvert));
-    panneau.hidden = ouvert;
-  });
-  bouton.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !panneau.hidden) {
-      panneau.hidden = true;
-      bouton.setAttribute("aria-expanded", "false");
-    }
-  });
-  return h("span", { class: "chiffre" }, bouton, panneau);
-}
-
-/**
- * @param {string} etiquette
- * @param {string} valeur
- */
-function ligne(etiquette, valeur) {
-  return h("span", { class: "ligne" }, h("span", { class: "etiquette" }, `${etiquette} : `), valeur);
-}
-
-/** @param {string} iso */
-function dateFr(iso) {
-  const d = new Date(`${iso}T12:00:00`);
-  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
-}
-
-/**
- * Paragraphe avec chiffres sourcés.
- * @param {string} texte
- * @param {string} [classe]
- */
-function texteRiche(texte, classe) {
-  return h(
-    "p",
-    classe ? { class: classe } : {},
-    decouperTexte(texte).map((s) => (s.type === "texte" ? s.valeur : Chiffre(s.id))),
-  );
-}
 
 // ---------- DepthToggle ----------
 
@@ -249,13 +110,6 @@ function corpsConcept(c, p) {
   );
 }
 
-// ---------- SourceBadge ----------
-
-/** @param {import("./lib.js").Source} s */
-function SourceBadge(s) {
-  const libelle = `${s.auteurs} (${s.annee}), « ${s.titre} », ${s.support}`;
-  return h("span", { class: "source-badge" }, s.url ? h("a", { href: s.url, target: "_blank", rel: "noopener noreferrer" }, libelle) : libelle);
-}
 
 // ---------- pages ----------
 
@@ -288,7 +142,8 @@ function pageAccueil() {
             "p",
             { class: "etats" },
             h("span", { class: "badge" }, m.statut === "complet" ? t("accueil.module.disponible") : t("accueil.module.apercu")),
-            p?.termine ? h("span", { class: "badge badge-termine" }, `✓ ${t("accueil.module.termine")}`) : null,
+            p?.termine ? h("span", { class: "badge badge-termine" }, `★ ${t("accueil.module.termine")}`) : null,
+            !p?.termine && (p?.chapitresVus?.length ?? 0) > 0 ? h("span", { class: "badge" }, t("accueil.module.en-cours")) : null,
             p?.quiz !== undefined && p.quizTotal ? h("span", { class: "badge" }, t("accueil.module.quiz", { score: p.quiz, total: p.quizTotal })) : null,
           ),
         );
@@ -300,107 +155,180 @@ function pageAccueil() {
   ];
 }
 
-/** @param {string} slug */
-function pageModule(slug) {
+/**
+ * Rend une étape de séquence selon son type.
+ * @param {import("./lib.js").Etape} e
+ * @param {Module} m
+ */
+function rendreEtape(e, m) {
+  switch (e.type) {
+    case "concepts":
+      return (e.concepts ?? []).map((id) => {
+        const c = m.concepts.find((x) => x.id === id);
+        return c ? ConceptCard(c) : null;
+      });
+    case "schema":
+      return Schema(e);
+    case "estimation":
+      return Estimation(e);
+    case "ligne":
+      return LigneNombres(e);
+    case "partage":
+      return Partage(e);
+    case "vrai-faux":
+      return VraiFaux(e);
+    case "classement":
+      return Classement(e);
+    case "verif":
+      return Verif(e);
+    case "echelle":
+      if (e.vues) return EchelleInteractive(e);
+      break;
+    case "courbe": {
+      const serie = etat.series.get(e.serie ?? "");
+      return h(
+        "figure",
+        { class: "etape etape-courbe" },
+        h("p", { class: "etape-type" }, t("module.etape.courbe")),
+        h("h3", {}, e.titre ?? ""),
+        serie ? Courbe(serie, e.evenements ?? []) : h("p", {}, t("chiffre.a-completer")),
+        serie ? h("figcaption", { class: "aide" }, `${t("chiffre.source")} : `, serie.url ? h("a", { href: serie.url, target: "_blank", rel: "noopener noreferrer" }, serie.source) : serie.source) : null,
+        e.texte ? texteRiche(e.texte) : null,
+      );
+    }
+    default:
+      break;
+  }
+  const libelle = e.type === "regard" && e.discipline ? t(`regard.${e.discipline}`) : t(`module.etape.${e.type}`);
+  const source = e.source ? etat.formation.sources.find((x) => x.id === e.source) : undefined;
+  return h(
+    "div",
+    { class: `etape etape-${e.type}` },
+    h("p", { class: "etape-type" }, libelle),
+    e.titre ? h("h3", {}, e.titre) : null,
+    e.citation ? h("blockquote", { class: "citation" }, h("p", {}, `« ${e.citation} »`)) : null,
+    e.texte ? texteRiche(e.texte) : null,
+    source ? h("p", { class: "aide" }, `${t("chiffre.source")} : `, SourceBadge(source)) : null,
+  );
+}
+
+/**
+ * Page d'un module, découpée en chapitres courts (un écran = une idée),
+ * avec plan, barre de progression et bilan final.
+ * @param {string} slug
+ * @param {number} numeroChapitre  à partir de 1 ; le dernier chapitre est le bilan
+ */
+function pageModule(slug, numeroChapitre) {
   const modules = etat.formation.modules;
   const index = modules.findIndex((m) => m.slug === slug);
   const m = modules[index];
   if (!m) return pageIntrouvable();
   etat.moduleCourant = m;
   document.title = `${m.titre} — ${t("site.titre")}`;
-  const precedent = modules[index - 1];
-  const suivant = modules[index + 1];
-  const navModules = h(
-    "nav",
-    { class: "nav-modules", "aria-label": `${t("module.precedent")} / ${t("module.suivant")}` },
-    precedent ? h("a", { href: `#/module/${precedent.slug}`, rel: "prev" }, `← ${t("module.precedent")} : ${precedent.titre}`) : h("span"),
-    suivant ? h("a", { href: `#/module/${suivant.slug}`, rel: "next" }, `${t("module.suivant")} : ${suivant.titre} →`) : h("span"),
-  );
+  const suivantModule = modules[index + 1];
   const entete = [
     h("p", { class: "numero" }, `${libelleModule(m)} · ${m.duree}`),
     h("h1", { tabindex: -1 }, m.titre),
     h("p", { class: "chapeau" }, m.resume),
   ];
-  if (m.statut === "apercu") return [...entete, h("p", { class: "encadre" }, t("module.apercu")), navModules];
+  if (m.statut === "apercu") {
+    return [
+      ...entete,
+      h("p", { class: "encadre" }, t("module.apercu")),
+      suivantModule ? h("p", {}, h("a", { href: `#/module/${suivantModule.slug}` }, `${t("module.suivant")} : ${suivantModule.titre} →`)) : null,
+    ];
+  }
+
+  const titres = [...m.sequences.map((s) => s.titre), t("module.bilan")];
+  const durees = [...m.sequences.map((s) => s.duree), null];
+  const total = titres.length;
+  const n = Math.min(Math.max(1, numeroChapitre), total);
+  const prog = progressionModule(m.id);
+  prog.chapitresVus = [...new Set([...(prog.chapitresVus ?? []), n])].sort((a, b) => a - b);
+  sauver();
+  /** @param {number} i */
+  const lien = (i) => `#/module/${m.slug}/${i}`;
+
+  const plan = h(
+    "details",
+    { class: "plan-module", open: n === 1 },
+    h("summary", {}, t("module.plan")),
+    m.objectifs.length > 0 ? [h("h2", { class: "h-petit" }, t("module.objectifs")), h("ul", {}, m.objectifs.map((o) => h("li", {}, o)))] : null,
+    h(
+      "ol",
+      { class: "plan-liste" },
+      titres.map((titre, i) => {
+        const vu = prog.chapitresVus?.includes(i + 1);
+        const courant = i + 1 === n;
+        const d = durees[i];
+        return h(
+          "li",
+          { class: `${vu ? "vu" : ""} ${courant ? "courant" : ""}` },
+          h("a", { href: lien(i + 1), ...(courant ? { "aria-current": "step" } : {}) }, titre),
+          d ? h("span", { class: "aide" }, ` · ${t("module.minutes", { n: d })}`) : null,
+          vu && !courant ? h("span", { class: "visuellement-cache" }, ` (${t("module.chapitre-vu")})`) : null,
+        );
+      }),
+    ),
+  );
+
+  const idTitre = nouvelId("chapitre");
+  const sequence = m.sequences[n - 1];
+  const contenu = sequence
+    ? sequence.etapes.map((e) => rendreEtape(e, m))
+    : [
+        h("p", {}, t("module.bilan.intro")),
+        m.activite ? Activite(m) : null,
+        m.quiz.length > 0 ? Quiz(m) : null,
+        m.lectureOpposee ? LectureOpposee(m.lectureOpposee) : null,
+        m.glossaire.length > 0
+          ? h("section", { "aria-labelledby": "glossaire" }, h("h3", { id: "glossaire" }, t("module.glossaire")), h("dl", { class: "glossaire" }, m.glossaire.map((g) => [h("dt", {}, g.terme), h("dd", {}, g.definition)])))
+          : null,
+        Terminer(m),
+      ];
+
+  const navigation = h(
+    "nav",
+    { class: "nav-chapitres", "aria-label": t("module.nav-chapitres") },
+    n > 1 ? h("a", { class: "bouton bouton-secondaire", href: lien(n - 1), rel: "prev" }, `← ${t("module.chapitre-precedent")}`) : h("span"),
+    n < total
+      ? h("a", { class: "bouton", href: lien(n + 1), rel: "next" }, `${t("module.chapitre-suivant")} : ${titres[n] ?? ""} →`)
+      : suivantModule
+        ? h("a", { class: "bouton", href: `#/module/${suivantModule.slug}` }, `${t("module.suivant")} : ${suivantModule.titre} →`)
+        : h("a", { class: "bouton", href: "#/" }, t("retour.accueil")),
+  );
 
   return [
     ...entete,
-    m.objectifs.length > 0 ? h("section", { "aria-labelledby": "objectifs" }, h("h2", { id: "objectifs" }, t("module.objectifs")), h("ul", {}, m.objectifs.map((o) => h("li", {}, o)))) : null,
-    h("div", { class: "barre-profondeur" }, DepthToggle()),
-    m.sequences.map((s) =>
+    plan,
+    h(
+      "div",
+      { class: "barre-profondeur" },
+      DepthToggle(),
       h(
-        "section",
-        { class: "sequence", "aria-labelledby": `seq-${s.id}` },
-        h("h2", { id: `seq-${s.id}` }, s.titre),
-        s.etapes.map((e) => {
-          if (e.type === "concepts") {
-            return (e.concepts ?? []).map((id) => {
-              const c = m.concepts.find((x) => x.id === id);
-              return c ? ConceptCard(c) : null;
-            });
-          }
-          if (e.type === "schema") return Schema(e);
-          const libelle = e.type === "regard" && e.discipline ? t(`regard.${e.discipline}`) : t(`module.etape.${e.type}`);
-          const source = e.source ? etat.formation.sources.find((s) => s.id === e.source) : undefined;
-          return h(
-            "div",
-            { class: `etape etape-${e.type}` },
-            h("p", { class: "etape-type" }, libelle),
-            texteRiche(e.texte ?? ""),
-            source ? h("p", { class: "aide" }, `${t("chiffre.source")} : `, SourceBadge(source)) : null,
-          );
-        }),
+        "div",
+        { class: "progression-chapitres" },
+        h("label", { for: `${idTitre}-progression` }, t("module.progression", { i: n, n: total })),
+        h("progress", { id: `${idTitre}-progression`, max: total, value: n }),
       ),
     ),
-    m.activite ? Activite(m) : null,
-    m.quiz.length > 0 ? Quiz(m) : null,
-    m.lectureOpposee ? LectureOpposee(m.lectureOpposee) : null,
-    m.glossaire.length > 0
-      ? h("section", { "aria-labelledby": "glossaire" }, h("h2", { id: "glossaire" }, t("module.glossaire")), h("dl", { class: "glossaire" }, m.glossaire.map((g) => [h("dt", {}, g.terme), h("dd", {}, g.definition)])))
-      : null,
-    Terminer(m),
-    navModules,
+    h(
+      "section",
+      { class: "chapitre", "aria-labelledby": idTitre },
+      h("h2", { id: idTitre, tabindex: -1, "data-focus": true }, titres[n - 1] ?? ""),
+      durees[n - 1] ? h("p", { class: "aide duree-chapitre" }, t("module.minutes", { n: durees[n - 1] ?? 0 })) : null,
+      contenu,
+    ),
+    navigation,
   ];
 }
 
 /** @param {Module} m */
 function Activite(m) {
-  const a = /** @type {import("./lib.js").Activite} */ (m.activite);
-  const zone = h("div", { class: "resultat", role: "status" });
-  /** @type {HTMLSelectElement[]} */
-  const selects = [];
-  const items = a.items.map((it) => {
-    const idSel = nouvelId("classement");
-    const select = h("select", { id: idSel }, h("option", { value: "" }, t("module.activite.choisir")), a.categories.map((c) => h("option", { value: c.id }, c.label)));
-    selects.push(select);
-    return h("li", { class: "item-classement", "data-item": it.id }, h("label", { for: idSel }, it.texte), select, h("p", { class: "retour", hidden: true }));
-  });
-  const verifier = () => {
-    let justes = 0;
-    a.items.forEach((it, i) => {
-      const li = items[i];
-      const retour = li?.querySelector(".retour");
-      const juste = selects[i]?.value === it.reponse;
-      if (juste) justes++;
-      if (retour instanceof HTMLElement) {
-        retour.hidden = false;
-        retour.className = `retour ${juste ? "juste" : "faux"}`;
-        retour.textContent = `${juste ? "✓ " + t("module.correct") : "✗ " + t("module.a-revoir")} ${it.commentaire}`;
-      }
-    });
-    zone.textContent = t("module.quiz.score", { score: justes, total: a.items.length });
+  return Classement(/** @type {import("./lib.js").Activite} */ (m.activite), () => {
     progressionModule(m.id).activite = true;
     sauver();
-  };
-  return h(
-    "section",
-    { class: "activite", "aria-labelledby": "activite" },
-    h("h2", { id: "activite" }, `${t("module.activite")} : ${a.titre}`),
-    h("p", {}, a.consigne),
-    h("ol", { class: "liste-classement" }, items),
-    h("button", { type: "button", class: "bouton", onclick: verifier }, t("module.activite.verifier")),
-    zone,
-  );
+  });
 }
 
 /**
@@ -462,7 +390,7 @@ function Quiz(m) {
   return h(
     "section",
     { class: "quiz", "aria-labelledby": "quiz" },
-    h("h2", { id: "quiz" }, t("module.quiz")),
+    h("h3", { id: "quiz" }, t("module.quiz")),
     visibles.length < m.quiz.length ? h("p", { class: "aide" }, t("module.quiz.filtre", { n: visibles.length, total: m.quiz.length })) : null,
     questions,
     h("button", { type: "button", class: "bouton", onclick: verifier }, t("module.quiz.verifier")),
@@ -476,7 +404,7 @@ function LectureOpposee(lo) {
   return h(
     "aside",
     { class: "lecture-opposee", "aria-labelledby": "lecture-opposee" },
-    h("h2", { id: "lecture-opposee" }, lo.titre),
+    h("h3", { id: "lecture-opposee" }, lo.titre),
     texteRiche(lo.texte),
     source ? h("p", { class: "aide" }, `${t("chiffre.source")} : `, SourceBadge(source)) : null,
   );
@@ -484,14 +412,15 @@ function LectureOpposee(lo) {
 
 /** @param {Module} m */
 function Terminer(m) {
-  const message = h("p", { role: "status", class: "resultat" }, progressionModule(m.id).termine ? t("module.termine") : "");
-  const bouton = h("button", { type: "button", class: "bouton bouton-secondaire" }, t("module.terminer"));
+  const badge = () => h("p", { class: "badge-gagne" }, h("span", { "aria-hidden": "true" }, "★ "), t("module.badge", { badge: m.badge ?? m.titre }));
+  const zone = h("div", { role: "status" }, progressionModule(m.id).termine ? badge() : null);
+  const bouton = h("button", { type: "button", class: "bouton" }, t("module.terminer"));
   bouton.addEventListener("click", () => {
     progressionModule(m.id).termine = true;
     sauver();
-    message.textContent = t("module.termine");
+    zone.replaceChildren(badge());
   });
-  return h("div", { class: "terminer" }, bouton, message);
+  return h("div", { class: "terminer" }, bouton, zone);
 }
 
 function pageSources() {
@@ -559,7 +488,7 @@ function rendre() {
   /** @type {Enfants[]} */
   let contenu;
   if (route[0] === "" || route[0] === undefined) contenu = pageAccueil();
-  else if (route[0] === "module" && route[1]) contenu = pageModule(route[1]);
+  else if (route[0] === "module" && route[1]) contenu = pageModule(route[1], Number(route[2]) || 1);
   else if (route[0] === "sources") contenu = pageSources();
   else if (route[0] === "simulateur") contenu = pageAVenir("simulateur.titre", "simulateur.bientot");
   else if (route[0] === "formateur") contenu = pageAVenir("formateur.titre", "formateur.bientot");
@@ -567,7 +496,8 @@ function rendre() {
 
   const main = /** @type {HTMLElement} */ (document.getElementById("contenu"));
   main.replaceChildren(...(/** @type {Enfant[]} */ (contenu.flat(Infinity))).filter((x) => x !== null && x !== undefined && x !== false));
-  const titre = main.querySelector("h1");
+  const titre = route[2] ? main.querySelector("[data-focus]") : main.querySelector("h1");
+  window.scrollTo(0, 0);
   if (route[0] !== "" && titre instanceof HTMLElement) {
     if (!document.title.includes(titre.textContent ?? "")) document.title = `${titre.textContent} — ${t("site.titre")}`;
     titre.focus();
@@ -628,11 +558,13 @@ async function demarrer() {
   }
   etat.progression = lireProgression(etat.stockage);
   try {
-    const [formation, figures, ui] = await Promise.all([
+    const [formation, figures, ui, series] = await Promise.all([
       chargerJson("data/formation.json"),
       chargerJson("data/figures.json"),
       chargerJson("data/ui.fr-FR.json"),
+      chargerJson("data/series.json"),
     ]);
+    etat.series = new Map(/** @type {import("./lib.js").Serie[]} */ (series).map((x) => [x.id, x]));
     etat.formation = formation;
     etat.figures = new Map(/** @type {Figure[]} */ (figures).map((f) => [f.id, f]));
     etat.ui = ui;

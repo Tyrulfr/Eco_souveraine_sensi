@@ -9,6 +9,9 @@ import {
   lireProgression,
   progressionParDefaut,
   questionsVisibles,
+  calculer,
+  positionSurLigne,
+  ecartsRepartition,
   CLE_STOCKAGE,
 } from "../src/lib.js";
 
@@ -91,4 +94,26 @@ test("questionsVisibles : filtre selon la profondeur", () => {
   assert.deepEqual(questionsVisibles(quiz, 1).map((x) => x.id), ["a"]);
   assert.deepEqual(questionsVisibles(quiz, 2).map((x) => x.id), ["a", "b"]);
   assert.deepEqual(questionsVisibles(quiz, 3).map((x) => x.id), ["a", "b", "c"]);
+});
+
+test("calculer : dette par habitant à partir de deux figures", () => {
+  const figures = new Map([
+    ["dette", figure({ id: "dette", valeur: 3460.1, unite: "Md€" })],
+    ["pop", figure({ id: "pop", valeur: 69.1, unite: "M hab." })],
+    ["vide", figure({ id: "vide", valeur: null, statut: "a-completer" })],
+  ]);
+  const c = { op: /** @type {const} */ ("div"), a: "dette", b: "pop", facteurA: 1e9, facteurB: 1e6, multiplicateur: 1, arrondi: 100, unite: " €" };
+  assert.equal(calculer(c, figures), 50100);
+  assert.equal(calculer({ ...c, b: "vide" }, figures), null);
+});
+
+test("positionSurLigne : un million entre mille et un milliard", () => {
+  const p = positionSurLigne(1e3, 1e9, 1e6);
+  assert.ok(p > 0.0009 && p < 0.0011);
+});
+
+test("ecartsRepartition : trie par écart absolu décroissant", () => {
+  const r = ecartsRepartition({ a: 20, b: 50, c: 30 }, { a: 40, b: 45, c: 15 });
+  assert.deepEqual(r.map((x) => x.id), ["a", "c", "b"]);
+  assert.equal(r[0]?.ecart, -20);
 });

@@ -19,7 +19,7 @@ de discours ; laboratoire à hypothèses concurrentes.
 |---|---|---|---|
 | 1 | Socle, ETHICS.md, CLAUDE.md, modèle de données, composants, module 1 (première version), extensions Claude Code | — | livré |
 | 1 bis | Vision, deux parcours, programme, nouveaux types d'étapes | — | livré |
-| 2 | Module 1 refondu (« faut-il avoir peur ? » : accroche, échelle, regards) ; séance « Qui paie, qui reçoit, qui prête ? » ; atelier de décryptage 1 → **parcours 4 h complet** | début janvier 2027 | à faire |
+| 2 | Module 1 refondu (« faut-il avoir peur ? » : accroche, échelle, regards) ; séance « Qui paie, qui reçoit, qui prête ? » ; atelier de décryptage 1 → **parcours 4 h complet** | début janvier 2027 | module 1 livré ; séance 2 et atelier 1 à faire |
 | 3 | Modules 2, 3 et 4 | février 2027 | à faire |
 | 4 | Le laboratoire : moteur à hypothèses concurrentes, tests (dont l'équilibre comptable), interface | février 2027 | à faire |
 | 5 | Module 6 (priorités, grille, tableau des tendances) ; ateliers 2 à 4 → **parcours 20 h complet** | début mars 2027 | à faire |

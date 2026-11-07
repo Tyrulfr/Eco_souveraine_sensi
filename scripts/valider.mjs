@@ -2,10 +2,10 @@
 // Sortie 1 s'il existe au moins une erreur ; les avertissements sont résumés.
 // Option --details : liste aussi chaque avertissement.
 import { chargerDonnees } from "./donnees.mjs";
-import { validerFigures, validerFormation } from "../src/validation.js";
+import { validerFigures, validerFormation, validerSeries } from "../src/validation.js";
 
-const { formation, figures } = chargerDonnees();
-const constats = [...validerFigures(figures), ...validerFormation(formation, figures)];
+const { formation, figures, series } = chargerDonnees();
+const constats = [...validerFigures(figures), ...validerSeries(series), ...validerFormation(formation, figures, series)];
 const erreurs = constats.filter((c) => c.gravite === "erreur");
 const avertissements = constats.filter((c) => c.gravite === "avertissement");
 

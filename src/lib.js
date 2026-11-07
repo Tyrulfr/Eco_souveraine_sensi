@@ -2,7 +2,7 @@
 // Aucune dépendance au DOM ici : tout est testable avec `node --test`.
 
 /**
- * @typedef {"% PIB" | "%" | "Md€" | "€" | "pb"} Unite
+ * @typedef {"% PIB" | "%" | "Md€" | "€" | "pb" | "M hab."} Unite
  * @typedef {"verifie" | "a-verifier" | "a-completer"} StatutFigure
  *
  * @typedef {Object} Figure
@@ -38,7 +38,7 @@
  * @property {string[]} chiffres  identifiants de figures.json
  *
  * @typedef {Object} Etape
- * @property {"situation" | "question" | "concepts" | "grille" | "debat" | "schema" | "accroche" | "echelle" | "tendances" | "regard"} type
+ * @property {"situation" | "question" | "concepts" | "grille" | "debat" | "schema" | "accroche" | "echelle" | "tendances" | "regard" | "estimation" | "ligne" | "partage" | "vrai-faux" | "classement" | "verif" | "courbe"} type
  * @property {"histoire" | "philosophie" | "ethique" | "psychologie" | "societe"} [discipline]  regard : discipline
  * @property {string} [source]         accroche, regard : identifiant de Formation.sources
  * @property {string} [texte]
@@ -47,8 +47,46 @@
  * @property {string} [image]          schéma : chemin du SVG
  * @property {string} [alt]            schéma : texte alternatif court
  * @property {string[]} [description]  schéma : description détaillée, pas à pas
+ * @property {string} [citation]       accroche : citation exacte d'un discours (chiffres permis), avec source
+ * @property {string} [question]       estimation, verif : la question posée
+ * @property {string} [chiffre]        estimation : identifiant de la figure à deviner
+ * @property {number} [min]            estimation : borne basse du curseur (dans l'unité de la figure)
+ * @property {number} [max]            estimation : borne haute du curseur
+ * @property {number} [pas]            estimation : pas du curseur
+ * @property {string} [explication]    estimation, ligne, verif : explication affichée après réponse
+ * @property {string} [consigne]       ligne, partage, classement, vrai-faux : consigne
+ * @property {string} [gauche]         ligne : libellé de l'extrémité gauche
+ * @property {string} [droite]         ligne : libellé de l'extrémité droite
+ * @property {string} [cible]          ligne : libellé du nombre à placer
+ * @property {[number, number, number]} [valeurs]  ligne : gauche, droite, cible
+ * @property {PartGateau[]} [parts]    partage : parts du gâteau, chacune liée à une figure (en %)
+ * @property {VueEchelle[]} [vues]     echelle interactive : différentes façons de lire un même montant
+ * @property {CarteVraiFaux[]} [cartes]  vrai-faux : affirmations à juger
+ * @property {{ id: string, label: string }[]} [categories]  classement : catégories
+ * @property {ItemClassement[]} [items]  classement : éléments à classer
+ * @property {Choix[]} [choix]         verif : choix proposés
+ * @property {string} [reponse]        verif : identifiant du bon choix
+ * @property {string} [serie]          courbe : identifiant de data/series.json
+ * @property {{ annee: number, libelle: string }[]} [evenements]  courbe : repères annotés
  *
- * @typedef {{ id: string, titre: string, etapes: Etape[] }} Sequence
+ * @typedef {{ id: string, label: string, chiffre: string }} PartGateau
+ * @typedef {{ op: "div", a: string, b: string, facteurA: number, facteurB: number, multiplicateur: number, arrondi: number, unite: string }} Calcul
+ * @typedef {{ id: string, libelle: string, chiffre?: string, calcul?: Calcul, texte: string }} VueEchelle
+ * @typedef {"exact" | "trompeur" | "faux" | "inverifiable"} Verdict
+ * @typedef {{ id: string, affirmation: string, verdict: Verdict, explication: string }} CarteVraiFaux
+ *
+ * @typedef {Object} Serie
+ * @property {string} id
+ * @property {string} libelle
+ * @property {"% PIB" | "Md€"} unite
+ * @property {[number, number][]} points  couples [année, valeur]
+ * @property {string} source
+ * @property {string | null} url
+ * @property {string} dateVerification
+ * @property {"verifie" | "a-verifier"} statut
+ * @property {string} [note]
+ *
+ * @typedef {{ id: string, titre: string, duree: number, etapes: Etape[] }} Sequence  duree en minutes
  * @typedef {{ id: string, texte: string }} Choix
  * @typedef {{ id: string, question: string, choix: Choix[], reponse: string, explication: string, profondeur: Profondeur }} Question  profondeur : à partir de laquelle la réponse a été enseignée
  * @typedef {{ id: string, texte: string, reponse: string, commentaire: string }} ItemClassement
@@ -63,6 +101,7 @@
  * @property {string} titre
  * @property {string} duree
  * @property {"complet" | "apercu"} statut
+ * @property {string} [badge]  nom du badge gagné en terminant le module
  * @property {string} resume
  * @property {string[]} objectifs
  * @property {Sequence[]} sequences
@@ -83,7 +122,7 @@
  *
  * @typedef {{ type: "texte", valeur: string } | { type: "chiffre", id: string }} Segment
  * @typedef {1 | 2 | 3} Profondeur
- * @typedef {{ quiz?: number, quizTotal?: number, activite?: boolean, termine?: boolean }} ProgressionModule
+ * @typedef {{ quiz?: number, quizTotal?: number, activite?: boolean, termine?: boolean, chapitresVus?: number[] }} ProgressionModule
  * @typedef {{ version: 1, profondeur: Profondeur, modules: Record<string, ProgressionModule> }} Progression
  */
 
@@ -93,7 +132,7 @@ export const MOTS_MAX_COUCHE1 = 15;
 const JETON = /\{\{chiffre:([a-z0-9-]+)\}\}/g;
 
 /** @type {Record<Unite, string>} */
-const SUFFIXES = { "% PIB": " % du PIB", "%": " %", "Md€": " Md€", "€": " €", pb: " points de base" };
+const SUFFIXES = { "% PIB": " % du PIB", "%": " %", "Md€": " Md€", "€": " €", pb: " points de base", "M hab.": " millions d'habitants" };
 
 const nombreFr = new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 });
 
@@ -151,6 +190,53 @@ export function compterMots(texte) {
     .replace(JETON, " X ")
     .split(/[\s'’]+/)
     .filter((m) => /[\p{L}\p{N}]/u.test(m)).length;
+}
+
+/**
+ * Nombre au format français, avec un nombre de décimales maximal.
+ * @param {number} n
+ * @param {number} [decimales]
+ */
+export function formaterNombre(n, decimales = 1) {
+  return new Intl.NumberFormat("fr-FR", { maximumFractionDigits: decimales }).format(n);
+}
+
+/**
+ * Calcul de remise à l'échelle à partir de deux figures sourcées :
+ * (a × facteurA) / (b × facteurB) × multiplicateur, arrondi au multiple voulu.
+ * Renvoie null si une figure manque ou n'a pas de valeur simple.
+ * @param {Calcul} c
+ * @param {Map<string, Figure>} figures
+ * @returns {number | null}
+ */
+export function calculer(c, figures) {
+  const a = figures.get(c.a)?.valeur;
+  const b = figures.get(c.b)?.valeur;
+  if (typeof a !== "number" || typeof b !== "number" || b === 0) return null;
+  const brut = ((a * c.facteurA) / (b * c.facteurB)) * c.multiplicateur;
+  return Math.round(brut / c.arrondi) * c.arrondi;
+}
+
+/**
+ * Position relative (0 à 1) d'une valeur sur une ligne linéaire allant de gauche à droite.
+ * @param {number} gauche
+ * @param {number} droite
+ * @param {number} valeur
+ */
+export function positionSurLigne(gauche, droite, valeur) {
+  return (valeur - gauche) / (droite - gauche);
+}
+
+/**
+ * Écart entre une répartition proposée et la répartition réelle, part par part.
+ * @param {Record<string, number>} propose
+ * @param {Record<string, number>} reel
+ * @returns {{ id: string, ecart: number }[]} trié du plus grand écart absolu au plus petit
+ */
+export function ecartsRepartition(propose, reel) {
+  return Object.keys(reel)
+    .map((id) => ({ id, ecart: (propose[id] ?? 0) - (reel[id] ?? 0) }))
+    .sort((x, y) => Math.abs(y.ecart) - Math.abs(x.ecart));
 }
 
 /**

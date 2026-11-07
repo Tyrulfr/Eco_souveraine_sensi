@@ -18,31 +18,97 @@
   "modules": [
     {
       "id": "m1",
-      "slug": "gateau-100-euros",
+      "slug": "dette-faut-il-avoir-peur",
       "numero": 1,
-      "titre": "Le gâteau de 100 €",
+      "titre": "La dette : faut-il avoir peur ?",
       "duree": "2 h",
       "statut": "complet",
-      "resume": "D'où vient l'argent public, où il va, et ce qui se passe quand il en manque.",
+      "resume": "Des milliers de milliards qui font peur : remettre les chiffres à l'échelle, comprendre d'où vient la dette, ce qu'elle coûte et ce qu'on peut en faire.",
       "objectifs": [
-        "Distinguer dépense, recette, déficit et dette.",
-        "Lire un chiffre exprimé « en pourcentage du PIB » et savoir à quoi il est comparé.",
-        "Comprendre pourquoi les intérêts de la dette pèsent sur le budget.",
-        "Formuler une question de légitimité sans y répondre à la place des autres."
+        "Repérer comment un grand nombre brut provoque une émotion plutôt qu'un raisonnement.",
+        "Remettre un montant à l'échelle : part du PIB, par habitant, dans le temps.",
+        "Distinguer dépense, recette, déficit, dette et intérêts, et savoir comment ils s'enchaînent.",
+        "Identifier les grands leviers qui agissent sur la dette, sans en désigner un « bon ».",
+        "Juger une affirmation sur la dette : exacte, trompeuse, fausse ou invérifiable."
       ],
       "sequences": [
         {
-          "id": "m1s1",
-          "titre": "Le gâteau",
+          "id": "m1c1",
+          "titre": "Ce qui fait peur",
+          "duree": 15,
           "etapes": [
             {
-              "type": "situation",
-              "texte": "Imaginez que toute la dépense publique du pays tienne dans un seul gâteau de 100 €. Écoles, hôpitaux, retraites, routes, police : chacun en reçoit une part."
+              "type": "estimation",
+              "question": "Sans chercher : à combien estimez-vous la dette publique de la France ?",
+              "chiffre": "dette-md-t2-2026",
+              "min": 0,
+              "max": 10000,
+              "pas": 50,
+              "explication": "Si vous étiez loin, vous êtes en bonne compagnie : au-delà de quelques milliers d'euros, nous n'avons plus d'intuition. C'est le point de départ de ce module."
+            },
+            {
+              "type": "accroche",
+              "citation": "La France cumule plus de 3.000 milliards d'euros de dettes, voici pourquoi c'est grave",
+              "source": "slate-2024",
+              "texte": "Un titre de presse, publié au printemps 2024. Le chiffre est exact ; c'est le « voici pourquoi c'est grave » qui donne le ton."
+            },
+            {
+              "type": "accroche",
+              "citation": "Pourquoi le cas de la dette publique française n'est pas si alarmant que cela",
+              "source": "slate-2025",
+              "texte": "Le même média, dans un autre article, avec un récit opposé. Même sujet, mêmes chiffres officiels, deux émotions différentes."
             },
             {
               "type": "question",
-              "texte": "À votre avis, qui reçoit la plus grosse part ? Notez votre réponse avant de continuer."
+              "texte": "Qu'avez-vous ressenti en lisant ces deux titres ? Notez un seul mot pour vous, sans le dire à voix haute. Nous y reviendrons à la fin."
             },
+            {
+              "type": "ligne",
+              "question": "Un petit test sur les grands nombres",
+              "consigne": "Sur cette ligne, l'extrémité gauche vaut mille et l'extrémité droite vaut un milliard. Placez « un million ».",
+              "gauche": "mille",
+              "droite": "un milliard",
+              "cible": "un million",
+              "valeurs": [
+                1000,
+                1000000000,
+                1000000
+              ],
+              "explication": "Un million n'est qu'un millième d'un milliard : il se trouve presque au tout début de la ligne. Pour s'en rendre compte : un million de secondes, c'est environ onze jours et demi ; un milliard de secondes, environ trente et un ans."
+            },
+            {
+              "type": "regard",
+              "discipline": "psychologie",
+              "source": "landy-2013",
+              "texte": "Notre cerveau n'a pas d'intuition pour les très grands nombres. Dans des expériences de psychologie, beaucoup de participants placent « un million » bien trop près du milieu d'une ligne allant de mille à un milliard. Au-delà d'un certain seuil, « des milliers de milliards » sonne simplement comme « énorme ». Un montant brut déclenche donc surtout une émotion : pour raisonner, il faut une échelle."
+            },
+            {
+              "type": "verif",
+              "question": "Pourquoi un montant comme « des milliers de milliards d'euros » suffit-il rarement pour juger une situation ?",
+              "choix": [
+                {
+                  "id": "a",
+                  "texte": "parce que ce montant est forcément faux"
+                },
+                {
+                  "id": "b",
+                  "texte": "parce qu'il manque un point de comparaison"
+                },
+                {
+                  "id": "c",
+                  "texte": "parce que la dette ne se mesure pas en euros"
+                }
+              ],
+              "reponse": "b",
+              "explication": "Le chiffre peut être exact. Mais sans comparaison (avec la production du pays, avec le passé, avec d'autres pays), on ne sait pas si c'est beaucoup."
+            }
+          ]
+        },
+        {
+          "id": "m1c2",
+          "titre": "Remettre à l'échelle",
+          "duree": 20,
+          "etapes": [
             {
               "type": "concepts",
               "concepts": [
@@ -50,17 +116,176 @@
               ]
             },
             {
+              "type": "echelle",
+              "titre": "Un même montant, cinq façons de le lire",
+              "texte": "Voici la dette publique de fin 2025. Changez de lunettes et observez ce que chaque lecture montre, et ce qu'elle cache.",
+              "vues": [
+                {
+                  "id": "brut",
+                  "libelle": "En milliards",
+                  "chiffre": "dette-md-2025",
+                  "texte": "Le chiffre brut. Il impressionne, mais seul, il ne dit pas si c'est beaucoup pour un pays de la taille de la France."
+                },
+                {
+                  "id": "pib",
+                  "libelle": "Face au PIB",
+                  "chiffre": "dette-pib",
+                  "texte": "La dette comparée à tout ce que le pays produit en un an. C'est la mesure utilisée pour comparer les années et les pays entre eux."
+                },
+                {
+                  "id": "mois",
+                  "libelle": "En mois de production",
+                  "calcul": {
+                    "op": "div",
+                    "a": "dette-md-2025",
+                    "b": "pib-2025",
+                    "facteurA": 1,
+                    "facteurB": 1,
+                    "multiplicateur": 12,
+                    "arrondi": 0.5,
+                    "unite": " mois"
+                  },
+                  "texte": "La dette équivaut à toute la production du pays pendant ce nombre de mois. C'est une image de sa taille : personne ne rembourse une dette publique de cette façon."
+                },
+                {
+                  "id": "habitant",
+                  "libelle": "Par habitant",
+                  "calcul": {
+                    "op": "div",
+                    "a": "dette-md-2025",
+                    "b": "population-2026",
+                    "facteurA": 1000000000,
+                    "facteurB": 1000000,
+                    "multiplicateur": 1,
+                    "arrondi": 100,
+                    "unite": " €"
+                  },
+                  "texte": "C'est le chiffre « par bébé » souvent cité. Le calcul est juste, mais ce n'est pas une facture individuelle : l'État rembourse et renouvelle ses emprunts, et une partie des titres est détenue par l'épargne des habitants eux-mêmes."
+                },
+                {
+                  "id": "interets",
+                  "libelle": "Intérêts par habitant",
+                  "calcul": {
+                    "op": "div",
+                    "a": "charge-interets-2025",
+                    "b": "population-2026",
+                    "facteurA": 1000000000,
+                    "facteurB": 1000000,
+                    "multiplicateur": 1,
+                    "arrondi": 10,
+                    "unite": " € par an"
+                  },
+                  "texte": "Ce qu'ont coûté les intérêts de la dette en 2025, ramenés à chaque habitant. C'est ce coût annuel, plus que le montant total, qui pèse chaque année sur le budget."
+                }
+              ]
+            },
+            {
+              "type": "verif",
+              "question": "Quelle lecture permet le mieux de comparer la dette d'aujourd'hui avec celle d'il y a trente ans ?",
+              "choix": [
+                {
+                  "id": "a",
+                  "texte": "le montant en milliards d'euros"
+                },
+                {
+                  "id": "b",
+                  "texte": "le montant par habitant, sans tenir compte des prix"
+                },
+                {
+                  "id": "c",
+                  "texte": "la part du PIB"
+                }
+              ],
+              "reponse": "c",
+              "explication": "Les prix et la production augmentent avec le temps. Rapporter la dette au PIB neutralise ces changements de taille."
+            }
+          ]
+        },
+        {
+          "id": "m1c3",
+          "titre": "Le gâteau de 100 €",
+          "duree": 20,
+          "etapes": [
+            {
+              "type": "situation",
+              "texte": "Imaginez que toute la dépense publique du pays tienne dans un seul gâteau de 100 €. Écoles, hôpitaux, retraites, routes, police, intérêts de la dette : chacun en reçoit une part."
+            },
+            {
+              "type": "partage",
+              "question": "À vous de partager le gâteau",
+              "consigne": "Répartissez 100 € entre ces postes, selon votre idée de la réalité. Utilisez les boutons + et −, ou tapez un montant.",
+              "parts": [
+                {
+                  "id": "protection-sociale",
+                  "label": "Retraites, famille, chômage (protection sociale)",
+                  "chiffre": "part-protection-sociale-depense"
+                },
+                {
+                  "id": "sante",
+                  "label": "Santé",
+                  "chiffre": "part-sante-depense"
+                },
+                {
+                  "id": "enseignement",
+                  "label": "École et enseignement",
+                  "chiffre": "part-enseignement-depense"
+                },
+                {
+                  "id": "services-generaux",
+                  "label": "Fonctionnement de l'État, dont intérêts de la dette",
+                  "chiffre": "part-services-generaux-depense"
+                },
+                {
+                  "id": "affaires-economiques",
+                  "label": "Économie : transports, énergie, aides aux entreprises",
+                  "chiffre": "part-affaires-economiques-depense"
+                },
+                {
+                  "id": "defense",
+                  "label": "Défense",
+                  "chiffre": "part-defense-depense"
+                },
+                {
+                  "id": "autres",
+                  "label": "Sécurité, logement, environnement, culture",
+                  "chiffre": "part-autres-depense"
+                }
+              ],
+              "explication": "La protection sociale représente à elle seule une part bien plus grande que tout le reste. Les intérêts de la dette sont rangés dans le fonctionnement de l'État."
+            },
+            {
               "type": "concepts",
               "concepts": [
                 "depense-publique",
                 "recettes-publiques"
               ]
+            },
+            {
+              "type": "verif",
+              "question": "Quel poste reçoit la plus grosse part de la dépense publique ?",
+              "choix": [
+                {
+                  "id": "a",
+                  "texte": "l'école et l'enseignement"
+                },
+                {
+                  "id": "b",
+                  "texte": "la défense"
+                },
+                {
+                  "id": "c",
+                  "texte": "la protection sociale"
+                }
+              ],
+              "reponse": "c",
+              "explication": "Retraites, famille et chômage représentent la plus grande part : de l'argent public qui repart, pour l'essentiel, vers les ménages."
             }
           ]
         },
         {
-          "id": "m1s2",
-          "titre": "Quand la pâte manque",
+          "id": "m1c4",
+          "titre": "Quand l'argent manque",
+          "duree": 20,
           "etapes": [
             {
               "type": "situation",
@@ -86,12 +311,86 @@
                 "deficit",
                 "dette"
               ]
+            },
+            {
+              "type": "classement",
+              "titre": "Dépense, recette ou emprunt ?",
+              "consigne": "Pour chaque situation, choisissez la bonne case, puis vérifiez.",
+              "categories": [
+                {
+                  "id": "depense",
+                  "label": "Dépense publique"
+                },
+                {
+                  "id": "recette",
+                  "label": "Recette publique"
+                },
+                {
+                  "id": "emprunt",
+                  "label": "Emprunt"
+                }
+              ],
+              "items": [
+                {
+                  "id": "a1",
+                  "texte": "Le salaire d'une infirmière d'un hôpital public.",
+                  "reponse": "depense",
+                  "commentaire": "L'hôpital public paie ses agents avec de l'argent public : c'est une dépense."
+                },
+                {
+                  "id": "a2",
+                  "texte": "La TVA payée en achetant un vélo.",
+                  "reponse": "recette",
+                  "commentaire": "La TVA est un impôt sur la consommation : elle fait rentrer de l'argent."
+                },
+                {
+                  "id": "a3",
+                  "texte": "Une banque achète une obligation de l'État.",
+                  "reponse": "emprunt",
+                  "commentaire": "L'État reçoit de l'argent, mais il devra le rendre avec intérêts : c'est un emprunt, pas une recette."
+                },
+                {
+                  "id": "a4",
+                  "texte": "La pension versée à un retraité.",
+                  "reponse": "depense",
+                  "commentaire": "Une pension de retraite est versée avec de l'argent public : c'est une dépense de protection sociale."
+                },
+                {
+                  "id": "a5",
+                  "texte": "Une cotisation retenue sur une fiche de paie.",
+                  "reponse": "recette",
+                  "commentaire": "Les cotisations sociales font partie des prélèvements obligatoires."
+                },
+                {
+                  "id": "a6",
+                  "texte": "Les intérêts versés aux prêteurs de l'État.",
+                  "reponse": "depense",
+                  "commentaire": "Payer des intérêts est une dépense, même si elle ne finance aucun service nouveau."
+                }
+              ]
+            },
+            {
+              "type": "verif",
+              "question": "Le déficit baisse d'une année sur l'autre. La dette baisse-t-elle pour autant ?",
+              "choix": [
+                {
+                  "id": "a",
+                  "texte": "oui, automatiquement"
+                },
+                {
+                  "id": "b",
+                  "texte": "non : tant qu'il reste un déficit, la dette continue d'augmenter"
+                }
+              ],
+              "reponse": "b",
+              "explication": "Le déficit, c'est ce qui s'ajoute à la dette chaque année. Un déficit plus petit ralentit la hausse de la dette, il ne la fait pas baisser."
             }
           ]
         },
         {
-          "id": "m1s3",
-          "titre": "Le prix de l'emprunt",
+          "id": "m1c5",
+          "titre": "Le prix de la dette",
+          "duree": 15,
           "etapes": [
             {
               "type": "concepts",
@@ -100,12 +399,174 @@
               ]
             },
             {
+              "type": "verif",
+              "question": "Quand les taux d'intérêt montent, pourquoi la charge d'intérêts n'augmente-t-elle que progressivement ?",
+              "choix": [
+                {
+                  "id": "a",
+                  "texte": "parce que la plupart des titres déjà émis gardent leur taux"
+                },
+                {
+                  "id": "b",
+                  "texte": "parce que l'État refuse de payer plus"
+                },
+                {
+                  "id": "c",
+                  "texte": "parce que la dette baisse en même temps"
+                }
+              ],
+              "reponse": "a",
+              "explication": "Seuls les nouveaux emprunts, dont ceux qui remplacent les titres arrivés à échéance, se font au nouveau taux. La hausse se diffuse donc année après année."
+            }
+          ]
+        },
+        {
+          "id": "m1c6",
+          "titre": "Ce qu'on peut faire",
+          "duree": 10,
+          "etapes": [
+            {
+              "type": "classement",
+              "titre": "Sur quoi agit chaque levier ?",
+              "consigne": "Chaque mesure ci-dessous peut réduire le déficit ou le poids de la dette. Indiquez sur quoi elle agit d'abord.",
+              "categories": [
+                {
+                  "id": "depenses",
+                  "label": "Sur les dépenses"
+                },
+                {
+                  "id": "recettes",
+                  "label": "Sur les recettes"
+                },
+                {
+                  "id": "pib",
+                  "label": "Sur le PIB (croissance, prix)"
+                },
+                {
+                  "id": "cout",
+                  "label": "Sur le coût de la dette"
+                }
+              ],
+              "items": [
+                {
+                  "id": "l1",
+                  "texte": "Geler certaines dépenses publiques d'une année sur l'autre.",
+                  "reponse": "depenses",
+                  "commentaire": "Moins de dépenses, moins de déficit. Reste à savoir lesquelles, et qui en supporte les effets."
+                },
+                {
+                  "id": "l2",
+                  "texte": "Augmenter un impôt existant ou en créer un nouveau.",
+                  "reponse": "recettes",
+                  "commentaire": "Plus de recettes, moins de déficit. Reste à savoir qui paie, et si l'activité en souffre."
+                },
+                {
+                  "id": "l3",
+                  "texte": "Supprimer une réduction d'impôt (une « niche fiscale »).",
+                  "reponse": "recettes",
+                  "commentaire": "Cela augmente les recettes sans changer le taux de l'impôt ; ceux qui en profitaient paient davantage."
+                },
+                {
+                  "id": "l4",
+                  "texte": "Investir pour augmenter la production future.",
+                  "reponse": "pib",
+                  "commentaire": "Si la production augmente, la dette pèse moins lourd par rapport au PIB. Mais l'investissement coûte d'abord, et son rendement est incertain."
+                },
+                {
+                  "id": "l5",
+                  "texte": "Laisser les prix augmenter plus vite (l'inflation).",
+                  "reponse": "pib",
+                  "commentaire": "L'inflation gonfle le PIB en euros et allège le poids des dettes passées, mais elle réduit le pouvoir d'achat des revenus et de l'épargne."
+                },
+                {
+                  "id": "l6",
+                  "texte": "Emprunter sur des durées plus longues quand les taux sont bas.",
+                  "reponse": "cout",
+                  "commentaire": "Cela protège un temps contre la hausse des taux, sans réduire le montant de la dette."
+                }
+              ]
+            },
+            {
+              "type": "tendances",
+              "texte": "Aucun de ces leviers n'est neutre : chacun fait des gagnants et des perdants, et les économistes ne s'accordent pas sur leurs effets. Les grandes tendances politiques les combinent différemment. Dans le module « Le laboratoire », vous les testerez sur un même budget, avec des hypothèses économiques concurrentes."
+            }
+          ]
+        },
+        {
+          "id": "m1c7",
+          "titre": "Avec du recul",
+          "duree": 15,
+          "etapes": [
+            {
+              "type": "courbe",
+              "titre": "La dette publique depuis 1978, en % du PIB",
+              "serie": "dette-pib-1978-2025",
+              "evenements": [
+                {
+                  "annee": 1993,
+                  "libelle": "récession en France et en Europe"
+                },
+                {
+                  "annee": 2009,
+                  "libelle": "crise financière mondiale"
+                },
+                {
+                  "annee": 2020,
+                  "libelle": "pandémie de Covid"
+                }
+              ],
+              "texte": "En près de cinquante ans, la dette rapportée au PIB a été multipliée par plus de cinq. Elle a surtout bondi lors des crises, puis n'est jamais vraiment redescendue."
+            },
+            {
+              "type": "regard",
+              "discipline": "histoire",
+              "source": "reinhart-rogoff-2009",
+              "texte": "Cette série de l'Insee commence en 1978. Sur une période beaucoup plus longue, les économistes Carmen Reinhart et Kenneth Rogoff ont recensé des siècles de crises de dette dans le monde. Les pays sortis d'une dette très élevée l'ont fait par des chemins différents : croissance, inflation, efforts budgétaires, et parfois défaut de paiement. L'histoire ne dit pas lequel choisir ; elle montre que chacun a eu ses gagnants et ses perdants."
+            },
+            {
+              "type": "vrai-faux",
+              "titre": "Vrai, faux ou trompeur ?",
+              "consigne": "Voici des phrases souvent entendues sur la dette. Pour chacune, donnez votre verdict, puis comparez avec notre analyse.",
+              "cartes": [
+                {
+                  "id": "vf1",
+                  "affirmation": "Le déficit public a baissé en 2025.",
+                  "verdict": "exact",
+                  "explication": "Il est passé de {{chiffre:deficit-pib-2024}} en 2024 à {{chiffre:deficit-pib}} en 2025."
+                },
+                {
+                  "id": "vf2",
+                  "affirmation": "La dette publique a baissé en 2025.",
+                  "verdict": "faux",
+                  "explication": "Elle est passée de {{chiffre:dette-pib-2024}} fin 2024 à {{chiffre:dette-pib}} fin 2025. Un déficit plus petit reste un déficit : il s'ajoute encore à la dette."
+                },
+                {
+                  "id": "vf3",
+                  "affirmation": "Chaque Français naît avec une dette qu'il devra rembourser de sa poche.",
+                  "verdict": "trompeur",
+                  "explication": "Le calcul par habitant est juste, mais la dette n'est pas une facture individuelle : l'État la rembourse et la renouvelle avec l'ensemble des recettes publiques, et une partie des titres est détenue par l'épargne des habitants eux-mêmes."
+                },
+                {
+                  "id": "vf4",
+                  "affirmation": "La France ne rembourse jamais ses emprunts.",
+                  "verdict": "faux",
+                  "explication": "Chaque titre est remboursé à son échéance. Ce qui ne baisse pas, c'est le total, car l'État emprunte à nouveau pour rembourser les titres qui arrivent à leur terme."
+                },
+                {
+                  "id": "vf5",
+                  "affirmation": "La dette publique n'a jamais été aussi élevée.",
+                  "verdict": "trompeur",
+                  "explication": "En euros, c'est un record ; en part du PIB aussi, depuis le début de la série de l'Insee en 1978. Mais les montants en euros grimpent aussi parce que les prix et la production augmentent, et cette série ne dit rien des périodes plus anciennes."
+                }
+              ]
+            },
+            {
               "type": "grille",
               "texte": "Devant n'importe quel chiffre, posez cinq questions : de quoi parle-t-on ? Combien ? Comparé à quoi ? Qui l'a mesuré ? À quelle date ?"
             },
             {
               "type": "debat",
-              "texte": "Choisissez une question ouverte au niveau « Le débat ». Formez deux groupes et tirez au sort la position que chaque groupe défend."
+              "texte": "Reprenez le mot noté au début du module. A-t-il changé ? Puis débattez : qu'est-ce qui devrait le plus retenir l'attention, le montant de la dette, son coût en intérêts, ou ce qu'elle a financé ? Tirez au sort la position que chaque groupe défend."
             }
           ]
         }
@@ -227,7 +688,7 @@
           },
           "couche2": {
             "mecanisme": "La dette publique est la somme de tous les emprunts pas encore remboursés. L'État emprunte en vendant des titres, les obligations assimilables du Trésor (OAT), à des prêteurs : banques, assureurs, fonds, épargnants, en France et à l'étranger.",
-            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}} fin 2025. La part de la dette de l'État vendue sur les marchés et détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
+            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}} fin 2025, et {{chiffre:dette-pib-t2-2026}} fin juin 2026. La part de la dette de l'État vendue sur les marchés et détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
             "comparaison": "Un pays ne rembourse presque jamais sa dette d'un coup : quand un titre arrive à échéance, il emprunte à nouveau pour le rembourser, comme une entreprise qui prend un nouveau prêt quand l'ancien arrive à son terme."
           },
           "couche3": {
@@ -235,11 +696,13 @@
             "questionOuverte": "Dans quels cas est-il légitime d'emprunter aujourd'hui ce que d'autres rembourseront demain ?"
           },
           "sources": [
+            "insee-ir239",
             "insee-ip2106",
             "blanchard-2019"
           ],
           "chiffres": [
             "dette-pib",
+            "dette-pib-t2-2026",
             "dette-non-residents"
           ]
         },
@@ -273,63 +736,7 @@
           ]
         }
       ],
-      "activite": {
-        "type": "classement",
-        "titre": "Dépense, recette ou emprunt ?",
-        "consigne": "Pour chaque situation, choisissez la bonne case, puis vérifiez.",
-        "categories": [
-          {
-            "id": "depense",
-            "label": "Dépense publique"
-          },
-          {
-            "id": "recette",
-            "label": "Recette publique"
-          },
-          {
-            "id": "emprunt",
-            "label": "Emprunt"
-          }
-        ],
-        "items": [
-          {
-            "id": "a1",
-            "texte": "Le salaire d'une infirmière d'un hôpital public.",
-            "reponse": "depense",
-            "commentaire": "L'hôpital public paie ses agents avec de l'argent public : c'est une dépense."
-          },
-          {
-            "id": "a2",
-            "texte": "La TVA payée en achetant un vélo.",
-            "reponse": "recette",
-            "commentaire": "La TVA est un impôt sur la consommation : elle fait rentrer de l'argent."
-          },
-          {
-            "id": "a3",
-            "texte": "Une banque achète une obligation de l'État.",
-            "reponse": "emprunt",
-            "commentaire": "L'État reçoit de l'argent, mais il devra le rendre avec intérêts : c'est un emprunt, pas une recette."
-          },
-          {
-            "id": "a4",
-            "texte": "La pension versée à un retraité.",
-            "reponse": "depense",
-            "commentaire": "Une pension de retraite est versée avec de l'argent public : c'est une dépense de protection sociale."
-          },
-          {
-            "id": "a5",
-            "texte": "Une cotisation retenue sur une fiche de paie.",
-            "reponse": "recette",
-            "commentaire": "Les cotisations sociales font partie des prélèvements obligatoires."
-          },
-          {
-            "id": "a6",
-            "texte": "Les intérêts versés aux prêteurs de l'État.",
-            "reponse": "depense",
-            "commentaire": "Payer des intérêts est une dépense, même si elle ne finance aucun service nouveau."
-          }
-        ]
-      },
+      "activite": null,
       "quiz": [
         {
           "id": "m1q1",
@@ -463,7 +870,8 @@
           "definition": "Un centième de point de pourcentage : cent points de base font un point de pourcentage."
         }
       ],
-      "type": "module"
+      "type": "module",
+      "badge": "Décodeur de la dette"
     },
     {
       "id": "s2",
@@ -696,6 +1104,66 @@
       "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:12016E/PRO/12",
       "apport": "Fixe les valeurs de référence du déficit et de la dette publics.",
       "vigilance": "Les règles budgétaires européennes ont été réformées en 2024 : la valeur de référence demeure, mais son application a changé."
+    },
+    {
+      "id": "slate-2024",
+      "auteurs": "Ziane, Ydriss",
+      "annee": "2024",
+      "titre": "La France cumule plus de 3.000 milliards d'euros de dettes, voici pourquoi c'est grave",
+      "support": "Slate.fr, 5 avril 2024",
+      "url": "https://www.slate.fr/story/266404/dette-france-augmente-probleme-risques-deficit-depenses-pubiques-notation-image-reputation",
+      "apport": "Exemple de titre de presse qui associe un montant brut à un jugement (« c'est grave »).",
+      "vigilance": "Cité ici pour son titre, analysé comme discours ; le contenu de l'article développe des arguments qu'il faut lire en entier."
+    },
+    {
+      "id": "slate-2025",
+      "auteurs": "Slate.fr",
+      "annee": "2025",
+      "titre": "Pourquoi le cas de la dette publique française n'est pas si alarmant que cela",
+      "support": "Slate.fr",
+      "url": "https://www.slate.fr/economie/dette-publique-france-pas-peril-demeure-alarmant-crise-faillite-budget-finances-investissement-avenir-solvabilite",
+      "apport": "Exemple de titre au récit opposé, dans le même média.",
+      "vigilance": "Date exacte et auteur à vérifier sur la page de l'article. Cité pour son titre, analysé comme discours."
+    },
+    {
+      "id": "insee-ir239",
+      "auteurs": "Insee",
+      "annee": "2026",
+      "titre": "À la fin du deuxième trimestre 2026, le ratio de dette publique s'établit à 119,0 % du PIB",
+      "support": "Informations rapides n° 239, 29 septembre 2026",
+      "url": "https://www.insee.fr/fr/statistiques/9053525",
+      "apport": "Le chiffre le plus récent de la dette publique, chaque trimestre.",
+      "vigilance": "Chiffres trimestriels, susceptibles d'être révisés."
+    },
+    {
+      "id": "insee-t3101",
+      "auteurs": "Insee",
+      "annee": "2026",
+      "titre": "Dette des administrations publiques au sens de Maastricht (tableau 3.101)",
+      "support": "Comptes nationaux annuels, base 2020, 28 août 2026",
+      "url": "https://www.insee.fr/fr/statistiques/8988843",
+      "apport": "La série de la dette publique depuis 1978, en euros et en part du PIB.",
+      "vigilance": "La série commence en 1978 ; les comparaisons plus anciennes demandent d'autres sources."
+    },
+    {
+      "id": "landy-2013",
+      "auteurs": "Landy, David ; Silbert, Noah ; Goldin, Aleah",
+      "annee": "2013",
+      "titre": "Estimating Large Numbers",
+      "support": "Cognitive Science, vol. 37, n° 5",
+      "url": "https://doi.org/10.1111/cogs.12028",
+      "apport": "Montre que beaucoup de personnes situent mal les très grands nombres (million, milliard) sur une ligne.",
+      "vigilance": "Expériences menées en anglais, aux États-Unis ; à lire comme une tendance, pas comme une loi."
+    },
+    {
+      "id": "reinhart-rogoff-2009",
+      "auteurs": "Reinhart, Carmen ; Rogoff, Kenneth",
+      "annee": "2009",
+      "titre": "This Time Is Different: Eight Centuries of Financial Folly",
+      "support": "Princeton University Press",
+      "url": "https://press.princeton.edu/books/paperback/9780691152646/this-time-is-different",
+      "apport": "Recense sur plusieurs siècles les crises de dette publique et leurs sorties.",
+      "vigilance": "Un article ultérieur des mêmes auteurs (2010) sur le lien entre dette et croissance a été critiqué pour une erreur de calcul (Herndon, Ash et Pollin, 2013) : un rappel utile que les chiffres d'économistes se vérifient aussi."
     }
   ],
   "parcours": [
@@ -705,7 +1173,7 @@
       "duree": "4 h",
       "resume": "Pour tout le monde : comprendre la dette sans en avoir peur, savoir qui paie, qui reçoit et qui prête, et lire un programme.",
       "modules": [
-        "gateau-100-euros",
+        "dette-faut-il-avoir-peur",
         "qui-paie-qui-recoit-qui-prete"
       ]
     },
@@ -715,7 +1183,7 @@
       "duree": "20 h",
       "resume": "Pour voter en connaissance de cause : six modules, le laboratoire des choix économiques et quatre ateliers de décryptage de discours.",
       "modules": [
-        "gateau-100-euros",
+        "dette-faut-il-avoir-peur",
         "qui-paie",
         "qui-recoit",
         "qui-prete",

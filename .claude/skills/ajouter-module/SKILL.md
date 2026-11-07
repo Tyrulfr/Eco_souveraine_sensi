@@ -92,6 +92,25 @@ Pour chaque chiffre, ajoute une entrée dans `data/figures.json` :
 - `glossaire` : chaque terme technique employé en couche 2 ou 3.
 - Passe `statut` à `"complet"`.
 
+## 4 ter. Rendre le module actif (psychoergonomie et jeu)
+
+- Découper en **chapitres de 10 à 20 minutes** (`"duree"` en minutes), un
+  écran = une idée ; le total des chapitres tient dans 2 h, le bilan (quiz,
+  lecture opposée, glossaire, badge) est ajouté automatiquement. Donne un
+  `"badge"` au module.
+- **Activer avant d'expliquer** : ouvrir un chapitre par une estimation
+  (`estimation` : `chiffre`, `min`, `max`, `pas`, curseur partant de `min`)
+  ou une prédiction.
+- **Un jeu par chapitre au moins** : `partage` (parts liées à des figures dont
+  la somme fait 100), `echelle` avec `vues` (chiffre ou `calcul` à partir de
+  deux figures), `vrai-faux` (verdicts `exact`, `trompeur`, `faux`,
+  `inverifiable`, explication sourcée), `classement`, `ligne`, `courbe`
+  (série de `data/series.json`, repères annotés).
+- **Terminer chaque chapitre par une `verif`** : une question, retour
+  immédiat et expliqué (récupération en mémoire).
+- Retour toujours bienveillant et explicatif, jamais de pénalité.
+- Tout est jouable au clavier ; tout graphique a son tableau de données.
+
 ## 4 bis. Atelier de décryptage
 
 - Une paire de vidéos de bords différents, validée par le commanditaire.
