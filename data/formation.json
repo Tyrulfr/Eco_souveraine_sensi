@@ -1,0 +1,519 @@
+{
+  "meta": {
+    "titre": "Le Gâteau de 100 €",
+    "sousTitre": "Lire un budget public pour choisir en connaissance de cause",
+    "public": "De 10 à 90 ans, sans prérequis. En classe, en médiathèque ou en autonomie.",
+    "duree": "Six modules de deux heures",
+    "version": "Lot 1 — socle et module de référence",
+    "dateVerification": "2026-11-06",
+    "intention": "Donner à chacun les outils pour lire un programme économique et se faire son propre avis. La formation ne dit jamais pour qui voter."
+  },
+  "gardeFous": [
+    "Aucun écran ne dit pour qui ni comment voter.",
+    "Chaque module présente une lecture opposée, avec sa source.",
+    "Chaque chiffre est relié à sa source et à sa date. Une donnée manquante est signalée, jamais inventée.",
+    "Aucune donnée personnelle ni préférence politique n'est collectée : tout reste sur votre appareil.",
+    "Les grandes tendances politiques sont comparées à partir de positions publiées et citées, jamais résumées de mémoire."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "slug": "gateau-100-euros",
+      "numero": 1,
+      "titre": "Le gâteau de 100 €",
+      "duree": "2 h",
+      "statut": "complet",
+      "resume": "D'où vient l'argent public, où il va, et ce qui se passe quand il en manque.",
+      "objectifs": [
+        "Distinguer dépense, recette, déficit et dette.",
+        "Lire un chiffre exprimé « en pourcentage du PIB ».",
+        "Comprendre pourquoi les intérêts de la dette pèsent sur le budget.",
+        "Formuler une question de légitimité sans y répondre à la place des autres."
+      ],
+      "sequences": [
+        {
+          "id": "m1s1",
+          "titre": "Le gâteau",
+          "etapes": [
+            {
+              "type": "situation",
+              "texte": "Imaginez que toute la dépense publique du pays tienne dans un seul gâteau de 100 €. Écoles, hôpitaux, retraites, routes, police : chacun en reçoit une part."
+            },
+            {
+              "type": "question",
+              "texte": "À votre avis, qui reçoit la plus grosse part ? Notez votre réponse avant de continuer."
+            },
+            {
+              "type": "concepts",
+              "concepts": [
+                "depense-publique",
+                "recettes-publiques"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "m1s2",
+          "titre": "Quand la pâte manque",
+          "etapes": [
+            {
+              "type": "situation",
+              "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. Il faut emprunter la différence."
+            },
+            {
+              "type": "concepts",
+              "concepts": [
+                "deficit",
+                "dette"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "m1s3",
+          "titre": "Le prix de l'emprunt",
+          "etapes": [
+            {
+              "type": "concepts",
+              "concepts": [
+                "interets"
+              ]
+            },
+            {
+              "type": "grille",
+              "texte": "Devant n'importe quel chiffre, posez cinq questions : de quoi parle-t-on ? Combien ? Comparé à quoi ? Qui l'a mesuré ? À quelle date ?"
+            },
+            {
+              "type": "debat",
+              "texte": "Choisissez une question ouverte au niveau « Le débat ». Formez deux groupes : chacun défend la position qu'il ne partage pas spontanément."
+            }
+          ]
+        }
+      ],
+      "concepts": [
+        {
+          "id": "depense-publique",
+          "titre": "Où va l'argent public ?",
+          "couche1": {
+            "texte": "L'argent public paie les écoles, les hôpitaux et les retraites.",
+            "image": "assets/img/gateau.svg",
+            "alt": "Un gâteau coupé en parts de tailles différentes."
+          },
+          "couche2": {
+            "mecanisme": "La dépense publique regroupe ce que paient l'État, la Sécurité sociale et les collectivités locales : salaires des agents, retraites, remboursements de soins, investissements et intérêts de la dette. Une grande partie n'est pas consommée par l'administration : elle est reversée aux ménages sous forme de pensions et d'allocations.",
+            "ordreDeGrandeur": "Elle représente {{chiffre:depenses-pib}}, c'est-à-dire qu'on la compare à toute la richesse produite dans le pays en un an. La protection sociale (retraites, famille, chômage) en prend {{chiffre:part-protection-sociale-depense}}.",
+            "comparaison": "Sur un gâteau de 100 €, la part de la protection sociale vaut à elle seule {{chiffre:part-protection-sociale-depense}}. Les autres parts se partagent le reste : santé {{chiffre:part-sante-depense}}, enseignement {{chiffre:part-enseignement-depense}}, défense {{chiffre:part-defense-depense}}."
+          },
+          "couche3": {
+            "enjeu": "Décider ce que l'argent public doit payer, c'est décider ce que l'on fait ensemble plutôt que chacun de son côté. La frontière entre les deux change selon les pays et les époques.",
+            "questionOuverte": "Qu'est-ce qui devrait être payé par tous, et qu'est-ce qui devrait rester à la charge de chacun ?"
+          },
+          "sources": [
+            "insee-ip2093"
+          ],
+          "chiffres": [
+            "depenses-pib",
+            "part-protection-sociale-depense",
+            "part-sante-depense",
+            "part-enseignement-depense",
+            "part-defense-depense"
+          ]
+        },
+        {
+          "id": "recettes-publiques",
+          "titre": "D'où vient l'argent ?",
+          "couche1": {
+            "texte": "Cet argent vient surtout des impôts que nous payons tous.",
+            "image": "assets/img/tirelire.svg",
+            "alt": "Des pièces qui tombent dans une tirelire."
+          },
+          "couche2": {
+            "mecanisme": "Les recettes publiques viennent des impôts (TVA, impôt sur le revenu, impôt sur les sociétés), des cotisations sociales prélevées sur les salaires, et de quelques autres revenus. Impôts et cotisations forment ensemble les prélèvements obligatoires.",
+            "ordreDeGrandeur": "Les recettes atteignent {{chiffre:recettes-pib}}. Les prélèvements obligatoires en forment l'essentiel : {{chiffre:prelevements-obligatoires-pib}}.",
+            "comparaison": "La TVA est payée par tout le monde, même par un enfant qui achète un cahier : elle porte sur ce qu'on achète, pas sur ce qu'on gagne. L'impôt sur le revenu, lui, dépend de ce qu'on gagne. Les deux ensemble restent inférieurs aux dépenses ({{chiffre:depenses-pib}})."
+          },
+          "couche3": {
+            "enjeu": "Un impôt tient quand il est jugé juste. Mais « juste » peut vouloir dire : tout le monde paie la même somme, chacun paie selon ses moyens, ou chacun paie selon ce qu'il reçoit.",
+            "questionOuverte": "Quelle idée de la justice fiscale vous paraît la plus défendable, et pourquoi d'autres pourraient-ils penser le contraire ?"
+          },
+          "sources": [],
+          "chiffres": [
+            "recettes-pib",
+            "prelevements-obligatoires-pib",
+            "depenses-pib"
+          ]
+        },
+        {
+          "id": "deficit",
+          "titre": "Le déficit",
+          "couche1": {
+            "texte": "Quand on dépense plus que ce qu'on gagne, il manque de l'argent.",
+            "image": "assets/img/trou.svg",
+            "alt": "Un gâteau auquel il manque une part."
+          },
+          "couche2": {
+            "mecanisme": "Le déficit, c'est l'écart, sur une seule année, entre ce qui est dépensé et ce qui rentre. On le mesure lui aussi par rapport à la richesse produite dans l'année.",
+            "ordreDeGrandeur": "Le déficit public atteint {{chiffre:deficit-pib}}. Les règles européennes fixent une valeur de référence de {{chiffre:seuil-deficit-ue}}.",
+            "comparaison": "Le déficit d'une année s'ajoute à la dette, comme un découvert qui, s'il revient chaque année, s'additionne au précédent."
+          },
+          "couche3": {
+            "enjeu": "Un déficit peut financer une crise, un investissement ou des dépenses de tous les jours. Les règles européennes fixent un repère commun ; certains y voient une protection, d'autres une limite à la décision des Parlements nationaux.",
+            "questionOuverte": "Un État doit-il tenir ses comptes comme une famille, ou cette comparaison est-elle trompeuse ?"
+          },
+          "sources": [
+            "tfue-protocole-12"
+          ],
+          "chiffres": [
+            "deficit-pib",
+            "seuil-deficit-ue"
+          ]
+        },
+        {
+          "id": "dette",
+          "titre": "La dette",
+          "couche1": {
+            "texte": "Pour combler le manque, on emprunte. Tout ce qu'on doit forme la dette.",
+            "image": "assets/img/pile.svg",
+            "alt": "Une haute pile de papiers, avec l'étiquette « À rendre »."
+          },
+          "couche2": {
+            "mecanisme": "La dette publique est la somme de tous les emprunts pas encore remboursés. L'État emprunte en vendant des titres, les obligations assimilables du Trésor (OAT), à des prêteurs : banques, assureurs, fonds, épargnants, en France et à l'étranger.",
+            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}}, soit plus que toute la richesse produite en un an. La part détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
+            "comparaison": "Un pays ne rembourse presque jamais sa dette d'un coup : quand un titre arrive à échéance, il emprunte à nouveau pour le rembourser, un peu comme on renouvelle un crédit."
+          },
+          "couche3": {
+            "enjeu": "La dette engage des personnes qui ne votent pas encore. Elle peut aussi financer des écoles, des réseaux ou une transition dont elles profiteront.",
+            "questionOuverte": "Dans quels cas est-il légitime d'emprunter aujourd'hui ce que d'autres rembourseront demain ?"
+          },
+          "sources": [
+            "blanchard-2019"
+          ],
+          "chiffres": [
+            "dette-pib",
+            "dette-non-residents"
+          ]
+        },
+        {
+          "id": "interets",
+          "titre": "Le prix de la dette",
+          "couche1": {
+            "texte": "Celui qui prête demande un loyer : ce sont les intérêts.",
+            "image": "assets/img/interets.svg",
+            "alt": "Un billet prêté, rendu avec des pièces en plus : les intérêts."
+          },
+          "couche2": {
+            "mecanisme": "Chaque année, l'État verse des intérêts à ses prêteurs. Leur montant dépend de la dette et du taux auquel il emprunte. Quand les taux montent, seuls les nouveaux emprunts coûtent plus cher : les anciens titres gardent leur taux, si bien que la hausse se diffuse année après année.",
+            "ordreDeGrandeur": "La charge d'intérêts est de {{chiffre:charge-interets-2026}} en 2026 et passerait à {{chiffre:charge-interets-2027}} en 2027. L'État emprunte à dix ans à un taux de {{chiffre:oat-10-ans}}, soit un écart de {{chiffre:ecart-oat-bund}} avec l'Allemagne.",
+            "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer, on peut le comparer aux crédits de l'Éducation nationale : {{chiffre:budget-education-nationale}}."
+          },
+          "couche3": {
+            "enjeu": "Quand une grande part de la dette est détenue à l'étranger, les prêteurs observent les choix budgétaires du pays. Certains y voient une discipline utile, d'autres une pression sur la démocratie.",
+            "questionOuverte": "Jusqu'où les prêteurs doivent-ils peser sur les choix d'un pays qui leur doit de l'argent ?"
+          },
+          "sources": [],
+          "chiffres": [
+            "charge-interets-2026",
+            "charge-interets-2027",
+            "oat-10-ans",
+            "ecart-oat-bund",
+            "budget-education-nationale"
+          ]
+        }
+      ],
+      "activite": {
+        "type": "classement",
+        "titre": "Dépense, recette ou emprunt ?",
+        "consigne": "Pour chaque situation, choisissez la bonne case, puis vérifiez.",
+        "categories": [
+          {
+            "id": "depense",
+            "label": "Dépense publique"
+          },
+          {
+            "id": "recette",
+            "label": "Recette publique"
+          },
+          {
+            "id": "emprunt",
+            "label": "Emprunt"
+          }
+        ],
+        "items": [
+          {
+            "id": "a1",
+            "texte": "Le salaire d'une infirmière d'un hôpital public.",
+            "reponse": "depense",
+            "commentaire": "L'hôpital public paie ses agents avec de l'argent public : c'est une dépense."
+          },
+          {
+            "id": "a2",
+            "texte": "La TVA payée en achetant un vélo.",
+            "reponse": "recette",
+            "commentaire": "La TVA est un impôt sur la consommation : elle fait rentrer de l'argent."
+          },
+          {
+            "id": "a3",
+            "texte": "Un fonds de pension étranger achète une obligation de l'État.",
+            "reponse": "emprunt",
+            "commentaire": "L'État reçoit de l'argent, mais il devra le rendre avec intérêts : c'est un emprunt, pas une recette."
+          },
+          {
+            "id": "a4",
+            "texte": "La pension versée à un retraité.",
+            "reponse": "depense",
+            "commentaire": "Les retraites sont la plus grosse dépense de protection sociale."
+          },
+          {
+            "id": "a5",
+            "texte": "Une cotisation retenue sur une fiche de paie.",
+            "reponse": "recette",
+            "commentaire": "Les cotisations sociales font partie des prélèvements obligatoires."
+          },
+          {
+            "id": "a6",
+            "texte": "Les intérêts versés aux prêteurs de l'État.",
+            "reponse": "depense",
+            "commentaire": "Payer des intérêts est une dépense, même si elle ne finance aucun service nouveau."
+          }
+        ]
+      },
+      "quiz": [
+        {
+          "id": "m1q1",
+          "question": "Le déficit public, c'est :",
+          "choix": [
+            {
+              "id": "a",
+              "texte": "toute la dette accumulée depuis des années"
+            },
+            {
+              "id": "b",
+              "texte": "l'argent prêté par l'Union européenne"
+            },
+            {
+              "id": "c",
+              "texte": "le montant des intérêts"
+            },
+            {
+              "id": "d",
+              "texte": "l'écart, sur une année, entre dépenses et recettes"
+            }
+          ],
+          "reponse": "d",
+          "explication": "Le déficit se mesure sur une année. La dette est l'addition des déficits passés qui n'ont pas été remboursés."
+        },
+        {
+          "id": "m1q2",
+          "question": "« Les dépenses publiques représentent plus de la moitié du PIB » signifie :",
+          "choix": [
+            {
+              "id": "a",
+              "texte": "la dépense publique équivaut à plus de la moitié de la richesse produite, dont une partie est reversée aux ménages"
+            },
+            {
+              "id": "b",
+              "texte": "l'État garde pour lui plus de la moitié des revenus"
+            },
+            {
+              "id": "c",
+              "texte": "la moitié des habitants travaille pour l'État"
+            }
+          ],
+          "reponse": "a",
+          "explication": "C'est une comparaison de taille, pas une part confisquée : pensions et allocations repartent vers les ménages."
+        },
+        {
+          "id": "m1q3",
+          "question": "Quand les taux d'intérêt montent, la charge d'intérêts :",
+          "choix": [
+            {
+              "id": "a",
+              "texte": "augmente d'un coup sur toute la dette"
+            },
+            {
+              "id": "b",
+              "texte": "ne change pas"
+            },
+            {
+              "id": "c",
+              "texte": "augmente progressivement, à mesure que l'État emprunte à nouveau"
+            }
+          ],
+          "reponse": "c",
+          "explication": "Les titres déjà émis gardent leur taux. Seuls les nouveaux emprunts, y compris ceux qui remplacent les titres arrivés à échéance, coûtent plus cher."
+        },
+        {
+          "id": "m1q4",
+          "question": "Un épargnant achète une obligation de l'État. Pour l'État, c'est :",
+          "choix": [
+            {
+              "id": "a",
+              "texte": "une recette"
+            },
+            {
+              "id": "b",
+              "texte": "un emprunt"
+            },
+            {
+              "id": "c",
+              "texte": "un impôt"
+            }
+          ],
+          "reponse": "b",
+          "explication": "L'argent devra être rendu, avec intérêts : il augmente la dette."
+        }
+      ],
+      "lectureOpposee": {
+        "titre": "La lecture opposée",
+        "texte": "Ce module présente la dette comme une charge. L'économiste Olivier Blanchard soutient qu'une dette élevée n'est pas forcément un fardeau : tant que le taux d'intérêt reste inférieur au taux de croissance, la dette rapportée au PIB peut se stabiliser sans hausse d'impôts. D'autres économistes répondent que cette condition dépend des taux, qui peuvent remonter.",
+        "source": "blanchard-2019"
+      },
+      "glossaire": [
+        {
+          "terme": "PIB",
+          "definition": "Produit intérieur brut : la valeur de tout ce qui est produit dans le pays en une année. Il sert d'étalon pour comparer les chiffres."
+        },
+        {
+          "terme": "Dépense publique",
+          "definition": "Ce que paient l'État, la Sécurité sociale et les collectivités locales."
+        },
+        {
+          "terme": "Recette publique",
+          "definition": "L'argent qui rentre dans les caisses publiques : impôts, cotisations, autres revenus."
+        },
+        {
+          "terme": "Prélèvements obligatoires",
+          "definition": "Impôts et cotisations sociales que la loi impose de payer."
+        },
+        {
+          "terme": "Déficit",
+          "definition": "Écart, sur une année, entre dépenses et recettes publiques."
+        },
+        {
+          "terme": "Dette publique",
+          "definition": "Somme des emprunts publics pas encore remboursés."
+        },
+        {
+          "terme": "OAT",
+          "definition": "Obligation assimilable du Trésor : titre par lequel l'État emprunte sur plusieurs années."
+        },
+        {
+          "terme": "Point de base",
+          "definition": "Un centième de point de pourcentage."
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "slug": "qui-paie",
+      "numero": 2,
+      "titre": "Qui paie ?",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Impôts, cotisations, TVA : qui paie quoi, selon ses revenus et sa situation.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "m3",
+      "slug": "qui-recoit",
+      "numero": 3,
+      "titre": "Qui reçoit ?",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Retraites, santé, école, investissement : à quoi sert chaque part du gâteau.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "m4",
+      "slug": "dette-et-preteurs",
+      "numero": 4,
+      "titre": "La dette et ceux qui prêtent",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Taux, créanciers, marchés : comment se fixe le prix de l'emprunt public.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "m5",
+      "slug": "un-seul-budget",
+      "numero": 5,
+      "titre": "Un seul budget",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Simulation en trois manches : ménages, entreprise, prêteur et ministre face au même budget.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    },
+    {
+      "id": "m6",
+      "slug": "choisir-en-connaissance-de-cause",
+      "numero": 6,
+      "titre": "Choisir en connaissance de cause",
+      "duree": "2 h",
+      "statut": "apercu",
+      "resume": "Vos priorités économiques, une grille pour lire un programme, et une comparaison facultative avec cinq grandes tendances.",
+      "objectifs": [],
+      "sequences": [],
+      "concepts": [],
+      "activite": null,
+      "quiz": [],
+      "lectureOpposee": null,
+      "glossaire": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "blanchard-2019",
+      "auteurs": "Blanchard, Olivier",
+      "annee": "2019",
+      "titre": "Public Debt and Low Interest Rates",
+      "support": "American Economic Review, vol. 109, n° 4",
+      "url": "https://www.aeaweb.org/articles?id=10.1257/aer.109.4.1197",
+      "apport": "Montre que le coût d'une dette dépend de l'écart entre taux d'intérêt et croissance, pas seulement de son montant.",
+      "vigilance": "Écrit en période de taux très bas ; l'auteur souligne lui-même que la conclusion change si les taux remontent."
+    },
+    {
+      "id": "insee-ip2093",
+      "auteurs": "Insee",
+      "annee": "2026",
+      "titre": "Insee Première n° 2093 — la dépense publique par fonction en 2024",
+      "support": "Insee Première",
+      "url": "https://www.insee.fr/fr/statistiques/8735252",
+      "apport": "Répartit la dépense publique par grande fonction (protection sociale, santé, enseignement, défense…).",
+      "vigilance": "Titre exact à vérifier sur le site de l'Insee. La ventilation par fonction suit une nomenclature internationale qui ne recoupe pas les ministères."
+    },
+    {
+      "id": "tfue-protocole-12",
+      "auteurs": "Union européenne",
+      "annee": "2016",
+      "titre": "Protocole n° 12 sur la procédure concernant les déficits excessifs",
+      "support": "Traité sur le fonctionnement de l'Union européenne (version consolidée)",
+      "url": "https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:12016E/PRO/12",
+      "apport": "Fixe les valeurs de référence du déficit et de la dette publics.",
+      "vigilance": "Les règles budgétaires européennes ont été réformées en 2024 : la valeur de référence demeure, mais son application a changé."
+    }
+  ]
+}
