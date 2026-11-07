@@ -1,7 +1,7 @@
 # Le Gâteau de 100 €
 
 Formation en ligne gratuite à la lecture du budget public et au choix
-économique éclairé, pour tous de 10 à 90 ans. Six modules de deux heures,
+économique éclairé, pour les lycéens et les adultes, sans aucun prérequis. Six modules de deux heures,
 utilisables en classe, en médiathèque ou en autonomie, sur mobile d'abord.
 
 Chaque notion existe à trois profondeurs (l'essentiel, les chiffres, le débat),

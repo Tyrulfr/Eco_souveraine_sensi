@@ -19,10 +19,12 @@ fichier : tu lis, tu cherches, tu rends un rapport. Référence : `ETHICS.md`.
 1. **Trois couches présentes** : `couche1.texte`, `couche1.image`,
    `couche1.alt`, `couche2.mecanisme`, `couche2.ordreDeGrandeur`,
    `couche2.comparaison`, `couche3.enjeu`, `couche3.questionOuverte`, tous non vides.
-2. **Couche 1 accessible à un enfant de 10 ans** :
+2. **Couche 1 accessible à tous** (public : lycéens et adultes, sans aucun
+   prérequis ; la phrase doit se comprendre en une lecture, par n'importe qui) :
    - moins de 15 mots ;
-   - pas de jargon : PIB, solde, structurel, conjoncturel, obligation, taux,
-     prélèvement, souveraineté, non-résident, etc. ;
+   - pas de jargon technique : PIB, solde, structurel, conjoncturel, obligation,
+     prélèvement obligatoire, non-résident, etc. (ces mots s'expliquent en couche 2) ;
+   - pas de ton enfantin : on s'adresse à des lycéens et à des adultes ;
    - pas de négation double, pas de subordonnée enchâssée, pas de sigle ;
    - un `alt` qui décrit l'image, pas qui la commente.
 3. **Couche 2** : mécanisme compréhensible, au moins un `{{chiffre:id}}` ;

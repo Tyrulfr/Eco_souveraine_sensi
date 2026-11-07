@@ -2,7 +2,7 @@
   "meta": {
     "titre": "Le Gâteau de 100 €",
     "sousTitre": "Lire un budget public pour choisir en connaissance de cause",
-    "public": "De 10 à 90 ans, sans prérequis. En classe, en médiathèque ou en autonomie.",
+    "public": "Lycéens et adultes, sans aucun prérequis. En classe, en médiathèque ou en autonomie.",
     "duree": "Six modules de deux heures",
     "version": "Lot 1 — socle et module de référence",
     "dateVerification": "2026-11-07",
@@ -131,7 +131,7 @@
           "couche2": {
             "mecanisme": "Les recettes publiques viennent des impôts (TVA, impôt sur le revenu, impôt sur les sociétés), des cotisations sociales prélevées sur les salaires, et de quelques autres revenus. Impôts et cotisations forment ensemble les prélèvements obligatoires.",
             "ordreDeGrandeur": "Les recettes atteignent {{chiffre:recettes-pib}}. Les prélèvements obligatoires en forment l'essentiel : {{chiffre:prelevements-obligatoires-pib}}.",
-            "comparaison": "La TVA est payée par tout le monde, même par un enfant qui achète un cahier : elle porte sur ce qu'on achète, pas sur ce qu'on gagne. L'impôt sur le revenu, lui, dépend de ce qu'on gagne. Toutes les recettes réunies ({{chiffre:recettes-pib}}) restent inférieures aux dépenses ({{chiffre:depenses-pib}}) : c'est cet écart qui crée le déficit."
+            "comparaison": "La TVA est payée par tout le monde, même par un lycéen qui achète un cahier : elle porte sur ce qu'on achète, pas sur ce qu'on gagne. L'impôt sur le revenu, lui, dépend de ce qu'on gagne. Toutes les recettes réunies ({{chiffre:recettes-pib}}) restent inférieures aux dépenses ({{chiffre:depenses-pib}}) : c'est cet écart qui crée le déficit."
           },
           "couche3": {
             "enjeu": "Un impôt tient quand il est jugé juste. Mais « juste » peut vouloir dire : tout le monde paie le même pourcentage de ce qu'il gagne ; plus on gagne, plus le pourcentage monte ; ou chacun paie selon les services qu'il reçoit.",

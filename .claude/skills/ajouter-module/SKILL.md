@@ -44,8 +44,9 @@ Pour chaque chiffre, ajoute une entrée dans `data/figures.json` :
   "sources": ["id-bibliographie"], "chiffres": ["id", "…"] }
 ```
 
-- **Couche 1** : moins de 15 mots, phrases courtes, vocabulaire d'un enfant de
-  CE2 (pas de « PIB », « solde », « structurel »…). Crée l'illustration SVG
+- **Couche 1** : moins de 15 mots, phrases courtes, langage courant compris par
+  tous sans prérequis (public : lycéens et adultes), sans jargon technique (pas
+  de « PIB », « solde », « structurel »…) et sans ton enfantin. Crée l'illustration SVG
   dans `assets/img/` (viewBox 160×120, contours foncés) et un `alt` qui décrit
   l'image.
 - **Couche 2** : le mécanisme, un ordre de grandeur et une comparaison. Au
