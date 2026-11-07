@@ -8,6 +8,9 @@ Chaque notion existe à trois profondeurs (l'essentiel, les chiffres, le débat)
 chaque chiffre affiche sa source au clic, et la formation ne dit jamais pour
 qui voter : voir [ETHICS.md](ETHICS.md).
 
+Site en ligne : https://tyrulfr.github.io/Eco_souveraine_sensi/
+(publié automatiquement à chaque mise à jour de la branche `main`).
+
 ## Démarrer
 
 ```bash
@@ -20,6 +23,12 @@ Le site est un ensemble de fichiers statiques sans dépendance d'exécution : il
 se publie tel quel (dossier `dist/`) sur Netlify, GitHub Pages ou n'importe quel
 serveur web. Il doit être servi en HTTP : ouvert directement depuis le disque
 (`file://`), le navigateur bloque le chargement des fichiers JSON.
+
+## Contribuer
+
+- `main` est la branche publiée : on n'y pousse que du code vérifié.
+- Chaque lot est développé sur sa propre branche, puis fusionné dans `main`
+  par une pull request une fois la CI au vert.
 
 ## Vérifier
 
