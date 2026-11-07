@@ -1,0 +1,48 @@
+# Le Gâteau de 100 €
+
+Formation en ligne (fr-FR) à la lecture budgétaire et au choix économique
+éclairé, de 10 à 90 ans. Six modules de 2 h. Les règles de `ETHICS.md` priment
+sur tout le reste.
+
+## Architecture (version légère, sans framework)
+
+- `index.html` : page unique ; routage par ancre `#/`, `#/module/<slug>`,
+  `#/simulateur`, `#/sources`, `#/formateur`.
+- `src/app.js` : rendu DOM en JavaScript natif (modules ES), aucune dépendance.
+- `src/lib.js` : fonctions pures (formatage des chiffres, jetons, progression).
+- `src/validation.js` : règles de contenu, partagées par scripts, tests et hook.
+- `src/engine.js` (lot 3) : moteur du simulateur, pur, sans DOM.
+- `data/formation.json` : tout le contenu ; `data/figures.json` : tous les
+  chiffres ; `data/ui.fr-FR.json` : tous les textes d'interface.
+- `assets/` : police Atkinson Hyperlegible (OFL) et illustrations SVG.
+
+## Commandes
+
+- `npm run verifier` : lint + typecheck + validation du contenu (lancé par le hook).
+- `npm test` : tests `node --test` dans `tests/*.test.mjs`.
+- `npm run build` : valide puis copie le site dans `dist/`.
+- `npm run serve -- dist` : serveur local sur le port 8080.
+
+## Conventions
+
+- Code, identifiants, commits et contenus en français.
+- Fichiers et identifiants de données en kebab-case (`dette-pib`, `gateau-100-euros`).
+- Fonctions en camelCase ; composants d'interface en PascalCase (`DepthToggle`, `Chiffre`).
+- Typage par JSDoc, vérifié par `tsc --checkJs --strict`. Aucun `any` implicite.
+- Aucun texte d'interface dans `app.js` : passer par `t("clé")`.
+- Aucun chiffre écrit en dur dans un contenu : `{{chiffre:id}}` uniquement.
+- Statuts de chiffre : `verifie`, `a-verifier`, `a-completer`.
+- Chaque concept : `{ id, titre, couche1, couche2, couche3, sources[], chiffres[] }`.
+  Couche 1 : moins de 15 mots, vocabulaire CE2, image et texte alternatif.
+  Couche 2 : mécanisme, ordre de grandeur, comparaison, au moins un chiffre.
+  Couche 3 : enjeu et question ouverte, sans réponse.
+- Un module `apercu` n'a pas de contenu ; un module `complet` a une lecture opposée.
+- Montants du simulateur en euros entiers (pas de flottants en comptabilité).
+- Persistance : `localStorage`, clé `gateau100.progression.v1`. Rien d'autre.
+- Messages de commit en français, au présent de l'infinitif (« Ajouter… »).
+
+## Extensions Claude Code
+
+- Skill `ajouter-module` : procédure d'ajout d'un module.
+- Sous-agent `relecteur-pedago` : relecture en lecture seule, rapport par gravité.
+- Hook PostToolUse : `scripts/hook-verif.sh` après chaque édition.
