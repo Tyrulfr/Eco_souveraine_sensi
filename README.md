@@ -9,7 +9,7 @@ chaque chiffre affiche sa source au clic, et la formation ne dit jamais pour
 qui voter : voir [ETHICS.md](ETHICS.md).
 
 Site en ligne : https://tyrulfr.github.io/Eco_souveraine_sensi/
-(publié automatiquement à chaque mise à jour de la branche `main`).
+(GitHub Pages publie automatiquement la branche `main`, dossier racine).
 
 ## Démarrer
 
@@ -27,8 +27,8 @@ serveur web. Il doit être servi en HTTP : ouvert directement depuis le disque
 ## Contribuer
 
 - `main` est la branche publiée : on n'y pousse que du code vérifié.
-- Chaque lot est développé sur sa propre branche, puis fusionné dans `main`
-  par une pull request une fois la CI au vert.
+- Chaque lot est développé sur une branche `lot-N`, puis fusionné dans `main`
+  par une pull request une fois la CI au vert ; la branche est ensuite supprimée.
 
 ## Vérifier
 
