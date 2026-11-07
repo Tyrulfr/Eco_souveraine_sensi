@@ -7,7 +7,6 @@ import {
   ecrireProgression,
   formaterValeur,
   lireProgression,
-  LIBELLE_A_COMPLETER,
 } from "./lib.js";
 
 /**
@@ -89,8 +88,8 @@ function Chiffre(id) {
   const f = etat.figures.get(id);
   if (!f) return h("span", { class: "chiffre chiffre-inconnu" }, `[${t("chiffre.inconnu")} : ${id}]`);
   const idPanneau = nouvelId("source");
-  const valeur = formaterValeur(f);
-  const manquant = valeur === LIBELLE_A_COMPLETER;
+  const manquant = f.valeur === null;
+  const valeur = manquant ? t("chiffre.a-completer") : formaterValeur(f);
   const panneau = h(
     "span",
     { class: "chiffre-panneau", id: idPanneau, hidden: true },
@@ -479,7 +478,7 @@ function pageSources() {
               "tr",
               { id: `figure-${f.id}` },
               h("th", { scope: "row" }, f.libelle),
-              h("td", {}, formaterValeur(f)),
+              h("td", {}, f.valeur === null ? t("chiffre.a-completer") : formaterValeur(f)),
               h("td", {}, f.date ?? t("chiffre.non-renseigne")),
               h("td", {}, f.url ? h("a", { href: f.url, target: "_blank", rel: "noopener noreferrer" }, f.source ?? f.url) : f.source ?? t("chiffre.non-renseigne"), f.note ? h("p", { class: "aide" }, f.note) : null),
               h("td", {}, dateFr(f.dateVerification)),

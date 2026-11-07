@@ -7,10 +7,9 @@
   "nav.sources": "Sources",
   "nav.formateur": "Formateur",
   "chargement": "Chargement…",
-  "erreur.chargement": "Le contenu n'a pas pu être chargé. Ouvrez le site depuis un serveur web (voir le README).",
+  "erreur.chargement": "Le contenu n'a pas pu être chargé. Réessayez plus tard ou prévenez la personne qui anime la formation.",
   "erreur.introuvable": "Page introuvable.",
   "retour.accueil": "Revenir à l'accueil",
-
   "accueil.modules": "Les six modules",
   "accueil.garde-fous": "Nos engagements",
   "accueil.module.numero": "Module {n}",
@@ -18,13 +17,11 @@
   "accueil.module.apercu": "En préparation",
   "accueil.module.termine": "Terminé",
   "accueil.module.quiz": "Quiz : {score} sur {total}",
-
   "profondeur.legende": "Profondeur",
   "profondeur.aide": "Changez de profondeur à tout moment : le contenu s'adapte.",
   "profondeur.1": "L'essentiel",
   "profondeur.2": "Les chiffres",
   "profondeur.3": "Le débat",
-
   "concept.mecanisme": "Le mécanisme",
   "concept.ordre": "L'ordre de grandeur",
   "concept.comparaison": "Pour comparer",
@@ -32,11 +29,10 @@
   "concept.question": "Question ouverte",
   "concept.question.aide": "Il n'y a pas de réponse attendue : formulez la vôtre, puis cherchez les meilleurs arguments contraires.",
   "concept.sources": "Pour aller plus loin",
-
   "chiffre.voir": "Afficher la source de ce chiffre",
   "chiffre.source": "Source",
   "chiffre.periode": "Période",
-  "chiffre.verifie-le": "Vérifié le",
+  "chiffre.verifie-le": "Dernier contrôle le",
   "chiffre.statut": "Statut",
   "chiffre.note": "Note",
   "chiffre.lien": "Consulter la source",
@@ -45,7 +41,6 @@
   "statut.verifie": "vérifié",
   "statut.a-verifier": "à vérifier",
   "statut.a-completer": "à compléter",
-
   "module.objectifs": "Objectifs",
   "module.apercu": "Ce module est en préparation. Son contenu sera publié dans un prochain lot.",
   "module.etape.situation": "Situation",
@@ -66,7 +61,6 @@
   "module.termine": "Module terminé. Bravo !",
   "module.precedent": "Module précédent",
   "module.suivant": "Module suivant",
-
   "sources.titre": "Sources et chiffres",
   "sources.intro": "Chaque chiffre affiché dans la formation est listé ici avec sa source, sa période et sa date de vérification.",
   "sources.bilan": "{total} chiffres : {verifie} vérifiés, {aVerifier} à vérifier, {aCompleter} à compléter.",
@@ -76,16 +70,15 @@
   "sources.col.valeur": "Valeur",
   "sources.col.periode": "Période",
   "sources.col.source": "Source",
-  "sources.col.verification": "Vérifié le",
+  "sources.col.verification": "Dernier contrôle le",
   "sources.col.statut": "Statut",
   "sources.apport": "Apport",
   "sources.vigilance": "Vigilance",
-
   "simulateur.titre": "Simulateur « Un seul budget »",
   "simulateur.bientot": "Le simulateur arrive au lot 3.",
   "formateur.titre": "Espace formateur",
   "formateur.bientot": "Le guide formateur arrive au lot 5.",
-
   "pied.donnees": "Aucune donnée personnelle collectée. Votre progression reste sur cet appareil.",
-  "pied.verification": "Chiffres arrêtés au {date}."
+  "pied.verification": "Chiffres relevés le {date}. Certains restent à vérifier : voir la page Sources.",
+  "chiffre.a-completer": "donnée à compléter"
 }

@@ -10,8 +10,8 @@
   },
   "gardeFous": [
     "Aucun écran ne dit pour qui ni comment voter.",
-    "Chaque module présente une lecture opposée, avec sa source.",
-    "Chaque chiffre est relié à sa source et à sa date. Une donnée manquante est signalée, jamais inventée.",
+    "Chaque module complet présente une lecture opposée, avec sa source.",
+    "Chaque chiffre indique sa source et sa date, ou signale clairement qu'elles restent à compléter. Une donnée manquante n'est jamais inventée.",
     "Aucune donnée personnelle ni préférence politique n'est collectée : tout reste sur votre appareil.",
     "Les grandes tendances politiques sont comparées à partir de positions publiées et citées, jamais résumées de mémoire."
   ],
@@ -58,7 +58,7 @@
           "etapes": [
             {
               "type": "situation",
-              "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. Il faut emprunter la différence."
+              "texte": "Cette année encore, le gâteau coûte plus cher que l'argent qui rentre. L'État emprunte la différence."
             },
             {
               "type": "concepts",
@@ -85,7 +85,7 @@
             },
             {
               "type": "debat",
-              "texte": "Choisissez une question ouverte au niveau « Le débat ». Formez deux groupes : chacun défend la position qu'il ne partage pas spontanément."
+              "texte": "Choisissez une question ouverte au niveau « Le débat ». Formez deux groupes et tirez au sort la position que chaque groupe défend."
             }
           ]
         }
@@ -102,7 +102,7 @@
           "couche2": {
             "mecanisme": "La dépense publique regroupe ce que paient l'État, la Sécurité sociale et les collectivités locales : salaires des agents, retraites, remboursements de soins, investissements et intérêts de la dette. Une grande partie n'est pas consommée par l'administration : elle est reversée aux ménages sous forme de pensions et d'allocations.",
             "ordreDeGrandeur": "Elle représente {{chiffre:depenses-pib}}, c'est-à-dire qu'on la compare à toute la richesse produite dans le pays en un an. La protection sociale (retraites, famille, chômage) en prend {{chiffre:part-protection-sociale-depense}}.",
-            "comparaison": "Sur un gâteau de 100 €, la part de la protection sociale vaut à elle seule {{chiffre:part-protection-sociale-depense}}. Les autres parts se partagent le reste : santé {{chiffre:part-sante-depense}}, enseignement {{chiffre:part-enseignement-depense}}, défense {{chiffre:part-defense-depense}}."
+            "comparaison": "Sur un gâteau de 100 €, la protection sociale prend à elle seule une part de {{chiffre:part-protection-sociale-depense}} du gâteau. Parmi les autres parts : santé {{chiffre:part-sante-depense}}, enseignement {{chiffre:part-enseignement-depense}}, défense {{chiffre:part-defense-depense}}."
           },
           "couche3": {
             "enjeu": "Décider ce que l'argent public doit payer, c'est décider ce que l'on fait ensemble plutôt que chacun de son côté. La frontière entre les deux change selon les pays et les époques.",
@@ -123,18 +123,18 @@
           "id": "recettes-publiques",
           "titre": "D'où vient l'argent ?",
           "couche1": {
-            "texte": "Cet argent vient surtout des impôts que nous payons tous.",
+            "texte": "L'argent public vient surtout des impôts que nous payons tous.",
             "image": "assets/img/tirelire.svg",
             "alt": "Des pièces qui tombent dans une tirelire."
           },
           "couche2": {
             "mecanisme": "Les recettes publiques viennent des impôts (TVA, impôt sur le revenu, impôt sur les sociétés), des cotisations sociales prélevées sur les salaires, et de quelques autres revenus. Impôts et cotisations forment ensemble les prélèvements obligatoires.",
             "ordreDeGrandeur": "Les recettes atteignent {{chiffre:recettes-pib}}. Les prélèvements obligatoires en forment l'essentiel : {{chiffre:prelevements-obligatoires-pib}}.",
-            "comparaison": "La TVA est payée par tout le monde, même par un enfant qui achète un cahier : elle porte sur ce qu'on achète, pas sur ce qu'on gagne. L'impôt sur le revenu, lui, dépend de ce qu'on gagne. Les deux ensemble restent inférieurs aux dépenses ({{chiffre:depenses-pib}})."
+            "comparaison": "La TVA est payée par tout le monde, même par un enfant qui achète un cahier : elle porte sur ce qu'on achète, pas sur ce qu'on gagne. L'impôt sur le revenu, lui, dépend de ce qu'on gagne. Toutes les recettes réunies ({{chiffre:recettes-pib}}) restent inférieures aux dépenses ({{chiffre:depenses-pib}}) : c'est cet écart qui crée le déficit."
           },
           "couche3": {
-            "enjeu": "Un impôt tient quand il est jugé juste. Mais « juste » peut vouloir dire : tout le monde paie la même somme, chacun paie selon ses moyens, ou chacun paie selon ce qu'il reçoit.",
-            "questionOuverte": "Quelle idée de la justice fiscale vous paraît la plus défendable, et pourquoi d'autres pourraient-ils penser le contraire ?"
+            "enjeu": "Un impôt tient quand il est jugé juste. Mais « juste » peut vouloir dire : tout le monde paie le même pourcentage de ce qu'il gagne ; plus on gagne, plus le pourcentage monte ; ou chacun paie selon les services qu'il reçoit.",
+            "questionOuverte": "Quelle idée de la justice fiscale vous paraît la plus défendable, et pourquoi d'autres pourraient-ils penser autrement ?"
           },
           "sources": [],
           "chiffres": [
@@ -147,18 +147,18 @@
           "id": "deficit",
           "titre": "Le déficit",
           "couche1": {
-            "texte": "Quand on dépense plus que ce qu'on gagne, il manque de l'argent.",
+            "texte": "On dépense plus que ce qui rentre. Alors il manque de l'argent.",
             "image": "assets/img/trou.svg",
-            "alt": "Un gâteau auquel il manque une part."
+            "alt": "Un gâteau auquel il manque une part, avec un point d'interrogation à la place."
           },
           "couche2": {
             "mecanisme": "Le déficit, c'est l'écart, sur une seule année, entre ce qui est dépensé et ce qui rentre. On le mesure lui aussi par rapport à la richesse produite dans l'année.",
             "ordreDeGrandeur": "Le déficit public atteint {{chiffre:deficit-pib}}. Les règles européennes fixent une valeur de référence de {{chiffre:seuil-deficit-ue}}.",
-            "comparaison": "Le déficit d'une année s'ajoute à la dette, comme un découvert qui, s'il revient chaque année, s'additionne au précédent."
+            "comparaison": "Le déficit de l'année s'ajoute à la dette. Si cela recommence chaque année, la dette grossit, comme un découvert qui s'accumule."
           },
           "couche3": {
             "enjeu": "Un déficit peut financer une crise, un investissement ou des dépenses de tous les jours. Les règles européennes fixent un repère commun ; certains y voient une protection, d'autres une limite à la décision des Parlements nationaux.",
-            "questionOuverte": "Un État doit-il tenir ses comptes comme une famille, ou cette comparaison est-elle trompeuse ?"
+            "questionOuverte": "En quoi le budget d'un État ressemble-t-il à celui d'une famille, et en quoi est-il différent ?"
           },
           "sources": [
             "tfue-protocole-12"
@@ -172,17 +172,17 @@
           "id": "dette",
           "titre": "La dette",
           "couche1": {
-            "texte": "Pour combler le manque, on emprunte. Tout ce qu'on doit forme la dette.",
+            "texte": "On emprunte l'argent qui manque. Ce qu'on doit s'appelle la dette.",
             "image": "assets/img/pile.svg",
             "alt": "Une haute pile de papiers, avec l'étiquette « À rendre »."
           },
           "couche2": {
             "mecanisme": "La dette publique est la somme de tous les emprunts pas encore remboursés. L'État emprunte en vendant des titres, les obligations assimilables du Trésor (OAT), à des prêteurs : banques, assureurs, fonds, épargnants, en France et à l'étranger.",
-            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}}, soit plus que toute la richesse produite en un an. La part détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
-            "comparaison": "Un pays ne rembourse presque jamais sa dette d'un coup : quand un titre arrive à échéance, il emprunte à nouveau pour le rembourser, un peu comme on renouvelle un crédit."
+            "ordreDeGrandeur": "Elle atteint {{chiffre:dette-pib}}. La part détenue par des prêteurs installés hors de France est de {{chiffre:dette-non-residents}}.",
+            "comparaison": "Un pays ne rembourse presque jamais sa dette d'un coup : quand un titre arrive à échéance, il emprunte à nouveau pour le rembourser, comme une entreprise qui prend un nouveau prêt quand l'ancien arrive à son terme."
           },
           "couche3": {
-            "enjeu": "La dette engage des personnes qui ne votent pas encore. Elle peut aussi financer des écoles, des réseaux ou une transition dont elles profiteront.",
+            "enjeu": "La dette engage des personnes qui ne votent pas encore. Elle peut aussi financer des écoles ou des réseaux dont elles pourraient profiter.",
             "questionOuverte": "Dans quels cas est-il légitime d'emprunter aujourd'hui ce que d'autres rembourseront demain ?"
           },
           "sources": [
@@ -197,18 +197,18 @@
           "id": "interets",
           "titre": "Le prix de la dette",
           "couche1": {
-            "texte": "Celui qui prête demande un loyer : ce sont les intérêts.",
+            "texte": "Celui qui prête veut plus d'argent en retour : ce sont les intérêts.",
             "image": "assets/img/interets.svg",
-            "alt": "Un billet prêté, rendu avec des pièces en plus : les intérêts."
+            "alt": "Un billet, puis le même billet avec des pièces en plus. Légende : prêt + intérêts."
           },
           "couche2": {
-            "mecanisme": "Chaque année, l'État verse des intérêts à ses prêteurs. Leur montant dépend de la dette et du taux auquel il emprunte. Quand les taux montent, seuls les nouveaux emprunts coûtent plus cher : les anciens titres gardent leur taux, si bien que la hausse se diffuse année après année.",
+            "mecanisme": "Chaque année, l'État verse des intérêts à ses prêteurs. Leur montant dépend de la dette et du taux auquel il emprunte. Quand les taux montent, ce sont pour l'essentiel les nouveaux emprunts qui coûtent plus cher : la plupart des anciens titres gardent leur taux, si bien que la hausse se diffuse année après année.",
             "ordreDeGrandeur": "La charge d'intérêts est de {{chiffre:charge-interets-2026}} en 2026 et passerait à {{chiffre:charge-interets-2027}} en 2027. L'État emprunte à dix ans à un taux de {{chiffre:oat-10-ans}}, soit un écart de {{chiffre:ecart-oat-bund}} avec l'Allemagne.",
             "comparaison": "Cet argent ne paie ni école ni hôpital : il rémunère les prêteurs pour l'argent déjà emprunté. Pour se repérer, on peut le comparer aux crédits de l'Éducation nationale : {{chiffre:budget-education-nationale}}."
           },
           "couche3": {
-            "enjeu": "Quand une grande part de la dette est détenue à l'étranger, les prêteurs observent les choix budgétaires du pays. Certains y voient une discipline utile, d'autres une pression sur la démocratie.",
-            "questionOuverte": "Jusqu'où les prêteurs doivent-ils peser sur les choix d'un pays qui leur doit de l'argent ?"
+            "enjeu": "Les prêteurs, en France comme à l'étranger, observent les choix budgétaires du pays. Certains y voient une discipline utile, d'autres une pression sur la démocratie.",
+            "questionOuverte": "Les prêteurs devraient-ils pouvoir peser sur les choix d'un pays qui leur doit de l'argent, et si oui, jusqu'où ?"
           },
           "sources": [],
           "chiffres": [
@@ -253,7 +253,7 @@
           },
           {
             "id": "a3",
-            "texte": "Un fonds de pension étranger achète une obligation de l'État.",
+            "texte": "Une banque achète une obligation de l'État.",
             "reponse": "emprunt",
             "commentaire": "L'État reçoit de l'argent, mais il devra le rendre avec intérêts : c'est un emprunt, pas une recette."
           },
@@ -261,7 +261,7 @@
             "id": "a4",
             "texte": "La pension versée à un retraité.",
             "reponse": "depense",
-            "commentaire": "Les retraites sont la plus grosse dépense de protection sociale."
+            "commentaire": "Une pension de retraite est versée avec de l'argent public : c'est une dépense de protection sociale."
           },
           {
             "id": "a5",
@@ -304,23 +304,23 @@
         },
         {
           "id": "m1q2",
-          "question": "« Les dépenses publiques représentent plus de la moitié du PIB » signifie :",
+          "question": "On lit souvent que les dépenses publiques sont exprimées « en pourcentage du PIB ». Cela signifie :",
           "choix": [
             {
               "id": "a",
-              "texte": "la dépense publique équivaut à plus de la moitié de la richesse produite, dont une partie est reversée aux ménages"
+              "texte": "on compare la dépense publique à toute la richesse produite en un an, et une partie de cette dépense est reversée aux ménages"
             },
             {
               "id": "b",
-              "texte": "l'État garde pour lui plus de la moitié des revenus"
+              "texte": "l'État garde pour lui ce pourcentage des revenus"
             },
             {
               "id": "c",
-              "texte": "la moitié des habitants travaille pour l'État"
+              "texte": "ce pourcentage des habitants travaille pour l'État"
             }
           ],
           "reponse": "a",
-          "explication": "C'est une comparaison de taille, pas une part confisquée : pensions et allocations repartent vers les ménages."
+          "explication": "C'est une comparaison de taille, pas une part retirée aux habitants : pensions et allocations repartent vers les ménages."
         },
         {
           "id": "m1q3",
@@ -336,11 +336,11 @@
             },
             {
               "id": "c",
-              "texte": "augmente progressivement, à mesure que l'État emprunte à nouveau"
+              "texte": "augmente surtout progressivement, à mesure que l'État emprunte à nouveau"
             }
           ],
           "reponse": "c",
-          "explication": "Les titres déjà émis gardent leur taux. Seuls les nouveaux emprunts, y compris ceux qui remplacent les titres arrivés à échéance, coûtent plus cher."
+          "explication": "La plupart des titres déjà émis gardent leur taux. Ce sont surtout les nouveaux emprunts, y compris ceux qui remplacent les titres arrivés à échéance, qui coûtent plus cher."
         },
         {
           "id": "m1q4",
@@ -365,7 +365,7 @@
       ],
       "lectureOpposee": {
         "titre": "La lecture opposée",
-        "texte": "Ce module présente la dette comme une charge. L'économiste Olivier Blanchard soutient qu'une dette élevée n'est pas forcément un fardeau : tant que le taux d'intérêt reste inférieur au taux de croissance, la dette rapportée au PIB peut se stabiliser sans hausse d'impôts. D'autres économistes répondent que cette condition dépend des taux, qui peuvent remonter.",
+        "texte": "Ce module présente la dette comme une charge. L'économiste Olivier Blanchard soutient qu'une dette élevée n'est pas forcément un fardeau : tant que le taux d'intérêt reste inférieur au taux de croissance, la dette rapportée au PIB peut se stabiliser sans hausse d'impôts. Il précise lui-même que cette conclusion dépend du niveau des taux ; dans ce cadre, la question devient moins « combien doit-on ? » que « à quel prix et pour quoi faire ? ».",
         "source": "blanchard-2019"
       },
       "glossaire": [
@@ -399,7 +399,7 @@
         },
         {
           "terme": "Point de base",
-          "definition": "Un centième de point de pourcentage."
+          "definition": "Un centième de point de pourcentage : cent points de base font un point de pourcentage."
         }
       ]
     },
@@ -410,7 +410,7 @@
       "titre": "Qui paie ?",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Impôts, cotisations, TVA : qui paie quoi, selon ses revenus et sa situation.",
+      "resume": "TVA, impôt sur le revenu, cotisations : qui paie quoi, selon ses revenus et sa situation.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -458,7 +458,7 @@
       "titre": "Un seul budget",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Simulation en trois manches : ménages, entreprise, prêteur et ministre face au même budget.",
+      "resume": "Simulation en trois manches : un ménage, une entreprise, un prêteur et un ministre face au même budget.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
@@ -474,7 +474,7 @@
       "titre": "Choisir en connaissance de cause",
       "duree": "2 h",
       "statut": "apercu",
-      "resume": "Vos priorités économiques, une grille pour lire un programme, et une comparaison facultative avec cinq grandes tendances.",
+      "resume": "Vos priorités économiques, une grille pour lire un programme, et une comparaison facultative avec cinq grandes tendances. Vos réponses ne sont jamais enregistrées.",
       "objectifs": [],
       "sequences": [],
       "concepts": [],
